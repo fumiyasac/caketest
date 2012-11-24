@@ -1,9 +1,10 @@
-<h2>CakePHP簡易名簿</h2>
+<h2>大塚「珍しいもん」ストア Official　blog</h2>
 <p>ようこそ、<?php echo $a_username; ?>さん&nbsp;<?php echo $html->link("[ログアウト]","../users/logout"); ?>&nbsp;<?php echo $html->link("[ログイン完了ページへ]","../users"); ?></p>
-<!--form method="post" action="/C09s/tuika"-->
+
 <?php
-echo $form->create("Meibos",array("type" => "post","action"=>"tuika"));
+echo $form->create("Blogs",array("type" => "post","action"=>"add"));
 ?>
+
 <p>（メイン情報）</p>
 氏名<?php echo $form->text("Meibo.shimei"); ?><br />
 住所<?php echo $form->textarea("Meibo.jusyo",array("cols" => "50", "rows" => "2")); ?><br />    

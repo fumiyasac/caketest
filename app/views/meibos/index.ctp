@@ -1,7 +1,7 @@
 <h3>CakePHP簡易名簿</h3>
 <p>ようこそ、<?php echo $a_username; ?>さん&nbsp;<?php echo $html->link("[ログアウト]","../users/logout"); ?>&nbsp;<?php echo $html->link("[ログイン完了ページへ]","../users"); ?></p>
 <?php
-echo $form->create("Blogs",array("type" => "post","action"=>"add"));
+echo $form->create("Meibos",array("type" => "post","action"=>"tuika"));
 ?>
 <p>（メイン情報）</p>
 氏名<?php echo $form->text("Meibo.shimei"); ?><br />

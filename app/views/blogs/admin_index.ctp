@@ -9,26 +9,26 @@
 </ul>
 
 <!--管理者用　入力画面スタート(後にadmin_addへ移植する予定)//-->
-<?php echo $form->create("Blogs",array("type" => "post","action"=>"admin_add")); ?>
+<?php echo $form->create("Blogs", array('type' => 'file', 'action' => 'admin_add')); ?>
 <table border="0" cellspacing="5" cellpadding="8" width="580" class="adminForm">
     <tr>
         <th>投稿者</th>
         <td>
-            <?php echo $form->text('Blog.name', array('size' => '50')); ?>
+            <?php echo $form->text("Blog.name", array('size' => '50')); ?>
             <br /><span class="remark">※必須項目(ハンドルネームやニックネームも可能)</span>
         </td>
     </tr>
     <tr>
         <th>E-mail</th>
         <td>
-            <?php echo $form->text('Blog.email', array('size' => '50')); ?>
-            <br /><span class="remark">※任意項目</span>
+            <?php echo $form->text("Blog.email", array('size' => '50')); ?>
+            <br /><span class="remark">※省略可能</span>
         </td>
     </tr>
     <tr>
         <th>タイトル</th>
         <td>
-            <?php echo $form->text('Blog.subject', array('size' => '50')); ?>
+            <?php echo $form->text("Blog.subject", array('size' => '50')); ?>
             <br /><span class="remark">※必須項目</span>
         </td>
     </tr>
@@ -36,7 +36,7 @@
         <th>内容</th>
         <td>
             <?php
-                echo $form->textarea('Blog.message', array(
+                echo $form->textarea("Blog.message", array(
                         'cols' => '45', 
                         'rows' => '5', 
                         'label' => ''
@@ -44,6 +44,13 @@
                      );
             ?>
             <br /><span class="remark">※必須項目</span>
+        </td>
+    </tr>
+    <tr>
+        <th>画像添付</th>
+        <td>
+            <?php echo $form->file("Blog.imageUp"); ?>
+            <br /><span class="remark">※省略可能</span>
         </td>
     </tr>
     <tr>
@@ -71,7 +78,7 @@ print <<< HTML
 <table width="580" border="0">
     <tr>
         <td>
-            {$form->checkbox('Blog.{$i}', array('value' => $id))}
+            {$form->checkbox("Blog.{$i}", array('value' => $id))}
             <strong>{$subject}</strong>
         </td>
     </tr>
@@ -88,11 +95,15 @@ HTML;
 print <<< HTML
             </strong>
             <br />
-            <br />
-            {$message}
-            <br />
-            <br />
-            投稿日：{$postTime}
+            <p>{$message}</p>
+HTML;
+
+    if($image_path){
+        print("{$html->image($image_path)}");
+    }
+    
+print <<< HTML
+            <p>投稿日：{$postTime}</p>
         </td>
     </tr>
 </table><br />

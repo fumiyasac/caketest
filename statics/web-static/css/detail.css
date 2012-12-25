@@ -1,0 +1,418 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*
+    detail.css
+	
+	Fumiya Sakai(fumiyasac.com). 
+
+	01: index
+	02: detail
+	03: specials
+    04: about
+	05: contact
+
+*/
+
+/* ============================================================
+01: index
+============================================================ */
+/* Article Area */
+.topArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.topArticle .articleTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.topArticle .articleTitle h2{
+}
+
+/* Article List */
+.topArticle .articleList{
+}
+
+.topArticle .articleList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.topArticle .articleList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+}
+
+.topArticle .articleList header h3 a{
+	color: #683800;
+	text-decoration: none;
+}
+
+.topArticle .articleList header h3 a:hover{
+	text-decoration: underline;
+}
+
+.topArticle .articleList section{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.topArticle .articleList section .entries{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.topArticle .articleList section .entries img.articleThumb{
+	vertical-align: top;
+	float: left;
+	padding-right: 20px;
+}
+
+.topArticle .articleList section .entries p{
+	color: #683800;
+}
+
+.topArticle .articleList section .entries .category{
+	font-size: 85%;
+	padding-bottom: 9px;
+}
+
+.topArticle .articleList section .entries .category img{
+	vertical-align: middle;
+}
+
+.topArticle .articleList section .entries .tags{
+	font-size: 85%;
+	padding-bottom: 9px;
+}
+
+.topArticle .articleList section .entries .tags img{
+	vertical-align: middle;
+}
+
+.topArticle .articleList section .entries .tags{
+	font-size: 85%;
+	padding-bottom: 9px;
+}
+
+.topArticle .articleList section .entries .date{
+	font-size: 85%;
+	padding-bottom: 9px;
+}
+
+.topArticle .articleList section .entries .content{
+	line-height: 1.8;
+}
+
+/* Pagenation */
+.pagenationArea{
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.pagenationArea a{
+	color: #683800;
+	text-decoration: none;
+}
+
+.pagenationArea a:hover{
+	text-decoration: underline;
+}
+
+/* Showcase Area */
+.showcaseArea{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+}
+
+.showcaseArea header{
+	width: 600px;
+	height: 40px;
+	margin-bottom: 20px;
+}
+
+.showcaseArea header h2{
+}
+
+.showcaseArea section{
+/*
+	padding-left: 10px;
+	padding-right: 10px;
+*/
+
+	margin-left: 10px;
+	margin-right: 10px;
+
+	width: 580px;
+	overflow: hidden;
+	height: 160px;
+}
+
+.showcaseArea section ul li{
+	width: 580px;
+	height: 160px;
+	display: block;
+}
+
+.showcaseArea section img.showcaseThumb{
+	vertical-align: top;
+	float: left;
+	padding-right: 20px;
+}
+
+.showcaseArea section p{
+	color: #683800;
+}
+
+.showcaseArea section .showcaseTitle{
+	font-size: 114%;
+	font-weight: bold;
+	padding-bottom: 6px;
+}
+
+.showcaseArea section .showcaseTitle span{
+	color: #ffa200;
+	font-weight: normal;
+}
+
+.showcaseArea section .showcasePrice{
+	color: #ff0000;
+	padding-bottom: 6px;
+}
+
+.showcaseArea section .description{
+	line-height: 1.6;
+	padding-bottom: 12px;
+	padding-right: 10px;
+}
+
+.carouselBtn{
+text-align: center;
+}
+
+.carouselBtn a{
+	color: #683800;
+	text-decoration: none;
+}
+
+.carouselBtn a:hover{
+	text-decoration: underline;
+}
+
+/* ============================================================
+02: detail
+============================================================ */
+
+/* ============================================================
+03: specials
+============================================================ */
+
+/* ============================================================
+04: about
+============================================================ */
+/* About Area */
+.aboutArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.aboutArticle .aboutTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.aboutArticle .aboutTitle h2{
+}
+
+/* About List */
+.aboutArticle .sentenseList{
+}
+
+.aboutArticle .sentenseList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.aboutArticle .sentenseList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.aboutArticle .sentenseList section{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.aboutArticle .sentenseList section .sentenses{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.aboutArticle .sentenseList section .sentenses p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+
+
+/* ============================================================
+05: contact
+============================================================ */
+/* Contact Area */
+.contactArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.contactArticle .contactTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.contactArticle .contactTitle h2{
+}
+
+/* Article List */
+.contactArticle .formList{
+}
+
+.contactArticle .formList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.contactArticle .formList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.contactArticle .formList section{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.contactArticle .formList section .forms{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.contactArticle .formList section .forms p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+span.remarked{
+	color: #ffa200;
+}
+
+span.requierd{
+	color: #ff0000;
+}
+
+.contactArticle .formList section .forms #formInquiry{
+	width: 576px;
+	border-right: solid 1px #e2e2e2!important; 
+	border-bottom: solid 1px #e2e2e2!important;
+}
+
+.contactArticle .formList section .forms #formInquiry th{
+	text-align: left;
+	width: 178px;
+	background: #e39943;
+	color: #ffffff;
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.contactArticle .formList section .forms #formInquiry td{
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.contactArticle .formList section .forms #formInquiry input{
+	width: 368px;
+	height: 22px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.contactArticle .formList section .forms #formInquiry textarea{
+	width: 368px;
+	height: 88px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.contactArticle .formList section .forms #formEnquete{
+	width: 576px;
+	border-right: solid 1px #e2e2e2!important; 
+	border-bottom: solid 1px #e2e2e2!important;
+}
+
+.contactArticle .formList section .forms #formEnquete th{
+	text-align: left;
+	background: #e39943;
+	color: #ffffff;
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.contactArticle .formList section .forms #formEnquete td{
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.contactArticle .formList section .forms #formEnquete input{
+	width: 559px;
+	height: 22px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.contactArticle .formList section .forms #formEnquete textarea{
+	width: 559px;
+	height: 88px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.contactArticle .formList section .forms .sendButton{	
+}
+
+.contactArticle .formList section .forms .sendButton p{
+	text-align: center;
+}
+
+.contactArticle .formList section .forms .sendButton #confirmButton{
+	text-align: center;
+	width: 120px;
+	height: 30px;
+	background: url(../images/common/form_contact.png) left top no-repeat;
+	border: 0px solid;
+}

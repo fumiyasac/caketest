@@ -9,7 +9,7 @@ class PostsController extends AppController{
 		//postsテーブルからすべてのレコードを持ってくる
 		$posts = $this->Post->find("all"); 
 		
-		//debug($posts);
+                //$this->layout = 'hello';
 		
 		//ビューに変数を渡す
 		$this->set('posts',$posts);

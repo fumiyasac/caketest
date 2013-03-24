@@ -5,10 +5,126 @@ Class ContactsController extends AppController{
     public $name = 'Contacts';
     public $uses = array('Contact');
     public $layout = 'common_format_blog';
-    public $components = array('Session','Email');
-    public $helpers = array('Formhidden');
+    public $components = array('Session','Email','RequestHandler');
+    public $helpers = array('Formhidden','Csv');
     
-    //入力画面
+    //ページャーの設定
+    public $paginate = array(
+        'page' => 1,
+        'conditions' => array(),
+        'fields' => array(
+            'id',
+            'name',
+            'kana',
+            'mail',
+            'purpose',
+            'purpose_etc',
+            'text',
+            'enquete1',
+            'enquete2',
+            'enquete3',
+            'enquete4',
+            'enquete5',
+            'created',
+            'modified',
+            ),
+        'sort' => 'id',
+        'limit' => 50,
+        'direction' => 'asc',
+    );
+    
+    //管理画面時のレイアウトの切り替え
+    public function beforeRender() {
+        parent::beforeRender();
+    }
+        
+    //お問い合わせTOP（管理画面）
+    public function control_index(){
+
+        //パンくずリストの設定
+        $this->set('breadcrumb_name','お問い合わせの一覧');
+        
+        //全ての件数の取得
+        $allAmount = $this->Contact->find('count');
+        $this->set('allAmount',$allAmount);
+        
+        //contactsテーブルからデータを持ってくる
+        $contacts = $this->paginate();
+        $this->set('contacts', $contacts);
+        
+        //表示数を取得
+        $limitAmount = $this->paginate['limit'];
+        $this->set('limitAmount',$limitAmount);
+        
+        //ビューのレンダリング
+        $this->render('control_index');
+
+    }
+    
+    //お問い合わせ削除（管理画面）
+    public function control_delete($id){
+        
+        //URLの直アクセスの禁止  
+        if($this->RequestHandler->isGet()){
+            $this->redirect(array('action' => 'control_index'));
+        }
+        
+        //Ajaxリクエスト時のみ削除を行う
+        if($this->RequestHandler->isAjax()){
+            if($this->Contact->delete($id)){
+                $this->autoRender = false;
+                $this->autoLayout = false;
+                //全ての件数の取得
+                $allAmount = $this->Contact->find('count');
+                $response = array('id' => $id, 'allAmount' => $allAmount);                
+                $this->header('Content-type: application/json');
+                //debugKitのAjax対策
+                Configure::write('debug', 0);
+                echo json_encode($response);
+                exit();
+            }
+        }
+        $this->redirect(array('action' => 'control_index'));
+    }
+    
+    //CSVファイルのダウンロード（管理画面）
+    public function control_csvdownload(){
+        
+        Configure::write('debug', 0);
+        
+        //レイアウトを使用しない
+        $this->layout = false;
+        
+        //ファイル名
+        $filename = 'お問い合わせ一覧'.date('Ymd');
+        
+        //表の1行目の作成
+        $headRow = array(
+            'ID',
+            '名前',
+            'フリガナ',
+            'メールアドレス',
+            'お問い合わせ内容',
+            'お問い合わせ内容（その他選択時の備考）',
+            '本文',
+            '（Q1）あなたのご年齢を選択して下さい',            
+            '（Q2）あなたの職業の業種を選択して下さい',
+            '（Q3）現在のストアでご興味のある商品はありますか？',
+            '（Q4）あなたがよく利用しているオンラインショップは何ですか？',
+            '（Q5）Q4のオンラインショップを利用する理由があればお答え下さい。',
+            '登録日',
+            '更新日',
+        );
+        
+        //データを取得
+        $contentsRows = $this->Contact->find('all');
+        
+        //変数を値へセット
+        $this->set(compact('filename', 'headRow', 'contentsRows'));
+    }
+    
+    
+    //フォーム入力画面
     public function index(){
         
         try{
@@ -29,7 +145,7 @@ Class ContactsController extends AppController{
         
     }
     
-    //確認画面
+    //フォーム確認画面
     public function confirm(){
         
         try{
@@ -72,7 +188,7 @@ Class ContactsController extends AppController{
         }
     }
 
-    //送信完了
+    //フォーム送信完了
     public function complete(){
         
         try{

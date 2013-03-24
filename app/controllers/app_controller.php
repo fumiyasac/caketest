@@ -5,6 +5,23 @@ class AppController extends Controller {
         'DebugKit.Toolbar'
     );
     
+    //管理画面時のレイアウトと分割を行う
+    public function beforeRender() {
+        
+        //管理画面
+        if(!empty($this->params['control'])){
+
+            //CSV出力の際はレイアウトを使用しない
+            if($this->params['action'] === 'control_csvdownload'){
+                $this->layout = false;
+            }else{
+                $this->layout = 'common_format_control';
+            }
+        }
+        
+    }  
+    
+    
     //メール送信の共通関数
     public function _sendMail($options = array()){
         $rtn = false;
@@ -43,4 +60,5 @@ class AppController extends Controller {
         }
         return $target;
     }
+    
 }

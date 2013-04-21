@@ -38,7 +38,7 @@
 <td>
 <?php echo h(Configure::read("CONTACT_CONF.title.{$contact['Contact']['purpose']}")); ?>
 <?php if($contact['Contact']['purpose_etc']): ?>
-<br>■備考：<?php echo h($contact['Contact']['purpose_etc']); ?><br>
+<br>内容：<?php echo h($contact['Contact']['purpose_etc']); ?><br>
 <?php endif; ?>
 <!-- formDetail #start -->
 <div id="detail_<?php echo $contact['Contact']['id']; ?>" class="modalView">
@@ -48,27 +48,27 @@
     <p><?php echo h($contact['Contact']['text']); ?></p>
     <h4>アンケート結果</h4>
     <p class="enqueteLine">
-        <strong>（Q1）あなたのご年齢を選択して下さい</strong>
+        <strong>Q1. あなたのご年齢を選択して下さい</strong>
         <br>
         <?php echo h(Configure::read("ENQUETE_CONF.enquete1.{$contact['Contact']['enquete1']}")); ?>
     </p>
     <p class="enqueteLine">
-        <strong>（Q2）あなたの職業の業種を選択して下さい</strong>
+        <strong>Q2. あなたの職業の業種を選択して下さい</strong>
         <br>
         <?php echo h(Configure::read("ENQUETE_CONF.enquete2.{$contact['Contact']['enquete2']}")); ?>
     </p>
     <p class="enqueteLine">
-        <strong>（Q3）現在のストアでご興味のある商品はありますか？</strong>
+        <strong>Q3. 現在のストアでご興味のある商品はありますか？</strong>
         <br>
         <?php echo h($contact['Contact']['enquete3']); ?>
     </p>
     <p class="enqueteLine">
-        <strong>（Q4）あなたがよく利用しているオンラインショップは何ですか？</strong>
+        <strong>Q4. あなたがよく利用しているオンラインショップは何ですか？</strong>
         <br>
         <?php echo h($contact['Contact']['enquete4']); ?>
     </p>
     <p class="enqueteLine">
-        <strong>（Q5）Q4のオンラインショップを利用する理由があればお答え下さい。</strong>
+        <strong>Q5. Q4のオンラインショップを利用する理由があればお答え下さい。</strong>
         <br>
         <?php echo h($contact['Contact']['enquete5']); ?>
     </p>

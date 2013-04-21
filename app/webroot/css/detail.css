@@ -9,7 +9,7 @@
 	01: index
 	02: detail
 	03: specials
-    04: about
+        04: about
 	05: contact
 
 */
@@ -344,8 +344,8 @@ span.requierd{
 .contactArticle .formList section .forms #formInquiry th{
 	text-align: left;
 	width: 178px;
-	background: #e39943;
-	color: #ffffff;
+	background: #ebebeb;
+	color: #683800;
 	border-left: solid 1px #e2e2e2!important; 
 	border-top: solid 1px #e2e2e2!important;
 }
@@ -353,6 +353,10 @@ span.requierd{
 .contactArticle .formList section .forms #formInquiry td{
 	border-left: solid 1px #e2e2e2!important; 
 	border-top: solid 1px #e2e2e2!important;
+}
+
+.contactArticle .formList section .forms #formInquiry td div.error-message{
+    color: #ff0000;
 }
 
 .contactArticle .formList section .forms #formInquiry input{
@@ -377,8 +381,8 @@ span.requierd{
 
 .contactArticle .formList section .forms #formEnquete th{
 	text-align: left;
-	background: #e39943;
-	color: #ffffff;
+	background: #ebebeb;
+	color: #683800;
 	border-left: solid 1px #e2e2e2!important; 
 	border-top: solid 1px #e2e2e2!important;
 }
@@ -402,17 +406,30 @@ span.requierd{
 	font-size: 100%;
 }
 
-.contactArticle .formList section .forms .sendButton{	
+.contactArticle .formList section .forms .sendButton{
+	text-align: center;    
 }
 
 .contactArticle .formList section .forms .sendButton p{
 	text-align: center;
 }
 
-.contactArticle .formList section .forms .sendButton #confirmButton{
+.contactArticle .formList section .forms .sendButton #ContactIndexForm,
+.contactArticle .formList section .forms .sendButton #ContactCompleteForm{
+        display: inline-block;
+}
+
+.contactArticle .formList section .forms .sendButton #indexButton,
+.contactArticle .formList section .forms .sendButton #confirmButton,
+.contactArticle .formList section .forms .sendButton #completeButton{
 	text-align: center;
-	width: 120px;
+/*	width: 120px;*/
+        padding: 0 5px;
+        line-height: 30px;
 	height: 30px;
-	background: url(../images/common/form_contact.png) left top no-repeat;
+	background: #e39943;
 	border: 0px solid;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
 }

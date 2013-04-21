@@ -8,23 +8,23 @@ class Contact extends AppModel{
     public $validate = array(
         'name' => array(
             'rule' => 'notEmpty',
-            'message' => 'お名前は必須項目になります。'
+            'message' => 'お名前は必須項目になります'
         ),
         'kana' => array(
             'notEmpty' => array(
                 'rule' => 'notEmpty',
-                'message' => 'フリガナは必須項目になります。',
+                'message' => 'フリガナは必須項目になります',
                 'last' => true,
             ),
             'notKana' => array(
                 'rule' => array('kanaCheck'),
-                'message' => 'フリガナは半角英数字で入力して下さい。',
+                'message' => 'フリガナは半角英数字で入力して下さい',
             ),
         ),
         'mail' => array(
             'notEmpty' => array(    
                 'rule' => 'notEmpty',
-                'message' => 'メールアドレスは必須項目になります。',
+                'message' => 'メールアドレスは必須項目になります',
                 'last' => true,
             ),
             'notPattern' => array(
@@ -39,18 +39,18 @@ class Contact extends AppModel{
        'purpose' => array(
             'notEmpty' => array(    
                 'rule' => 'notEmpty',
-                'message' => '目的の選択は必須項目になります。',
+                'message' => '目的の選択は必須項目になります',
                 'last' => true,
             ),
             'etcPattern' => array(
                 'rule' => array('relatedEtc'),
                 'allowEmpty' => true,
-                'message' => '「その他」を選択した際はテキスト欄へ入力をお願いします。',
+                'message' => '「その他」を選択した際はテキスト欄へ入力をお願いします',
             ),
        ),
        'text' => array(
             'rule' => 'notEmpty',
-            'message' => '本文は必須項目になります。',
+            'message' => '本文は必須項目になります',
         ),
         
     );

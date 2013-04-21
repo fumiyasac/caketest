@@ -29,7 +29,7 @@ Class ContactsController extends AppController{
             'modified',
             ),
         'sort' => 'id',
-        'limit' => 50,
+        'limit' => 100,
         'direction' => 'asc',
     );
     
@@ -40,7 +40,7 @@ Class ContactsController extends AppController{
         
     //お問い合わせTOP（管理画面）
     public function control_index(){
-
+        
         //パンくずリストの設定
         $this->set('breadcrumb_name','お問い合わせの一覧');
         
@@ -131,7 +131,9 @@ Class ContactsController extends AppController{
             
             //タイトルメッセージのセット
             $this->set('title_for_layout','お問い合わせ');
-            $this->set('form_description','このブログに関するお問い合わせ、ご要望はお気軽にどうぞ！');
+            
+            //パンくずリストの設定
+            $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせ');
             
             //トークンの生成
             $this->Session->write('token', String::uuid());
@@ -150,9 +152,10 @@ Class ContactsController extends AppController{
         
         try{
             
-            //タイトルメッセージ
+            //タイトルメッセージのセット
             $this->set('title_for_layout','お問い合わせ内容の確認');
-            $this->set('form_description','この内容で送信してもよろしいですか？' );
+            //パンくずリストの設定
+            $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせ内容の確認');
             
             if(!empty($this->data) && $this->Session->check('token')){
                 
@@ -170,7 +173,8 @@ Class ContactsController extends AppController{
                 }else{
                     //前のページのタイトルを追加
                     $this->set('title_for_layout','お問い合わせ');
-                    $this->set('form_description','このブログに関するお問い合わせ、ご要望はお気軽にどうぞ！');
+                    $this->set('breadcrumb_name','お問い合わせ');
+                    $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
                     
                     //ビューのレンダリング
                     $this->render('index');
@@ -192,6 +196,9 @@ Class ContactsController extends AppController{
     public function complete(){
         
         try{
+            
+            //パンくずリストの設定
+            $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせの完了');
  
             //アクセスのチェック
             if(!empty($this->data) && $this->Session->check('token')){

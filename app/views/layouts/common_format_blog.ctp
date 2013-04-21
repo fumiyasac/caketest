@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>大塚「珍しいもん」ストア　-Official Blog-</title>
+<title><?php echo $title_for_layout; ?> | 大塚「珍しいもん」ストア　-Official Blog-</title>
 <!-- meta and other definition -->
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -19,6 +19,20 @@
 <link rel="stylesheet" type="text/css" href="/css/yui/font-min.css" />
 <link rel="stylesheet" type="text/css" href="/css/layout.css" />
 <link rel="stylesheet" type="text/css" href="/css/detail.css" />
+<link rel="stylesheet" type="text/css" href="/css/vtip.css">
+<link rel="stylesheet" type="text/css" href="/css/shadowbox.css">
+<link rel="stylesheet" type="text/css" href="/css/jquery.simplyscroll.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/pagescroller.js"></script>
+<script src="/js/jquery.opacity.rollover.js"></script>
+<script src="/js/vtip.js"></script>
+<script src="/js/jquery.simplyscroll.js"></script>
+<script src="/js/lazyload.js"></script>
+<script src="/js/definition.js"></script>
+<script src="/js/jquery.easyslider.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/tabview.js"></script>
 <?php echo $scripts_for_layout; ?>
 </head>
 <body>
@@ -51,7 +65,14 @@
 <!-- Header Contents Area// -->
 <aside class="slideGallery">
 <div id="slide">
-
+<ul id="scroller">
+<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の1が入ります。</strong><br>バナー名の1の説明がこの中に入ります。"><img src="/images/sample/sample_gallery1.jpg" width="360" height="250" alt=""></a></li>
+<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の2が入ります。</strong><br>バナー名の2の説明がこの中に入ります。"><img src="/images/sample/sample_gallery2.jpg" width="360" height="250" alt=""></a></li>
+<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の3が入ります。</strong><br>バナー名の3の説明がこの中に入ります。"><img src="/images/sample/sample_gallery3.jpg" width="360" height="250" alt=""></a></li>
+<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の1が入ります。</strong><br>バナー名の1の説明がこの中に入ります。"><img src="/images/sample/sample_gallery1.jpg" width="360" height="250" alt=""></a></li>
+<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の2が入ります。</strong><br>バナー名の2の説明がこの中に入ります。"><img src="/images/sample/sample_gallery2.jpg" width="360" height="250" alt=""></a></li>
+<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の3が入ります。</strong><br>バナー名の3の説明がこの中に入ります。"><img src="/images/sample/sample_gallery3.jpg" width="360" height="250" alt=""></a></li>
+</ul>
 </div>
 </aside>
 <!-- //Header Contents Area -->
@@ -59,18 +80,46 @@
 <!-- BreadCramb Contents Area// -->
 <aside class="breadCramb">
 <div id="bread">
-
+<p><a href="#">HOME</a><?php echo $breadcrumb_name; ?><p>
 </div>
 </aside>
 <!-- //BreadCramb Contents Area -->
 
 <!-- Main Contents Area// -->
-<div id="globalContents">
+<div id="mainContents">
 <div id="leftContents">
-<?php echo $content_for_layout; ?>
+<?php echo $content_for_layout; ?>    
+<!-- ## Cake Element Content Start ## -->
+<article class="showcaseArea">
+<header>
+<h2><img src="/images/common/h2_showcase.png" width="600" height="40" alt=""></h2>
+</header>
+<section id="shopSlider">
+<ul>
+<!-- # Loop Start #  -->
+<li><div>
+<img src="/images/sample/sample_showcase_thumb.jpg" width="280" height="160" alt="" class="showcaseThumb">
+<p class="showcaseTitle"><span>●</span>&nbsp;銘酒「大塚ものがたり」</p>
+<p class="showcasePrice">￥5,000</p>
+<p class="description">商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文</p>
+<p class="showcaseButton"><a href="#"><img src="/images/common/shoplink_button.png" width="143" height="23" alt=""></a></p>
+</div></li>
+<li><div>
+<img src="/images/sample/sample_showcase_thumb.jpg" width="280" height="160" alt="" class="showcaseThumb">
+<p class="showcaseTitle"><span>●</span>&nbsp;銘酒「大塚ものがたり」</p>
+<p class="showcasePrice">￥5,000</p>
+<p class="description">商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文</p>
+<p class="showcaseButton"><a href="#"><img src="/images/common/shoplink_button.png" width="143" height="23" alt=""></a></p>
+</div></li>
+<!-- # Loop End #  -->
+</ul>
+</section>
+</article>
+<!-- ## Cake Element Content End ## -->
+
 </div>
 <div id="rightContents">
-
+<?php echo $this->element('sidebar'); ?>
 </div>
 </div>
 <!-- //Main Contents Area -->

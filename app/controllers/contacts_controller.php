@@ -28,9 +28,9 @@ Class ContactsController extends AppController{
             'created',
             'modified',
             ),
-        'sort' => 'id',
+        
         'limit' => 100,
-        'direction' => 'desc',
+        'order' => 'Contact.id DESC',
     );
     
     //管理画面時のレイアウトの切り替え

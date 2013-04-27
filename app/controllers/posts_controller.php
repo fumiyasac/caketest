@@ -2,7 +2,8 @@
 class PostsController extends AppController{
 
 	var $name = 'Posts';
-	
+        var $layout = 'hello';
+        
 	//indexページのActionを設定する
 	function index(){
 	

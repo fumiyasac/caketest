@@ -30,7 +30,7 @@ Class ContactsController extends AppController{
             ),
         'sort' => 'id',
         'limit' => 100,
-        'direction' => 'asc',
+        'direction' => 'desc',
     );
     
     //管理画面時のレイアウトの切り替え
@@ -131,8 +131,6 @@ Class ContactsController extends AppController{
             
             //タイトルメッセージのセット
             $this->set('title_for_layout','お問い合わせ');
-            
-            //パンくずリストの設定
             $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせ');
             
             //トークンの生成
@@ -154,7 +152,6 @@ Class ContactsController extends AppController{
             
             //タイトルメッセージのセット
             $this->set('title_for_layout','お問い合わせ内容の確認');
-            //パンくずリストの設定
             $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせ内容の確認');
             
             if(!empty($this->data) && $this->Session->check('token')){

@@ -42,7 +42,11 @@ Class ContactsController extends AppController{
     public function control_index(){
         
         //パンくずリストの設定
-        $this->set('breadcrumb_name','お問い合わせの一覧');
+        $breadcrumb = array(
+            array('name' => '管理画面TOP', 'link' => false),
+            array('name' => 'お問い合わせの一覧','link' => false),
+        );
+        $this->set('breadcrumb', $breadcrumb);
         
         //全ての件数の取得
         $allAmount = $this->Contact->find('count');
@@ -131,7 +135,11 @@ Class ContactsController extends AppController{
             
             //タイトルメッセージのセット
             $this->set('title_for_layout','お問い合わせ');
-            $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせ');
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => 'お問い合わせ','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb);
             
             //トークンの生成
             $this->Session->write('token', String::uuid());
@@ -152,7 +160,11 @@ Class ContactsController extends AppController{
             
             //タイトルメッセージのセット
             $this->set('title_for_layout','お問い合わせ内容の確認');
-            $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせ内容の確認');
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => 'お問い合わせ内容の確認','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb);
             
             if(!empty($this->data) && $this->Session->check('token')){
                 
@@ -170,7 +182,11 @@ Class ContactsController extends AppController{
                 }else{
                     //前のページのタイトルを追加
                     $this->set('title_for_layout','お問い合わせ');
-                    $this->set('breadcrumb_name','お問い合わせ');
+                    $breadcrumb = array(
+                        array('name' => 'HOME', 'link' => '/'),
+                        array('name' => 'お問い合わせ','link' => false),
+                    );
+                    $this->set('breadcrumb', $breadcrumb);
                     $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
                     
                     //ビューのレンダリング
@@ -195,7 +211,11 @@ Class ContactsController extends AppController{
         try{
             
             //パンくずリストの設定
-            $this->set('breadcrumb_name','&nbsp;&gt;&nbsp;お問い合わせの完了');
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => 'お問い合わせの完了','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb);
  
             //アクセスのチェック
             if(!empty($this->data) && $this->Session->check('token')){

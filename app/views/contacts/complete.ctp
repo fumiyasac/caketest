@@ -14,7 +14,7 @@
 <div class="sendButton">
 <p>
 <?php if($complete_link == 0): ?>
-<?php echo $this->Form->create('Contact', array('type' => 'post', 'url' => '../archives/index')); ?>
+<?php echo $this->Form->create('Contact', array('type' => 'post', 'url' => '/')); ?>
 <?php echo $this->Form->submit('TOP画面に戻る', array('div' => false, 'id' => 'indexButton')); ?>
 <?php echo $this->Form->end(); ?>
 <?php else: ?>

@@ -80,7 +80,16 @@
 <!-- BreadCramb Contents Area// -->
 <aside class="breadCramb">
 <div id="bread">
-<p><a href="#">HOME</a><?php echo $breadcrumb_name; ?><p>
+<p>
+<?php
+foreach($breadcrumb as $val) {
+    $option = (isset($val['option'])) ? $val['option'] : array();
+    $link = (isset($val['link'])) ? $val['link'] : null;
+    $this->Html->addCrumb($val['name'], $link, $option);
+}
+echo $this->Html->getCrumbs(' > ');
+?>
+</p>
 </div>
 </aside>
 <!-- //BreadCramb Contents Area -->

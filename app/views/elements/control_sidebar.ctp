@@ -10,7 +10,7 @@
 <div>
 <ul>
 <li><a href="#">ユーザーの一覧</a></li>
-<li><a href="#">ユーザーの追加</a></li>
+<li><a href="#">CSVファイルダウンロード</a></li>
 </ul>
 </div>
 </section>
@@ -21,7 +21,7 @@
 <div>
 <ul>
 <li><a href="#">記事（archives）の管理</a></li>
-<li><a href="#">特集記事（specials）の管理</a></li>
+<li><a href="/control/specials">特集記事（specials）の管理</a></li>
 <li><a href="#">カテゴリー（categories）の管理</a></li>
 <li><a href="#">タグ（tags）の管理</a></li>
 </ul>
@@ -34,6 +34,7 @@
 <div>
 <ul>
 <li><a href="#">コメントの一覧</a></li>
+<li><a href="#">CSVファイルダウンロード</a></li>
 </ul>
 </div>	
 </section>
@@ -54,8 +55,8 @@
 </header>
 <div>
 <ul>
-<li><a href="./contacts">お問い合わせの一覧</a></li>
-<li><a href="./contacts/csvdownload">CSVファイルダウンロード</a></li>
+<li><a href="/control/contacts">お問い合わせの一覧</a></li>
+<li><a href="/control/contacts/csvdownload">CSVファイルダウンロード</a></li>
 </ul>
 </div>
 </section>

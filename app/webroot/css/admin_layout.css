@@ -438,11 +438,11 @@ padding-right: 8px;
 
 /* modal window */
 .modalView{
-    overflow:auto;
-    width:640px;
-    height:auto;
-    background-color:#ffffff;
-    border:solid 1px #eeeeee;
+overflow:auto;
+width:640px;
+height:auto;
+background-color:#ffffff;
+border:solid 1px #eeeeee;
 }
 
 .modalView h4{
@@ -456,22 +456,104 @@ color: #ffffff;
 }
 
 .modalView p{
-    padding:4px 8px;
-    font-size: 93%;
+padding:4px 8px;
+font-size: 93%;
 }
 
 .modalView p.enqueteLine{
-    border-top: dotted 1px #eeeeee;
+border-top: dotted 1px #eeeeee;
 }
 
 .adminContentContactList section div table td div{
-    margin: 0;
-    padding: 0;
+margin: 0;
+padding: 0;
 }
 
 .adminContentContactList section div table td div.modalView{
-    display: none;
+display: none;
 }
+
+/* form common */
+span.remarked{
+color: #ffa200;
+}
+
+span.requierd{
+color: #ff0000;
+}
+
+#formAdmin{
+width: 576px;
+border-right: solid 1px #e2e2e2!important; 
+border-bottom: solid 1px #e2e2e2!important;
+}
+
+#formAdmin th{
+text-align: left;
+width: 178px;
+background: #ebebeb;
+color: #333333;
+border-left: solid 1px #e2e2e2!important; 
+border-top: solid 1px #e2e2e2!important;
+}
+
+#formAdmin td{
+border-left: solid 1px #e2e2e2!important; 
+border-top: solid 1px #e2e2e2!important;
+}
+
+#formAdmin td div.error-message{
+color: #ff0000;
+}
+
+#formAdmin input.formArea{
+width: 368px;
+height: 22px;
+border: solid 1px #ebebeb;
+font-size: 100%;
+}
+
+#formAdmin textarea{
+width: 368px;
+height: 88px;
+border: solid 1px #ebebeb;
+font-size: 100%;
+}
+
+#formAdmin input.radio{
+border: none;
+}
+
+.sendButton{
+	text-align: center;    
+}
+
+.sendButton p{
+	text-align: center;
+}
+
+.sendButton #SpecialControlAddForm,
+.sendButton #SpecialControlAddCompleteForm,
+.sendButton #SpecialControlEditForm,
+.sendButton #SpecialControlEditCompleteForm{
+        display: inline-block;
+}
+
+.sendButton #indexButton,
+.sendButton #confirmButton,
+.sendButton #completeButton{
+	text-align: center;
+/*	width: 120px;*/
+        padding: 0 5px;
+        line-height: 30px;
+	height: 30px;
+	background: #a7a7a7;
+	border: 0px solid;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
+}
+
 
 /* 01-1: adminIndex */
 .adminIndex{

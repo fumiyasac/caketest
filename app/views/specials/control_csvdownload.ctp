@@ -2,19 +2,24 @@
 $csv->addRow($headRow);
 foreach ($contentsRows as $contentsRow) {
     //CSV出力用のforeach
-    $csv->addField($contentsRow['Contact']['id']);
-    $csv->addField($contentsRow['Contact']['name']);
-    $csv->addField($contentsRow['Contact']['kana']);
-    $csv->addField($contentsRow['Contact']['mail']);
-    $csv->addField(Configure::read("CONTACT_CONF.title.{$contentsRow['Contact']['purpose']}"));
-    $csv->addField($contentsRow['Contact']['purpose_etc']);
-    $csv->addField($contentsRow['Contact']['text']);
-    $csv->addField(Configure::read("ENQUETE_CONF.enquete1.{$contentsRow['Contact']['enquete1']}"));
-    $csv->addField(Configure::read("ENQUETE_CONF.enquete2.{$contentsRow['Contact']['enquete2']}"));
-    $csv->addField($contentsRow['Contact']['enquete3']);
-    $csv->addField($contentsRow['Contact']['enquete4']);
-    $csv->addField($contentsRow['Contact']['enquete5']);
-    $csv->endRow();  
+    $csv->addField($contentsRow['Special']['id']);
+    $csv->addField($contentsRow['Special']['title']);
+    $csv->addField($contentsRow['Special']['kcpy']);
+    $csv->addField($contentsRow['Special']['image_main']);
+    $csv->addField($contentsRow['Special']['description_main']);
+    $csv->addField($contentsRow['Special']['title_sub1']);
+    $csv->addField($contentsRow['Special']['image_sub1']);
+    $csv->addField($contentsRow['Special']['description_sub1']);
+    $csv->addField($contentsRow['Special']['title_sub2']);
+    $csv->addField($contentsRow['Special']['image_sub2']);
+    $csv->addField($contentsRow['Special']['description_sub2']);
+    $csv->addField($contentsRow['Special']['title_sub3']);
+    $csv->addField($contentsRow['Special']['image_sub3']);
+    $csv->addField($contentsRow['Special']['description_sub3']);
+    $csv->addField($contentsRow['Special']['other_description']);
+    $csv->addField($contentsRow['Special']['published']);
+    $csv->addField(Configure::read("FLAG_CONF.flag.{$contentsRow['Special']['flag']}"));
+    $csv->endRow();
 }
 $csv->setFilename($filename);
 echo $csv->render(true, 'sjis', 'UTF-8'); 

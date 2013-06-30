@@ -1,16 +1,16 @@
 <!-- ## Cake View Content Start ## -->
 <article class="adminBlock">
 <header class="adminTitle">
-<h2>特集記事の追加完了</h2>
+<h2>特集記事の編集</h2>
 </header>
 
 <article class="adminContentList adminContact">
 <header>
-<h3>ここでは特集記事一覧を追加することが出来ます。</h3>
+<h3>ここでは特集記事一覧の内容を編集することが出来ます。</h3>
 </header>
 <section>
 <div class="adminContentsBody">
-<p>特集記事を投稿が完了しました。一覧ページより内容が正しいかを確認して下さい。</p>
+<p>特集記事の編集が完了しました。一覧ページより内容が正しいかを確認して下さい。</p>
 <ol class="magt10 magb10 padl20">
 <li><span class="requierd">*</span>が付いている項目は必須項目になります。</li>
 <li>タイトル・キャッチコピー・見出しは256文字まで入力可能です。</li>

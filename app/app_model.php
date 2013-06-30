@@ -52,6 +52,58 @@ class AppModel extends Model {
         }else{
             return false;
         }
-    }  
+    }
+    
+    //画像に関するチェック（存在チェック）
+    public function imageExistCheck($data, $field){
+        if($this->data[$this->alias][$field]['error'] === 0 && !empty($this->data[$this->alias][$field]['name'])){
+            return true;
+        }else{
+            return false;
+        }
+    }    
+    
+    //画像に関するチェック（Mimeタイプチェック）
+    public function imageMimeCheck($data, $field, $types){
+        if($this->data[$this->alias][$field]['error'] === 0){
+            foreach($types as $type){
+                if(strpos($this->data[$this->alias][$field]['type'], $type) !== false){
+                    return true;
+                }
+            }
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    //画像に関するチェック（容量チェック）
+    public function imageVolumeCheck($data, $field, $volume){
+        if($this->data[$this->alias][$field]['error'] === 0){
+            if($this->data[$this->alias][$field]['size'] < $volume){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return true;
+        }
+    }
+    
+    //次のAUTO_INCREMENTの値を取得する
+    function getNextAutoIncrement(){ 
+
+        $next_increment = 0; 
+        $table = Inflector::tableize($this->name); 
+        $query = "SHOW TABLE STATUS LIKE '$table'"; 
+        $db =& ConnectionManager::getDataSource($this->useDbConfig); 
+        $result = $db->rawQuery($query); 
+
+        while ($row = mysql_fetch_assoc($result)) { 
+            $next_increment = $row['Auto_increment']; 
+        } 
+        return $next_increment; 
+        
+    } 
     
 }

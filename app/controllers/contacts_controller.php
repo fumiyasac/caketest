@@ -66,7 +66,7 @@ Class ContactsController extends AppController{
     }
     
     //お問い合わせ削除（管理画面）
-    public function control_delete($id){
+    public function control_delete($id = null){
         
         //URLの直アクセスの禁止  
         if($this->RequestHandler->isGet()){

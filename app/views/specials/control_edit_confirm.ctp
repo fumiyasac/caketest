@@ -1,16 +1,16 @@
 <!-- ## Cake View Content Start ## -->
 <article class="adminBlock">
 <header class="adminTitle">
-<h2>特集記事の追加確認</h2>
+<h2>特集記事の編集</h2>
 </header>
 
 <article class="adminContentList adminContact">
 <header>
-<h3>ここでは特集記事一覧を追加することが出来ます。</h3>
+<h3>ここでは特集記事一覧の内容を編集することが出来ます。</h3>
 </header>
 <section>
 <div class="adminContentsBody">
-<p>この内容で特集記事を投稿します。よろしいですか？</p>
+<p>この内容で特集記事を編集します。よろしいですか？</p>
 <ol class="magt10 magb10 padl20">
 <li><span class="requierd">*</span>が付いている項目は必須項目になります。</li>
 <li>タイトル・キャッチコピー・見出しは256文字まで入力可能です。</li>
@@ -43,7 +43,11 @@
 <br>
 <span>画像アップロード成功！</span>
 <?php elseif($saveTmpImageResult['image_main'] == 0): ?>
-<span class="requierd">※画像アップロードに失敗しました</span>
+<span class="requierd">※画像アップロード失敗！</span>
+<?php elseif($saveTmpImageResult['image_main'] == 2): ?>
+<img src="/img/special/<?php echo h($alreadyAddedImgName['Special']['image_main']); ?>" height="100" width="150">
+<br>
+<span>画像変更なし</span>
 <?php endif; ?>
 </td>
 </tr>
@@ -69,6 +73,10 @@
 <span>画像アップロード成功！</span>
 <?php elseif($saveTmpImageResult['image_sub1'] == 0): ?>
 <span class="requierd">※画像アップロード失敗！</span>
+<?php elseif($saveTmpImageResult['image_sub1'] == 2): ?>
+<img src="/img/special/<?php echo h($alreadyAddedImgName['Special']['image_sub1']); ?>" height="100" width="150">
+<br>
+<span>画像変更なし</span>
 <?php endif; ?>
 </td>
 </tr>
@@ -94,6 +102,10 @@
 <span>画像アップロード成功！</span>
 <?php elseif($saveTmpImageResult['image_sub2'] == 0): ?>
 <span class="requierd">※画像アップロード失敗！</span>
+<?php elseif($saveTmpImageResult['image_sub2'] == 2): ?>
+<img src="/img/special/<?php echo h($alreadyAddedImgName['Special']['image_sub2']); ?>" height="100" width="150">
+<br>
+<span>画像変更なし</span>
 <?php endif; ?>
 </td>
 </tr>
@@ -119,6 +131,10 @@
 <span>画像アップロード成功！</span>
 <?php elseif($saveTmpImageResult['image_sub3'] == 0): ?>
 <span class="requierd">※画像アップロード失敗！</span>
+<?php elseif($saveTmpImageResult['image_sub3'] == 2): ?>
+<img src="/img/special/<?php echo h($alreadyAddedImgName['Special']['image_sub3']); ?>" height="100" width="150">
+<br>
+<span>画像変更なし</span>
 <?php endif; ?>
 </td>
 </tr>
@@ -139,9 +155,7 @@
 <tr>
 <th>公開日</th>
 <td>
-<?php
-echo h($this->Html->dateFormat($data['Special']['published']['year'].'-'.$data['Special']['published']['month'].'-'.$data['Special']['published']['day']." 00:00:00"));
-?>
+<?php echo h($this->Html->dateFormat($data['Special']['published']['year'].'-'.$data['Special']['published']['month'].'-'.$data['Special']['published']['day']." 00:00:00")); ?>
 </td>
 </tr>
 
@@ -155,12 +169,12 @@ echo h($this->Html->dateFormat($data['Special']['published']['year'].'-'.$data['
 <?php echo $this->Form->end(); ?>
 <div class="sendButton">
 <p>
-<?php echo $this->Form->create('Special', array('type' => 'file', 'action' => 'control_add')); ?>
+<?php echo $this->Form->create('Special', array('type' => 'file', 'action' => 'control_edit')); ?>
 <?php echo $this->Formhidden->hiddenVars(); ?>
 <?php echo $this->Form->submit('入力画面に戻る', array('div' => false, 'id' => 'indexButton')); ?>
 <?php echo $this->Form->end(); ?>
 &nbsp;
-<?php echo $this->Form->create('Special', array('type' => 'file', 'action' => 'control_add_complete')); ?>
+<?php echo $this->Form->create('Special', array('type' => 'file', 'action' => 'control_edit_complete')); ?>
 <?php echo $this->Formhidden->hiddenVars(); ?>
 <?php echo $this->Form->submit('この内容で登録する', array('div' => false, 'id' => 'completeButton')); ?>
 <?php echo $this->Form->end(); ?>

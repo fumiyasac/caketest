@@ -1136,7 +1136,9 @@ class Controller extends Object {
 			unset($options['order'][$key]);
 
 			if ($object->hasField($field)) {
-				$options['order'][$alias . '.' . $field] = $value;
+				//$options['order'][$alias . '.' . $field] = $value;
+                                //Security fix of CakePHP 1.3.x
+                                $options['order'][$object->alias . '.' . $field] = $value;
 			} elseif ($object->hasField($field, true)) {
 				$options['order'][$field] = $value;
 			} elseif (isset($object->{$alias}) && $object->{$alias}->hasField($field)) {

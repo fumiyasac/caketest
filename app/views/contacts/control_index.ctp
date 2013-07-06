@@ -136,5 +136,6 @@ echo $paginator->numbers(
     )
 );
 ?>
+</p>
 </aside>
 <!-- ## Cake View Content End ## -->

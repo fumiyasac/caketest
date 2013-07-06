@@ -216,6 +216,275 @@ text-align: center;
 /* ============================================================
 03: specials
 ============================================================ */
+/* Special Area */
+.specialsArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.specialsArticle .specialsTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.specialsArticle .specialsTitle h2{
+}
+
+/* Special List */
+.specialsArticle .sentenseList{
+}
+
+.specialsArticle .sentenseList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.specialsArticle .sentenseList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.specialsArticle .sentenseList section.introduction{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.specialsArticle .sentenseList section.introduction .sentenses{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.specialsArticle .sentenseList section.introduction .sentenses p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+/* Special Contents */
+.specialsArticle .sentenseList section.contentList{
+        border-top: dotted 1px #ebebeb;	
+	padding-bottom: 20px;
+        color: #683800;
+        overflow: hidden;
+}
+
+.specialsArticle .sentenseList section.contentList header{
+        margin-top: 20px;
+        margin-bottom: 0;
+
+}
+
+.specialsArticle .sentenseList section.contentList .kcpy{
+        font-size: 93%; 
+}
+
+.specialsArticle .sentenseList section.contentList .main_image img{
+        border: solid 1px #f7f7f7; 
+}
+
+.specialsArticle .sentenseList section.contentList .published{
+        font-size: 93%; 
+        color: #ffa200;
+}
+
+.specialsArticle .sentenseList section.contentList .main_image{
+        float: left;
+}
+
+.specialsArticle .sentenseList section.contentList .readMore{
+        text-align: right;
+}
+
+.specialsArticle .sentenseList section.contentList .readMore a{
+        color: #683800;
+        text-decoration: none;
+        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+        padding-left: 12px;
+}
+
+.specialsArticle .sentenseList section.contentList .readMore a:hover{
+        text-decoration: underline;
+}
+
+.specialsArticle .sentenseList section.contentListNone .emptyData{
+        text-align: center;
+        color: #ff0000;
+        font-weight: bold;
+}
+
+/* Special Contents Detail */
+.specialsArticle .sentenseView{
+}
+
+.specialsArticle .sentenseView header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.specialsArticle .sentenseView header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.specialsArticle .sentenseView section.introduction{
+	padding-bottom: 15px;
+}
+
+.specialsArticle .sentenseView section.introduction .spacialMain{
+	width: 600px;
+	height: auto;
+	overflow: hidden;
+}
+
+.specialsArticle .sentenseView section.introduction .spacialMain p.image_main{
+        margin-left: auto;
+        margin-right: auto;
+}
+
+/* Special Contents Detail(Main) */
+.specialsArticle .sentenseView section.detailOfSpecialMain{
+	padding-bottom: 25px;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialMain header{
+        margin:0;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialMain header h4{
+	margin:0 0 10px 0;
+	padding:2px 8px;
+	border-width:0 0 0 5px;
+	border-color: #ffa200;
+	border-style:solid;
+	background:#ffffff;
+	color:#ffa200;
+	line-height:140%;
+	font-weight:bold;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialMain div{
+	color:#683800;
+}
+
+/* Special Contents Detail(Sub) */
+.specialsArticle .sentenseView section.detailOfSpecialSub{
+	padding-bottom: 25px;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub header{
+        margin:0;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub header h4{
+	margin:0 0 10px 0;
+	padding:2px 8px;
+	border-width:0 0 0 5px;
+	border-color: #ffa200;
+	border-style:solid;
+	background:#ffffff;
+	color:#ffa200;
+	line-height:140%;
+	font-weight:bold;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub div{
+        width: 600px;
+        height: auto;
+	color:#683800;
+        overflow: hidden;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub div p.image_sub{
+        float: right;
+}
+
+/* Special Contents Detail(Etc) */
+.specialsArticle .sentenseView section.detailOfSpecialEtc{
+        width: 600px;
+        height: auto;
+        padding-bottom: 25px;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialEtc div{
+        width: 596px;
+        padding: 2px;
+        background:#ebebeb;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialEtc div div.etcContents{
+        background: #ffffff;
+        line-height: 1.6;
+        padding: 0 5px;
+        width: 586px;
+        margin: 0;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialEtc div p.etcInfo{
+        padding: 5px;
+        font-weight: bold;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialEtc div p.etcInfo span{
+        color: #ffa200;
+}
+
+aside.afterLinks{
+        border-top: dotted 1px #ebebeb;	
+        width: 600px;
+        height: 24px;
+        position: relative;
+}
+
+aside.afterLinks p.backLink{
+        color: #683800;
+        font-size: 93%;
+        position: absolute;
+        top: 4px;
+        left: 0px;
+        
+}
+
+aside.afterLinks p.backLink a{
+        color: #683800;
+        text-decoration: none;
+        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+        padding-left: 12px;        
+}
+
+aside.afterLinks p.publishedDate{
+        font-size: 93%; 
+        color: #ffa200;
+        position: absolute;
+        top: 4px;
+        right: 0px;
+}
+
+/*
+.specialsArticle .sentenseView section.introduction .spacialMain p.publishDate{
+        font-size: 93%; 
+        color: #ffa200;
+        text-align: right;
+}
+
+.specialsArticle .sentenseView section.introduction .detailOfSpecial{
+}
+
+.specialsArticle .sentenseView section.introduction .detailOfSpecial .image_main{
+    margin-left: auto;
+    margin-right: auto;
+}
+*/
 
 /* ============================================================
 04: about

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title><?php echo $title_for_layout; ?> | 大塚「珍しいもん」ストア　-Official Blog-</title>
+<title><?php echo $title_for_layout; ?> | 大塚「珍しいもん」Store　-Official Blog-</title>
 <!-- meta and other definition -->
 <meta name="description" content="">
 <meta name="keywords" content="">

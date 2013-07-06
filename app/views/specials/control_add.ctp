@@ -148,6 +148,7 @@ echo $this->Form->textarea('description_sub3',array(
 <td>
 <?php
 echo $this->Form->textarea('other_description',array(
+    /*'id' => 'editor',*/
     'class'=>'formAreaText',
     'rows' => 5,
     'cols' => 40
@@ -197,8 +198,11 @@ echo $this->Form->input('flag', array('class' => 'radio', 'type' => 'radio', 'op
 </div>
 </section>
 </article>
-<!-- # Loop Start #  -->
-
-<!-- # Loop End # -->
+<!--
+<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+var editor = CKEDITOR.replace('editor');
+</script>
+-->
 </article>
 <!-- ## Cake View Content End ## -->

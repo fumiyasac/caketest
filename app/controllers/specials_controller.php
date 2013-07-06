@@ -112,9 +112,49 @@ class SpecialsController extends AppController{
         $this->redirect(array('action' => 'control_index'));
     }
 
-    //特集閲覧追加（管理画面）
-    public function control_view(){
-        
+    //特集閲覧（管理画面）
+    public function control_view($id = null){
+        try {
+            
+            //idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id)){
+                 $this->redirect('/control/specials');
+            }
+            
+            //データを取得する
+            $this->Special->id = $id;
+            $this->data = $this->Special->read();
+            if($this->data === false){
+                $this->redirect('/control/specials');
+            }else{
+                //変数をセット
+                $this->set('data', $this->data);
+            }
+            
+            //パンくずリストの設定
+            $breadcrumb = array(
+                array(
+                    'name' => '管理画面TOP',
+                    'link' => false
+                ),
+                array(
+                    'name' => '特集記事の一覧',
+                    'link' => array('controller' => 'specials', 'action' => 'control_index')
+                ),
+                array(
+                    'name' => '特集記事（'.$this->data['Special']['title'].'）',
+                    'link' => false
+                ),
+            );
+            $this->set('breadcrumb', $breadcrumb);
+            
+            
+        } catch (Exception $e) {
+            
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect('/control/specials/');
+        }
     }    
     
     //特集記事追加（管理画面）
@@ -634,11 +674,65 @@ class SpecialsController extends AppController{
     //特集記事表示
     public function index(){
         
+        //タイトルメッセージのセット
+        $this->set('title_for_layout','特集記事一覧');
+        $breadcrumb = array(
+            array('name' => 'HOME', 'link' => '/'),
+            array('name' => '特集記事一覧','link' => false),
+        );
+        $this->set('breadcrumb', $breadcrumb);
+        
+        //ページングのリミットを10にする
+        $this->paginate['limit'] = 10;
+        
+        //specialsテーブルからデータを持ってくる
+        $specials = $this->paginate('Special', array('Special.flag' => 0));
+        $this->set('specials', $specials);
+        
+        //ビューのレンダリング
+        $this->render('index');
     }
 
     //特集記事閲覧
-    public function view(){
+    public function view($id = null){
         
+        try {
+            
+            //idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id)){
+                 $this->redirect('/specials/');
+            }
+            
+            //データを取得する
+            $this->data = $this->Special->find('first',
+                array(
+                    'conditions' => array('Special.id' => $id, 'Special.flag' => 0),
+                )
+            );
+            if($this->data === false){
+                $this->redirect('/specials/');
+            }else{
+                //変数をセット
+                $this->set('data', $this->data);
+            }
+            
+            //タイトルメッセージのセット
+            $this->set('title_for_layout','特集記事（'.$this->data['Special']['title'].'）');
+        
+            //パンくずリストの設定 
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => '特集記事一覧', 'link' => array('controller' => 'specials', 'action' => 'index')),
+                array('name' => '特集記事（'.$this->data['Special']['title'].'）','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb); 
+            
+        } catch (Exception $e) {
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect("/specials/");
+        }
+            
     }
     
 }

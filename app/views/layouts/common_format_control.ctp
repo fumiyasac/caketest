@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>大塚「珍しいもん」ストア　-マスター管理画面-</title>
+<title>大塚「珍しいもん」Store　-マスター管理画面-</title>
 <!-- meta and other definition -->
 <meta name="robots" content="noindex,nofollow"> 
 <meta name="description" content="">

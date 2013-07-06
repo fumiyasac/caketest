@@ -98,4 +98,19 @@ $(function(){
 });
 </script>
 </article>
+
+<aside class="pagenationArea">
+<p>
+<?php
+echo $paginator->numbers(
+    array(
+        'before' => $paginator->first('<<').'　',
+        'after' => '　'.$paginator->last('>>'),
+        'modules' => 4,
+        'separator' => '・',
+    )
+);
+?>
+</p>
+</aside>
 <!-- ## Cake View Content End ## -->

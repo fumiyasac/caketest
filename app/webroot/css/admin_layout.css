@@ -615,6 +615,30 @@ margin-right: 10px;
 
 .adminArchive section .adminContentsBody p{
 padding-top: 10px;
+
+}
+/* CKEditor Contents (Control) */
+.CKEditorContents p{
+    text-align: left!important;
+    padding-top: 0px!important;
+}
+
+.CKEditorContents table{
+    border-top:1px solid #e2e2e2!important;
+    border-left:1px solid #e2e2e2!important;
+}
+
+.CKEditorContents ol li{
+    margin-left: 30px;
+}
+
+.CKEditorContents ul li{
+    margin-left: 25px;
+}
+
+.CKEditorContents table td,.CKEditorContents table th{
+    border-bottom:1px solid #e2e2e2!important;
+    border-right:1px solid #e2e2e2!important;
 }
 
 /* ============================================================

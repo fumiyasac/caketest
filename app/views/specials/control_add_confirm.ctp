@@ -132,7 +132,9 @@
 <tr>
 <th>本文(その他)</th>
 <td>
-<?php echo h($this->Form->value('other_description')); ?>
+<div class="CKEditorContents">
+<?php echo $this->Form->value('other_description'); ?>
+</div>
 </td>
 </tr>
 

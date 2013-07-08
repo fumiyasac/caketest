@@ -22,7 +22,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'colors' },
 		{ name: 'tools' },
 		{ name: 'others' },
-		{ name: 'about' }
+                { name: 'about' },
 	];
 
 	// The default plugins included in the basic setup define some buttons that
@@ -32,5 +32,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// Let's have it basic on dialogs as well.
 	config.removeDialogTabs = 'link:advanced';
         
+        // Configuration Language
         config.language = 'ja';
+        
+        // Configuration Extra plugin
+        config.extraPlugins = 'table';
 };

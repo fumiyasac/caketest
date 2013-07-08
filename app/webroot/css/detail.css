@@ -430,6 +430,37 @@ text-align: center;
         margin: 0;
 }
 
+.specialsArticle .sentenseView section.detailOfSpecialEtc div div.etcContents div.CKEditorContents{
+        padding: 5px;
+        width: 576px;
+        background: #ffffff;
+}
+
+/* CKEditor Contents (User) */
+.CKEditorContents p{
+    text-align: left;
+}
+
+.CKEditorContents table{
+    border-bottom:1px dotted #e2e2e2;
+    border-right:1px dotted #e2e2e2;
+    
+}
+
+.CKEditorContents ol li{
+    margin-left: 30px;
+}
+
+.CKEditorContents ul li{
+    margin-left: 25px;
+}
+
+.CKEditorContents td,.CKEditorContents th{
+    border-top:1px dotted #e2e2e2;
+    border-left:1px dotted #e2e2e2;
+}
+
+
 .specialsArticle .sentenseView section.detailOfSpecialEtc div p.etcInfo{
         padding: 5px;
         font-weight: bold;

@@ -112,14 +112,16 @@
 </tr>
 <tr>
 <th>本文(サブ3)</th>
-<td><?php echo h($data['Special']['description_sub3']); ?></td>
+<td><?php echo $data['Special']['description_sub3']; ?></td>
 </tr>
 
 <tr>
 <th>本文(その他)</th>
 <td>
 <?php if($data['Special']['other_description'] !== null): ?>
-<?php echo h($data['Special']['other_description']); ?>
+<div class="CKEditorContents">
+<?php echo $data['Special']['other_description']; ?>
+</div>
 <?php else: ?>
 -
 <?php endif; ?>

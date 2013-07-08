@@ -53,7 +53,11 @@
 <section class="detailOfSpecialEtc">
 <div>
 <p class="etcInfo"><span>■</span> その他の情報</p>
-<div class="etcContents"><?php echo h($this->data['Special']['other_description']); ?></div>
+<div class="etcContents">
+<div class="CKEditorContents">
+<?php echo $this->data['Special']['other_description']; ?>
+</div>
+</div>
 </div>
 </section>
 <?php endif; ?>

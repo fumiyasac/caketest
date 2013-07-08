@@ -641,7 +641,7 @@ class SpecialsController extends AppController{
         $this->layout = false;
         
         //ファイル名
-        $filename = 'お問い合わせ一覧'.date('Ymd');
+        $filename = '特集記事一覧'.date('Ymd');
         
         //表の1行目の作成
         $headRow = array(

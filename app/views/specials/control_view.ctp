@@ -88,7 +88,7 @@
 
 <tr>
 <th>見出し(サブ3)</th>
-<td><?php echo h($data['Special']['title_sub2']); ?></td>
+<td><?php echo h($data['Special']['title_sub3']); ?></td>
 </tr>
 <tr>
 <th>画像(サブ3)</th>

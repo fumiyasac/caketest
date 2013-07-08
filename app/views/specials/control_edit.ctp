@@ -215,14 +215,7 @@ echo $this->Dateform->dateYMD('published', null,
 <tr>
 <th>公開フラグ&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php
-if($this->Form->value('flag')){
-    $value = $this->Form->value('flag');
-}else{
-    $value = 1;
-}
-echo $this->Form->input('flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('FLAG_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value));
-?>
+<?php echo $this->Form->input('flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('FLAG_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false)); ?>
 <?php echo $this->Form->error('flag'); ?>
 </td>
 </tr>

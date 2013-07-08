@@ -618,6 +618,11 @@ padding-top: 10px;
 
 }
 /* CKEditor Contents (Control) */
+.linkAreaOfView{
+    font-size: 93%;
+    text-align: right;
+}
+
 .CKEditorContents p{
     text-align: left!important;
     padding-top: 0px!important;

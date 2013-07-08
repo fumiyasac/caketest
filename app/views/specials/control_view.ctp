@@ -9,22 +9,15 @@
 <h3>ここでは現在登録されている特集記事の詳細を見ることが出来ます。</h3>
 </header>
 <section>
-<div class="adminContentsBody">
-
-</div>
-</section>
-</article>
-
-<!-- # Loop Start #  -->
-<article id="special_<?php echo $data['Special']['id']; ?>" class="adminContentContactList">
-<header>
-<h3>ID：<?php echo h($data['Special']['id']); ?></h3>
-</header>
-<section>
-<div class="adminContentsBody">
-<table cellpadding="0" cellspacing="0">
+<div class="adminContentsBody padt10">
+<div class="forms">
+<table cellpadding="0" cellspacing="0" id="formAdmin">
 <tr>
-<th>タイトル </th>
+<th>ID</th>
+<td><?php echo h($data['Special']['id']); ?></td>
+</tr>
+<tr>
+<th>タイトル</th>
 <td><?php echo h($data['Special']['title']); ?></td>
 </tr>
 <tr>
@@ -159,8 +152,8 @@ echo h($this->Html->dateFormat($data['Special']['published']." 00:00:00"));
 <td><span id="special_flag_<?php echo $data['Special']['id']; ?>"><?php echo h(Configure::read("FLAG_CONF.flag.{$data['Special']['flag']}")); ?></span>
 </td>
 </tr>
-</table>
-<p class="content">
+<tr>
+<td colspan="2" class="linkAreaOfView">
 <?php
 echo $this->Html->link('公開フラグの設定', '#', array('class' => 'change', 'data-post-id' => $data['Special']['id']));
 ?>
@@ -172,11 +165,13 @@ echo $this->Html->link('編集', array('action' => 'edit', $data['Special']['id'
 <?php
 echo $this->Html->link('一覧へ戻る', array('action' => 'index'), array('class' => 'index'));
 ?>
-</p>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </section>
 </article>
-<!-- # Loop End # -->
 <script type="text/javascript">
 $(function(){
     

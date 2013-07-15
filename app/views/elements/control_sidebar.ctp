@@ -45,7 +45,7 @@
 <div>
 <ul>
 <li><a href="#">メインビジュアルの管理</a></li>
-<li><a href="#">サイドバナーの管理</a></li>
+<li><a href="/control/banners/index">サイドバナーの管理</a></li>
 </ul>
 </div>
 </section>

@@ -227,7 +227,8 @@ class SpecialsController extends AppController{
                     $saveTmpImageResult = $this->loopAndGenerateImages(
                         "Special", 
                         $this->image_array,
-                        $special_picture_id
+                        $special_picture_id,
+                        1
                     );
                     
                     //画像処理結果を出力する
@@ -389,6 +390,9 @@ class SpecialsController extends AppController{
             //データを取得する
             $this->Special->id = $id;
             $this->data = $this->Special->read();
+            if($this->data === false){
+                $this->redirect('/control/specials');
+            }
             
             //一時画像ファイルの削除
             $this->deleteTmpImage("Special", $this->image_array, 1);
@@ -407,7 +411,7 @@ class SpecialsController extends AppController{
         try{
 
             //idがなければ一覧ページへリダイレクト
-            if(!isset($id) && is_numeric($id)){
+            if(!isset($id) && is_numeric($id) && $data['Special']['id']){
                  $this->redirect('/control/specials');
             }
             
@@ -452,7 +456,8 @@ class SpecialsController extends AppController{
                     $saveTmpImageResult = $this->loopAndGenerateImages(
                         "Special", 
                         $this->image_array,
-                        $id
+                        $id,
+                        1
                     );
                     
                     //画像処理結果を出力する

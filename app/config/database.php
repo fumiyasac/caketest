@@ -73,6 +73,7 @@
  */
 class DATABASE_CONFIG {
 
+        /* this statement is only working my MAMP... */
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,

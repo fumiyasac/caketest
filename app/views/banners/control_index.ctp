@@ -37,7 +37,7 @@
 <br>    
 <ul class="magl15">
 <li>URL：
-<?php if($banner['Banner']['blank_flag'] == 0): ?>
+<?php if($banner['Banner']['blank_flag'] == 1): ?>
 <?php $arr = array('target' => '_blank'); $context = '外部'; ?>
 <?php else: ?>
 <?php $arr = array(); $context = '内部'; ?>

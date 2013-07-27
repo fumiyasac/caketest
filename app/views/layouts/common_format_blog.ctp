@@ -66,12 +66,15 @@
 <aside class="slideGallery">
 <div id="slide">
 <ul id="scroller">
-<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の1が入ります。</strong><br>バナー名の1の説明がこの中に入ります。"><img src="/images/sample/sample_gallery1.jpg" width="360" height="250" alt=""></a></li>
-<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の2が入ります。</strong><br>バナー名の2の説明がこの中に入ります。"><img src="/images/sample/sample_gallery2.jpg" width="360" height="250" alt=""></a></li>
-<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の3が入ります。</strong><br>バナー名の3の説明がこの中に入ります。"><img src="/images/sample/sample_gallery3.jpg" width="360" height="250" alt=""></a></li>
-<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の1が入ります。</strong><br>バナー名の1の説明がこの中に入ります。"><img src="/images/sample/sample_gallery1.jpg" width="360" height="250" alt=""></a></li>
-<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の2が入ります。</strong><br>バナー名の2の説明がこの中に入ります。"><img src="/images/sample/sample_gallery2.jpg" width="360" height="250" alt=""></a></li>
-<li><a href="#" class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;バナー名の3が入ります。</strong><br>バナー名の3の説明がこの中に入ります。"><img src="/images/sample/sample_gallery3.jpg" width="360" height="250" alt=""></a></li>
+<?php $slides = $this->requestAction('slides/index/sort:id/order:asc/limit:10'); ?>
+<?php foreach ($slides as $slide): ?>
+<?php if($slide['Slide']['blank_flag'] == 1): ?>
+<?php $attr = 'target="_blank"'; ?>
+<?php else: ?>
+<?php $attr = ''; ?>
+<?php endif; ?>
+<li><a href="<?php echo $slide['Slide']['link_url']; ?>" <?php echo $attr; ?> class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;<?php echo $slide['Slide']['title']; ?></strong><br><?php echo $slide['Slide']['description']; ?>"><img src="/img/slide/<?php echo $slide['Slide']['slide_image']; ?>" width="360" height="250" alt=""></a></li>
+<? endforeach; ?>
 </ul>
 </div>
 </aside>

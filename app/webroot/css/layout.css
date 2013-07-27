@@ -417,6 +417,27 @@ html>/**/body {
 	margin-bottom: 40px;
 }
 
+/* siteBanner Template */
+.siteBanner{
+    	width: 300px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.siteBanner a{
+    border: 0;
+}
+
+.siteBanner p{
+    font-size: 93%;
+    color: #683800;
+    padding: 0 5px;
+}
+
+.siteBanner strong.siteBannerTitle{
+    color: #ffa200;
+}
+
 /* anotherInfo Template */
 .anotherInfo{
 	width: 298px;

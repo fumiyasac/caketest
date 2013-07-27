@@ -687,13 +687,17 @@ class SpecialsController extends AppController{
         );
         $this->set('breadcrumb', $breadcrumb);
         
-        //ページングのリミットを10にする
-        $this->paginate['limit'] = 10;
+        if(isset($this->params['requested'])){
+            $specials = $this->paginate('Special', array('Special.flag' => 1));
+            return $specials;
+        }else{
+            //ページングのリミットを10にする
+            $this->paginate['limit'] = 10;
         
-        //specialsテーブルからデータを持ってくる
-        $specials = $this->paginate('Special', array('Special.flag' => 1));
-        $this->set('specials', $specials);
-        
+            //specialsテーブルからデータを持ってくる
+            $specials = $this->paginate('Special', array('Special.flag' => 1));
+            $this->set('specials', $specials);
+        }
         //ビューのレンダリング
         $this->render('index');
     }

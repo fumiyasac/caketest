@@ -629,7 +629,10 @@ Class SlidesController extends AppController{
 
     //登録バナー（エレメント出力のみ）
     public function index(){
-        
+        $posts = $this->paginate('Slide', array('Slide.flag' => 1));
+        if(isset($this->params['requested'])){
+            return $posts;
+        }
     }
 }
 ?>

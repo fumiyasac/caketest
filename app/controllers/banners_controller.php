@@ -629,7 +629,10 @@ Class BannersController extends AppController{
 
     //登録バナー（エレメント出力のみ）
     public function index(){
-        
+        $banners = $this->paginate('Banner', array('Banner.flag' => 1));
+        if(isset($this->params['requested'])){
+            return $banners;
+        }
     }
 }
 ?>

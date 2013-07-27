@@ -83,10 +83,10 @@ Class BannersController extends AppController{
             $this->Banner->id = $id;
             
             //ステータスを変更する
-            if($this->Banner->field('flag') == 1){
-                $flag_id = 0;
-            } else if($this->Banner->field('flag') == 0) {
+            if($this->Banner->field('flag') == 2){
                 $flag_id = 1;
+            } else if($this->Banner->field('flag') == 1) {
+                $flag_id = 2;
             }
             
             if($this->Banner->saveField('flag', $flag_id)){

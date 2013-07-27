@@ -33,7 +33,7 @@
 <th>スライドショー画像情報</th>
 <td>
 <div class="padt10">
-<img src="/img/slide/<?php echo h($slide['Slide']['slide_image']); ?>" height="130" width="175">
+<img src="/img/slide/<?php echo h($slide['Slide']['slide_image']); ?>" height="260" width="350">
 <br>    
 <ul class="magl15">
 <li>URL：

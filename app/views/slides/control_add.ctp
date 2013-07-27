@@ -81,11 +81,11 @@ echo $this->Form->textarea('link_url',array(
 if($this->Form->value('blank_flag')){
     $value_link = $this->Form->value('blank_flag');
 }else{
-    $value_link = 0;
+    $value_link = 1;
 }
-echo $this->Form->input('link_flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('LINK_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value_link));
+echo $this->Form->input('blank_flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('LINK_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value_link));
 ?>
-<?php echo $this->Form->error('link_flag'); ?>
+<?php echo $this->Form->error('blank_flag'); ?>
 </td>
 </tr>
 <tr>
@@ -111,7 +111,7 @@ echo $this->Dateform->dateYMD('published', null,
 if($this->Form->value('flag')){
     $value = $this->Form->value('flag');
 }else{
-    $value = 1;
+    $value = 2;
 }
 echo $this->Form->input('flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('FLAG_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value));
 ?>

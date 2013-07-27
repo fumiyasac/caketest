@@ -182,7 +182,7 @@ echo $this->Dateform->dateYMD('published', null,
 if($this->Form->value('flag')){
     $value = $this->Form->value('flag');
 }else{
-    $value = 1;
+    $value = 2;
 }
 echo $this->Form->input('flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('FLAG_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value));
 ?>

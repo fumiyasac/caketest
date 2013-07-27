@@ -83,10 +83,10 @@ Class SlidesController extends AppController{
             $this->Slide->id = $id;
             
             //ステータスを変更する
-            if($this->Slide->field('flag') == 1){
-                $flag_id = 0;
-            } else if($this->Slide->field('flag') == 0) {
+            if($this->Slide->field('flag') == 2){
                 $flag_id = 1;
+            } else if($this->Slide->field('flag') == 1) {
+                $flag_id = 2;
             }
             
             if($this->Slide->saveField('flag', $flag_id)){

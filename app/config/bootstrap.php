@@ -122,15 +122,15 @@ Configure::write('UPLOAD_PATH_CONF', array(
 
 Configure::write('FLAG_CONF', array(
     'flag' => array(
-        '0' => '公開中',
-        '1' => '非公開',
-        /* '2' => '日時を指定して公開', */
+        '1' => '公開中',
+        '2' => '非公開',
+        /* '3' => '日時を指定して公開', */
    ),
 ));
 
 Configure::write('LINK_CONF', array(
     'flag' => array(
-        '0' => '外部リンク',
-        '1' => '内部リンク',
+        '1' => '外部リンク',
+        '2' => '内部リンク',
    ),
 ));

@@ -91,10 +91,10 @@ class SpecialsController extends AppController{
             $this->Special->id = $id;
             
             //ステータスを変更する
-            if($this->Special->field('flag') == 1){
-                $flag_id = 0;
-            } else if($this->Special->field('flag') == 0) {
+            if($this->Special->field('flag') == 2){
                 $flag_id = 1;
+            } else if($this->Special->field('flag') == 1) {
+                $flag_id = 2;
             }
             
             if($this->Special->saveField('flag', $flag_id)){
@@ -691,7 +691,7 @@ class SpecialsController extends AppController{
         $this->paginate['limit'] = 10;
         
         //specialsテーブルからデータを持ってくる
-        $specials = $this->paginate('Special', array('Special.flag' => 0));
+        $specials = $this->paginate('Special', array('Special.flag' => 1));
         $this->set('specials', $specials);
         
         //ビューのレンダリング
@@ -711,7 +711,7 @@ class SpecialsController extends AppController{
             //データを取得する
             $this->data = $this->Special->find('first',
                 array(
-                    'conditions' => array('Special.id' => $id, 'Special.flag' => 0),
+                    'conditions' => array('Special.id' => $id, 'Special.flag' => 1),
                 )
             );
             if($this->data === false){

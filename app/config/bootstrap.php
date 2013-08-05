@@ -109,6 +109,7 @@ Configure::write('UPLOAD_TMP_PATH_CONF', array(
         '1' => 'tmp_special',
         '2' => 'tmp_banner',
         '3' => 'tmp_slide',
+        '4' => 'tmp_newstopic',
    ),
 ));
 
@@ -117,6 +118,7 @@ Configure::write('UPLOAD_PATH_CONF', array(
         '1' => 'special',
         '2' => 'banner',
         '3' => 'slide',
+        '4' => 'newstopic',
    ),
 ));
 

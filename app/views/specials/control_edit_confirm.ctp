@@ -1,7 +1,7 @@
 <!-- ## Cake View Content Start ## -->
 <article class="adminBlock">
 <header class="adminTitle">
-<h2>特集記事の編集</h2>
+<h2>特集記事の編集確認</h2>
 </header>
 
 <article class="adminContentList adminContact">

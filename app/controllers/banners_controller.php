@@ -57,7 +57,7 @@ Class BannersController extends AppController{
         $allAmount = $this->Banner->find('count');
         $this->set('allAmount',$allAmount);
         
-        //specialsテーブルからデータを持ってくる
+        //bannersテーブルからデータを持ってくる
         $banners = $this->paginate();
         $this->set('banners', $banners);
         

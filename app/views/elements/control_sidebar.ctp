@@ -51,6 +51,17 @@
 </section>
 <section class="adminSidePanel">
 <header>
+<h5>ブログ以外のコンテンツの管理</h5>
+</header>
+<div>
+<ul>
+<li><a href="/control/newstopics/index">ニュース&amp;トピックの管理</a></li>
+<li><a href="/control/catalogs/index">カタログ情報の管理</a></li>
+</ul>
+</div>
+</section>
+<section class="adminSidePanel">
+<header>
 <h5>お問い合わせの管理</h5>
 </header>
 <div>

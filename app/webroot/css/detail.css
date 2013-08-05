@@ -493,6 +493,10 @@ aside.afterLinks p.backLink a{
         padding-left: 12px;        
 }
 
+aside.afterLinks p.backLink a:hover{
+        text-decoration: underline;
+}
+
 aside.afterLinks p.publishedDate{
         font-size: 93%; 
         color: #ffa200;
@@ -732,4 +736,159 @@ span.requierd{
         color: #ffffff;
         cursor: pointer;
         font-weight: bold;
+}
+
+/* ============================================================
+06: newstopics
+============================================================ */
+/* Newstopics Area */
+.newstopicsArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.newstopicsArticle .newstopicsTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.newstopicsArticle .newstopicsTitle h2{
+}
+
+/* Newstopic List */
+.newstopicsArticle .sentenseList{
+}
+
+.newstopicsArticle .sentenseList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.newstopicsArticle .sentenseList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.newstopicsArticle .sentenseList section.introduction{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.newstopicsArticle .sentenseList section.introduction .sentenses{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.newstopicsArticle .sentenseList section.introduction .sentenses p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+/* Newstopic Contents */
+.newstopicsArticle .sentenseList section.contentList{
+        border-top: dotted 1px #ebebeb;	
+	padding-bottom: 20px;
+        color: #683800;
+        overflow: hidden;
+}
+
+.newstopicsArticle .sentenseList section.contentList header{
+        margin-top: 20px;
+        margin-bottom: 0;
+
+}
+
+.newstopicsArticle .sentenseList section.contentList .published{
+        font-size: 93%; 
+        color: #ffa200;
+}
+
+.newstopicsArticle .sentenseList section.contentList .readMore{
+        text-align: right;
+}
+
+.newstopicsArticle .sentenseList section.contentList .readMore a{
+        color: #683800;
+        text-decoration: none;
+        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+        padding-left: 12px;
+}
+
+.newstopicsArticle .sentenseList section.contentList .readMore a:hover{
+        text-decoration: underline;
+}
+
+.newstopicsArticle .sentenseList section.contentListNone .emptyData{
+        text-align: center;
+        color: #ff0000;
+        font-weight: bold;
+}
+
+/* Newstopic Contents Detail */
+.newstopicsArticle .sentenseView{
+}
+
+.newstopicsArticle .sentenseView header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.newstopicsArticle .sentenseView header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.newstopicsArticle .sentenseView section.introduction{
+	padding-bottom: 15px;
+}
+
+.newstopicsArticle .sentenseView section.introduction .newstopicMain{
+	width: 600px;
+	height: auto;
+	overflow: hidden;
+}
+
+.newstopicsArticle .sentenseView section.introduction .newstopicMain p.image_main{
+        margin-left: auto;
+        margin-right: auto;
+}
+
+/* Newstopic Contents Detail(Main) */
+.newstopicsArticle .sentenseView section.detailOfNewstopicMain{
+	padding-bottom: 25px;
+}
+
+.newstopicsArticle .sentenseView section.detailOfNewstopicMain div{
+	color:#683800;
+}
+
+.newstopicsArticle .sentenseView section.detailOfNewstopicMain div table{
+        border-bottom:1px dotted #e2e2e2;
+        border-right:1px dotted #e2e2e2;
+}
+
+.newstopicsArticle .sentenseView section.detailOfNewstopicMain div ol li{
+        margin-left: 30px;
+}
+
+.newstopicsArticle .sentenseView section.detailOfNewstopicMain div ul li{
+        margin-left: 25px;
+}
+
+.newstopicsArticle .sentenseView section.detailOfNewstopicMain div ul td,
+.newstopicsArticle .sentenseView section.detailOfNewstopicMain div ul th{
+    border-top:1px dotted #e2e2e2;
+    border-left:1px dotted #e2e2e2;
 }

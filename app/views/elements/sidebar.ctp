@@ -5,7 +5,7 @@
 <div class="specialVisual">
 <a href="#"><img src="/images/sample/sample_special_thumb.png" width="300" height="119" alt=""></a>
 </div>
-<?php $specials = $this->requestAction('specials/index/sort:id/order:asc/limit:2'); ?>
+<?php $specials = $this->requestAction('specials/index/limit:2'); ?>
 <?php foreach ($specials as $special): ?>
 <section>
 <header>
@@ -60,7 +60,7 @@
 </aside>
 <!-- ## Cake Element Content End ## -->
 <aside class="siteBanner">
-<?php $banners = $this->requestAction('banners/index/sort:id/order:asc/limit:4'); ?>
+<?php $banners = $this->requestAction('banners/index/limit:4'); ?>
 <?php foreach ($banners as $banner): ?>
 <?php if($banner['Banner']['blank_flag'] == 1): ?>
 <?php $attr = 'target="_blank"'; ?>
@@ -80,18 +80,18 @@
 <!-- ## Cake Element Content Start ## -->
 <aside class="anotherInfo">
 <div class="tabButton">
-<p id="shopTab"><a href="#shopTabView">ショップ情報</a></p>
+<p id="shopTab"><a href="#shopTabView">ニュース&amp;トピック</a></p>
 <p id="catalogTab"><a href="#catalogTabView">カタログ情報</a></p>
 </div>
 <div class="tabView">
 <section id="shopTabView">
-<header><h4>ショップからのお知らせなど</h4></header>
+<header><h4>当ブログからの最新情報はこちら</h4></header>
 <div>
 <ul>
-<li><date>2012.12.24</date><br><a href="#">SHOP投稿テスト</a></li>
-<li><date>2012.12.24</date><br><a href="#">SHOP投稿テスト</a></li>
-<li><date>2012.12.24</date><br><a href="#">SHOP投稿テスト</a></li>
-<li><date>2012.12.24</date><br><a href="#">SHOP投稿テスト</a></li>
+<?php $newstopics = $this->requestAction('newstopics/index/limit:4'); ?>
+<?php foreach ($newstopics as $newstopic): ?>
+<li><date><?php echo h($this->Html->dateFormat($newstopic['Newstopic']['published']." 00:00:00")); ?></date><br><a href="/newstopics/view/<?php echo h($newstopic['Newstopic']['id']); ?>"><?php echo h($newstopic['Newstopic']['title']); ?></a></li>
+<?php endforeach; ?>
 </ul>
 </div>
 </section>
@@ -99,10 +99,10 @@
 <header><h4>from「Otsuka Catalog」</h4></header>
 <div>
 <ul>
-<li><date>2012.12.24</date><br><a href="#">CATALOG投稿テスト</a></li>
-<li><date>2012.12.24</date><br><a href="#">CATALOG投稿テスト</a></li>
-<li><date>2012.12.24</date><br><a href="#">CATALOG投稿テスト</a></li>
-<li><date>2012.12.24</date><br><a href="#">CATALOG投稿テスト</a></li>
+<li><date>2012年12月24日</date><br><a href="#">CATALOG投稿テスト</a></li>
+<li><date>2012年12月24日</date><br><a href="#">CATALOG投稿テスト</a></li>
+<li><date>2012年12月24日</date><br><a href="#">CATALOG投稿テスト</a></li>
+<li><date>2012年12月24日</date><br><a href="#">CATALOG投稿テスト</a></li>
 </ul>
 </div>
 </section>

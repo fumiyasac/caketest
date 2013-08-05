@@ -539,6 +539,13 @@ border: none;
         display: inline-block;
 }
 
+.sendButton #NewstopicControlAddForm,
+.sendButton #NewstopicControlAddCompleteForm,
+.sendButton #NewstopicControlEditForm,
+.sendButton #NewstopicControlEditCompleteForm{
+        display: inline-block;
+}
+
 .sendButton #indexButton,
 .sendButton #confirmButton,
 .sendButton #completeButton{

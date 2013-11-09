@@ -56,7 +56,7 @@
 <div>
 <ul>
 <li><a href="/control/newstopics/index">ニュース&amp;トピックの管理</a></li>
-<li><a href="/control/catalogs/index">カタログ情報の管理</a></li>
+<!--<li><a href="/control/catalogs/index">カタログ情報の管理</a></li>-->
 </ul>
 </div>
 </section>

@@ -2,8 +2,29 @@
 class AppController extends Controller {
     
     public $components = array(
-        'DebugKit.Toolbar'
+        'DebugKit.Toolbar',
+        'Session',
+        'Security',
+        'Auth' => array(
+            'loginError' => 'ユーザー名またはパスワードが違います',
+            'authError' => 'ユーザー名及びパスワード入力して下さい',
+        )
     );
+    
+    public function beforeFilter() {
+        
+        //認証に使用するモデルを'Member'に変更する
+        $this->Auth->userModel = 'Members';
+        $this->Auth->allow('*');
+        
+        //管理者専用ページにはBasic認証をつける
+        if (!empty($this->params['control'])) {
+            $this->Security->loginOptions = array('type' => 'basic', 'realm' => 'Master Admin Tool');
+            $this->Security->loginUsers = array('superuser' => 'password');
+            $this->Security->requireLogin();
+        }
+        
+    }
     
     //管理画面時のレイアウトと分割を行う
     public function beforeRender() {
@@ -19,8 +40,12 @@ class AppController extends Controller {
             }
         }
         
-    }  
-    
+    }
+
+     public function isAuthorized(){
+        $this->Session->setFlash(__('ログインしています（ユーザー名：'.$this->Auth->user('username').'）', true));
+        return true;
+    }
     
     //メール送信の共通関数
     public function _sendMail($options = array()){

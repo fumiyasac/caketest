@@ -91,7 +91,7 @@ class AppModel extends Model {
     }
     
     //次のAUTO_INCREMENTの値を取得する
-    function getNextAutoIncrement(){ 
+    public function getNextAutoIncrement(){ 
 
         $next_increment = 0; 
         $table = Inflector::tableize($this->name); 

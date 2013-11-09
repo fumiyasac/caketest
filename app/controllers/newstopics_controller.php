@@ -31,6 +31,11 @@ class NewstopicsController extends AppController{
     //画像格納カラム名の配列
     private $image_array = array("newstopic_image");
 
+    //認証関連の設定
+    public function beforeFilter() {
+       parent::beforeFilter();
+    }
+    
     //管理画面時のレイアウトの切り替え
     public function beforeRender() {
         parent::beforeRender();

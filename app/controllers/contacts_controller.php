@@ -33,6 +33,11 @@ Class ContactsController extends AppController{
         'order' => 'Contact.id DESC',
     );
     
+    //認証関連の設定
+    public function beforeFilter() {
+       parent::beforeFilter();
+    }
+    
     //管理画面時のレイアウトの切り替え
     public function beforeRender() {
         parent::beforeRender();

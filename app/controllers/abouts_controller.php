@@ -14,7 +14,7 @@ Class AboutsController extends AppController{
         try{
             
             //タイトルメッセージのセット
-            $this->set('title_for_layout','お問い合わせ内容の確認');
+            $this->set('title_for_layout','このブログについて');
             $breadcrumb = array(
                 array('name' => 'HOME', 'link' => '/'),
                 array('name' => 'このブログについて','link' => false),

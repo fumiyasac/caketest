@@ -46,7 +46,10 @@ article,aside,dialog,figure,footer,header,hgroup,nav,section,figcaption {
 01: common
 ============================================================ */
 body{
+/* メイリオを使うかの検討を！
 font-family: 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+*/
+font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 height:100%;
 font-size: 13px;
 *font-size: small;

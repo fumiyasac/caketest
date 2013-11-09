@@ -3,9 +3,9 @@ class SpecialsController extends AppController{
     
     //メンバ変数の設定
     public $name = 'Specials';
-    public $uses = array('Special');
+    public $uses = array('Special','Member');
     public $layout = 'common_format_blog';
-    public $components = array('Session','RequestHandler');
+    public $components = array('Auth','Session','RequestHandler');
     public $helpers = array('Formhidden','Csv','Html','Dateform');
     
     public $paginate = array(
@@ -39,7 +39,12 @@ class SpecialsController extends AppController{
     
     //画像格納カラム名の配列
     private $image_array = array("image_main", "image_sub1", "image_sub2", "image_sub3");
-
+    
+    //認証関連の設定
+    public function beforeFilter() {
+       parent::beforeFilter();
+    }
+    
     //管理画面時のレイアウトの切り替え
     public function beforeRender() {
         parent::beforeRender();

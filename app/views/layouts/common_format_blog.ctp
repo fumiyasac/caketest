@@ -44,9 +44,9 @@
 <div class="subNav">
 <p>大塚で見つける出会いのもの</p>
 <ul>
-<li><span>・</span><a href="#">メンバー募集に関して</a></li>
-<li><span>・</span><a href="#">メンバー登録</a></li>
-<li><span>・</span><a href="#">ログイン</a></li>
+<li><span>・</span><a href="/members/">メンバー募集に関して</a></li>
+<li><span>・</span><a href="/members/add">メンバー登録</a></li>
+<li><span>・</span><a href="/members/login">ログイン</a></li>
 </ul>
 </div>
 <div class="mainNav">

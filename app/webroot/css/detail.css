@@ -639,6 +639,16 @@ span.requierd{
 	color: #ff0000;
 }
 
+a.blue{
+        color: #3333ff;
+        text-decoration: underline;
+}
+
+a.blue:visited{
+        color: #3333ff;
+        text-decoration: underline;
+}
+
 .contactArticle .formList section .forms #formInquiry{
 	width: 576px;
 	border-right: solid 1px #e2e2e2!important; 
@@ -891,4 +901,205 @@ span.requierd{
 .newstopicsArticle .sentenseView section.detailOfNewstopicMain div ul th{
     border-top:1px dotted #e2e2e2;
     border-left:1px dotted #e2e2e2;
+}
+
+/* ============================================================
+07: members
+============================================================ */
+/* Members Area */
+.memberArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.memberArticle .memberTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.memberArticle .memberTitle h2{
+}
+
+/* Article List */
+.memberArticle .formList{
+}
+
+.memberArticle .formList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.memberArticle .formList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.memberArticle .formList section{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.memberArticle .formList section .forms{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.memberArticle .formList section .forms p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+span.remarked{
+	color: #ffa200;
+}
+
+span.requierd{
+	color: #ff0000;
+}
+
+a.blue{
+        color: #3333ff;
+        text-decoration: underline;
+}
+
+a.blue:visited{
+        color: #3333ff;
+        text-decoration: underline;
+}
+
+.memberArticle .formList section .forms #formInquiry{
+	width: 576px;
+	border-right: solid 1px #e2e2e2!important; 
+	border-bottom: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .formList section .forms #formInquiry th{
+	text-align: left;
+	width: 178px;
+	background: #ebebeb;
+	color: #683800;
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .formList section .forms #formInquiry td{
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .formList section .forms #formInquiry td div.error-message{
+    color: #ff0000;
+}
+
+.memberArticle .formList section .forms #formInquiry input{
+	width: 368px;
+	height: 22px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.memberArticle .formList section .forms #formInquiry input.radio{
+	width: 14px;
+	height: 14px;
+}
+
+.memberArticle .formList section .forms #formInquiry textarea{
+	width: 368px;
+	height: 88px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.memberArticle .formList section .forms #formEnquete{
+	width: 576px;
+	border-right: solid 1px #e2e2e2!important; 
+	border-bottom: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .formList section .forms #formEnquete th{
+	text-align: left;
+	background: #ebebeb;
+	color: #683800;
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .formList section .forms #formEnquete td{
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .formList section .forms #formEnquete td div.error-message{
+    color: #ff0000;
+}
+
+.memberArticle .formList section .forms #formEnquete td .servicePolicy{
+    	width: 553px;
+        padding: 5px;
+	height: 300px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+        color: #333333;
+        overflow-x: hidden;
+        overflow-y: scroll;        
+}
+
+.memberArticle .formList section .forms #formEnquete td .servicePolicy p{
+	font-size: 100%;
+        color: #333333;
+}
+
+.memberArticle .formList section .forms #formEnquete input{
+	width: 559px;
+	height: 22px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.memberArticle .formList section .forms #formEnquete input.chkbox{
+    	width: 18px;
+        height: 18px;
+}
+
+.memberArticle .formList section .forms #formEnquete textarea{
+	width: 559px;
+	height: 88px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.memberArticle .formList section .forms .sendButton{
+	text-align: center;    
+}
+
+.memberArticle .formList section .forms .sendButton p{
+	text-align: center;
+}
+
+.memberArticle .formList section .forms .sendButton #MemberAddForm,
+.memberArticle .formList section .forms .sendButton #MemberCompleteForm{
+        display: inline-block;
+}
+
+.memberArticle .formList section .forms .sendButton #indexButton,
+.memberArticle .formList section .forms .sendButton #confirmButton,
+.memberArticle .formList section .forms .sendButton #completeButton{
+	text-align: center;
+/*	width: 120px;*/
+        padding: 0 5px;
+        line-height: 30px;
+	height: 30px;
+	background: #e39943;
+	border: 0px solid;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
 }

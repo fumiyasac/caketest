@@ -12,6 +12,8 @@ class AppController extends Controller {
     );
     
     public function beforeFilter() {
+        //自前でやるからCSRF対策とパラメータ改ざん対策を停止する
+        $this->Security->validatePost = false;
         
         //認証に使用するモデルを'Member'に変更する
         $this->Auth->userModel = 'Members';

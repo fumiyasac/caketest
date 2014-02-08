@@ -124,15 +124,22 @@ Configure::write('UPLOAD_PATH_CONF', array(
 
 Configure::write('FLAG_CONF', array(
     'flag' => array(
-        '1' => '公開中',
-        '2' => '非公開',
+        '1' => '公開中 ',
+        '2' => '非公開 ',
         /* '3' => '日時を指定して公開', */
    ),
 ));
 
 Configure::write('LINK_CONF', array(
     'flag' => array(
-        '1' => '外部リンク',
-        '2' => '内部リンク',
+        '1' => '外部リンク ',
+        '2' => '内部リンク ',
+   ),
+));
+
+Configure::write('GENDER_CONF', array(
+    'flag' => array(
+        '1' => '男性 ',
+        '2' => '女性 ',
    ),
 ));

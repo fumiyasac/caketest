@@ -56,7 +56,7 @@
 <div>
 <ul>
 <li><a href="/control/newstopics/index">ニュース&amp;トピックの管理</a></li>
-<!--<li><a href="/control/catalogs/index">カタログ情報の管理</a></li>-->
+<li><a href="/control/catalogs/index">カタログ情報の管理</a></li>
 </ul>
 </div>
 </section>
@@ -72,9 +72,10 @@
 </div>
 </section>
 </aside>
+
 <aside class="adminSide">
 <header class="adminSideHeader">
-<h4>ショップの管理</h4>
+<h4>ショップの管理 ※現在開発中</h4>
 </header>
 <section class="adminSidePanel">
 <header>

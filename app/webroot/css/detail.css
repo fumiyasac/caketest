@@ -11,7 +11,9 @@
 	03: specials
         04: about
 	05: contact
-
+	06: newstopics
+	07: members
+	08: catalogs
 */
 
 /* ============================================================
@@ -1102,4 +1104,159 @@ a.blue:visited{
         color: #ffffff;
         cursor: pointer;
         font-weight: bold;
+}
+
+/* ============================================================
+08: catalogs
+============================================================ */
+/* Catalogs Area */
+.catalogsArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.catalogsArticle .catalogsTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.catalogsArticle .catalogsTitle h2{
+}
+
+/* Catalogs List */
+.catalogsArticle .sentenseList{
+}
+
+.catalogsArticle .sentenseList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.catalogsArticle .sentenseList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.catalogsArticle .sentenseList section.introduction{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.catalogsArticle .sentenseList section.introduction .sentenses{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.catalogsArticle .sentenseList section.introduction .sentenses p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+/* Catalog Contents */
+.catalogsArticle .sentenseList section.contentList{
+        border-top: dotted 1px #ebebeb;	
+	padding-bottom: 20px;
+        color: #683800;
+        overflow: hidden;
+}
+
+.catalogsArticle .sentenseList section.contentList header{
+        margin-top: 20px;
+        margin-bottom: 0;
+
+}
+
+.catalogsArticle .sentenseList section.contentList .published{
+        font-size: 93%; 
+        color: #ffa200;
+}
+
+.catalogsArticle .sentenseList section.contentList .readMore{
+        text-align: right;
+}
+
+.catalogsArticle .sentenseList section.contentList .readMore a{
+        color: #683800;
+        text-decoration: none;
+        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+        padding-left: 12px;
+}
+
+.catalogsArticle .sentenseList section.contentList .readMore a:hover{
+        text-decoration: underline;
+}
+
+.catalogsArticle .sentenseList section.contentListNone .emptyData{
+        text-align: center;
+        color: #ff0000;
+        font-weight: bold;
+}
+
+/* Catalog Contents Detail */
+.catalogsArticle .sentenseView{
+}
+
+.catalogsArticle .sentenseView header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.catalogsArticle .sentenseView header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.catalogsArticle .sentenseView section.introduction{
+	padding-bottom: 15px;
+}
+
+.catalogsArticle .sentenseView section.introduction .catalogMain{
+	width: 600px;
+	height: auto;
+	overflow: hidden;
+}
+
+.catalogsArticle .sentenseView section.introduction .catalogMain p.image_main{
+        margin-left: auto;
+        margin-right: auto;
+}
+
+/* Catalog Contents Detail(Main) */
+.catalogsArticle .sentenseView section.detailOfCatalogMain{
+	padding-bottom: 25px;
+}
+
+.catalogsArticle .sentenseView section.detailOfCatalogMain div{
+	color:#683800;
+}
+
+.catalogsArticle .sentenseView section.detailOfCatalogMain div table{
+        border-bottom:1px dotted #e2e2e2;
+        border-right:1px dotted #e2e2e2;
+}
+
+.catalogsArticle .sentenseView section.detailOfCatalogMain div ol li{
+        margin-left: 30px;
+}
+
+.catalogsArticle .sentenseView section.detailOfCatalogMain div ul li{
+        margin-left: 25px;
+}
+
+.catalogsArticle .sentenseView section.detailOfCatalogMain div ul td,
+.catalogsArticle .sentenseView section.detailOfCatalogMain div ul th{
+    border-top:1px dotted #e2e2e2;
+    border-left:1px dotted #e2e2e2;
 }

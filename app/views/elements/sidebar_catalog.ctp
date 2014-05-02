@@ -92,7 +92,7 @@ echo $this->Form->textarea('text',array(
 </div>
 </section>
 <section id="catalogTabView">
-<header><h4>from「Otsuka Catalog」</h4></header>
+<header><h4>大塚Catalogs</h4></header>
 <div>
 <ul>
 <?php $catalogs = $this->requestAction('catalogs/index/limit:4'); ?>

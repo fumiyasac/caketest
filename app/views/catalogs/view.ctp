@@ -15,7 +15,7 @@
 <section class="detailOfCatalogMain">
 <div>
 <?php echo $this->data['Catalog']['description']; ?>
-<p style="text-align: center;" class="padt20"><a href="../<?php echo $this->data['Catalog']['template']; ?>/"><img src="/images/common/cataloglink_button.png"></a></p>
+<p style="text-align: center;" class="catalogLinkButton padt20"><a href="../<?php echo $this->data['Catalog']['template']; ?>/"><img src="/images/common/cataloglink_button.png"></a></p>
 </div>
 </section>
 <aside class="afterLinks">

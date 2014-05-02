@@ -15,6 +15,7 @@ $(document).ready(function(){
 	var TEXTAREA_CLASS = ".autoClear";
 	var MAIN_NAV = "#globalHeader .mainNav nav ul li a";
 	var SHOP_BUTTON = ".showcaseButton a img";
+	var CATALOG_LINK_BUTTON = ".catalogLinkButton a img";
 	var MAIN_SLIDER = "#scroller";
 	var SHOP_SLIDER = "#shopSlider";
 	var TO_TOP = ".toTop a";
@@ -27,7 +28,8 @@ $(document).ready(function(){
 	//Rollover Action
 	$(MAIN_NAV).opOver(1.0,0.3,400,400);
 	$(SHOP_BUTTON).opOver(1.0,0.3,400,400);
-	
+	$(CATALOG_LINK_BUTTON).opOver(1.0,0.3,400,400);
+		
 	//Simply Scroll Slides
 	$(MAIN_SLIDER).simplyScroll({
 		speed:1,

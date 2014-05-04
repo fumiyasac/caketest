@@ -5,33 +5,28 @@
 <div class="catalogCommentVisual">
 <a href="#"><img src="/images/sample/sample_special_thumb.png" width="300" height="120" alt=""></a>
 </div>
+<?php $catalogComments = $this->requestAction('catalogs_comments/index/limit:4'); ?>
+<?php if( empty($catalogComments) ): ?>
 <section>
-<header>
-<h5>特集記事のテスト</h5>
-</header>
 <div>
-<p class="catalogCommentDate">2013年07月08日</p>
-<p><a href="/specials/">テストコンテンツを表示しています</a></p>
+<p class="notComment">このカタログへのコメントはありません。</p>
 </div>
 </section>
+<?php else: ?>
+<?php foreach ($catalogComments as $catalogComment): ?>
 <section>
 <header>
-<h5>特集記事のテスト</h5>
+<h5><?php echo h($catalogComment['CatalogsComment']['username']); ?>さんのコメント</h5>
 </header>
 <div>
-<p class="catalogCommentDate">2013年07月08日</p>
-<p><a href="/specials/">テストコンテンツを表示しています</a></p>
+<p class="catalogCommentDate"><?php echo h($this->Html->dateFormat($catalogComment['CatalogsComment']['published']." 00:00:00")); ?></p>
+<p><?php echo mb_strimwidth($catalogComment['CatalogsComment']['text'], 0, 139, '...'); ?></p>
+<p class="allRead">&gt;&nbsp;<a href="#">すべて読む</a></p>
 </div>
 </section>
-<section>
-<header>
-<h5>特集記事のテスト</h5>
-</header>
-<div>
-<p class="catalogCommentDate">2013年07月08日</p>
-<p><a href="/specials/">テストコンテンツを表示しています</a></p>
-</div>
-</section>
+<?php endforeach; ?>
+<?php endif; ?>
+<p class="wholeCommentLink"><a href="#">コメント一覧ページへ</a></p>
 </aside>
 <!-- ## Cake Element Content End ## -->
 
@@ -40,18 +35,26 @@
 <header class="catalogCommentHeader">
 <h4><img src="/images/catalogs/right2_catalog.png" width="300" height="20" alt=""></h4>
 </header>
-<div class="commentWriteArea">
+<div id="commentResultArea"></div>
+<div class="commentWriteArea" id="addComment">
+<?php echo $this->Form->create('CatalogsComment', array('type' => 'post', 'action' => 'complete')); ?>
 <p class="padb10 authorWrite">投稿者：fumiyasac</p>
+<?php /* authorは自分のユーザーネームで決めうち（会員登録機能が完成次第実装） */ 
+echo $this->Form->input('author', array('type' => 'hidden', 'value' => 'fumiyasac', 'id' => 'commentUsername'));
+?>
 <?php
 echo $this->Form->textarea('text',array(
     'class'=>'formCommentAreaText',
     'rows' => 5,
-    'cols' => 40
+    'cols' => 40,
+    'id' => 'commentText'
 ));
 ?>
+<?php echo $this->Form->input('catalog_id', array('type' => 'hidden', 'value' => $catalog_id, 'id' => 'commentCatalogId')); ?>
 <p class="postCatalogComment">
-<a href="#"><img src="/images/catalogs/btn_comment_catalog.png" width="158" height="23" alt=""></a>
+<?php echo $this->Form->submit('コメントを投稿する', array('div' => false, 'id' => 'commentSubmitButton')); ?>
 </p>
+<?php echo $this->Form->end(); ?>
 </div>
 </aside>
 <!-- ## Cake Element Content End ## -->

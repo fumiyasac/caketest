@@ -765,6 +765,10 @@ class CatalogsController extends AppController{
         $category_l = (!empty($this->params['url']['category_l'])) ? $this->params['url']['category_l'] : null;
         $range = (!empty($this->params['url']['range'])) ? $this->params['url']['range'] : null;
         $this->set( compact('keywords', 'category_l', 'range') );
+        
+        //コメント投稿用にIDを渡す
+        $this->set('catalog_id', $catalog_id);
+        
     }
     
 }

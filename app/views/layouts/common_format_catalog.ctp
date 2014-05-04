@@ -33,6 +33,7 @@
 <script src="/js/jquery.easyslider.js"></script>
 <script src="/js/jquery.cookie.js"></script>
 <script src="/js/tabview.js"></script>
+<script src="/js/catalog/comment_setting.js"></script>
 <?php echo $scripts_for_layout; ?>
 </head>
 <body>

@@ -33,8 +33,8 @@
 </header>
 <div>
 <ul>
-<li><a href="#">コメントの一覧</a></li>
-<li><a href="#">CSVファイルダウンロード</a></li>
+<li><a href="#">コメント（ブログ部分）の管理</a></li>
+<li><a href="/control/catalogs_comments">コメント（大塚Catalogs）の管理</a></li>
 </ul>
 </div>	
 </section>

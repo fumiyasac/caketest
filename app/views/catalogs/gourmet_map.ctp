@@ -216,6 +216,8 @@ echo $this->Html->getCrumbs(' > ');
         </p>
     </div>
 </aside>
+
+<?php echo $this->element('catalog_comment_policy'); ?>
     
 </div>
 </article>

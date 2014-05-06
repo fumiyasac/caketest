@@ -144,3 +144,15 @@
 		padding: 0 5px;
 		text-align: center;
 }
+
+/* コメントポリシーエリア */
+.commentPolicyArea{
+	padding-top: 20px;
+    width: 600px;
+    height: auto;
+    font-size: 93%;
+}
+
+.commentPolicyArea header h3{
+    color: #FFA200;
+}

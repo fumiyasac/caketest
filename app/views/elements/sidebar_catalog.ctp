@@ -20,13 +20,13 @@
 </header>
 <div>
 <p class="catalogCommentDate"><?php echo h($this->Html->dateFormat($catalogComment['CatalogsComment']['published']." 00:00:00")); ?></p>
-<p><?php echo mb_strimwidth($catalogComment['CatalogsComment']['text'], 0, 139, '...'); ?></p>
-<p class="allRead">&gt;&nbsp;<a href="#">すべて読む</a></p>
+<p><?php echo mb_strimwidth($catalogComment['CatalogsComment']['text'], 0, 79, '...'); ?></p>
+<p class="allRead">&gt;&nbsp;<a href="/catalogs_comments/view/<?php echo $catalogComment['CatalogsComment']['id']; ?>">すべて読む</a></p>
 </div>
 </section>
 <?php endforeach; ?>
 <?php endif; ?>
-<p class="wholeCommentLink"><a href="#">コメント一覧ページへ</a></p>
+<p class="wholeCommentLink"><a href="/catalogs_comments/search/">コメント一覧ページへ</a></p>
 </aside>
 <!-- ## Cake Element Content End ## -->
 

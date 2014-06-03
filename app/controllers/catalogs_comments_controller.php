@@ -227,6 +227,144 @@ class CatalogsCommentsController extends AppController{
         }                
     
     }
+
+    //@todo:search（検索＆一覧表示）
+    public function search(){
+    
+    	try{
+    				    		
+    		//カタログコメントの検索条件パラメータを取得
+    		$conditions = array();
+    		$conditions['CatalogsComment.flag'] = 1;
+			
+			//検索条件
+			if(!empty($this->params['url']['catalog_id'])){
+				$conditions['CatalogsComment.catalog_id'] = $this->params['url']['catalog_id'];
+				$catalog_id = $this->params['url']['catalog_id'];
+			}else{
+				$catalog_id = '';
+			}
+			$this->set('catalog_id', $catalog_id);
+			
+			if(!empty($this->params['url']['query'])){
+				$query = $this->params['url']['query'];
+				$query = preg_replace('/　/',	' ', $query);		//全角スペースを半角スペースへ
+                $query = preg_replace('/\s+/',	' ', $query);		//連続する半角スペースを1つの半角スペースへ
+				$query = trim($query);								//先頭と末尾をトリム
+                $query_array = preg_replace('/ /',	',', $query);	//1つの半角スペースをカンマへ
+				$query_array = explode(',', $query_array);
+				
+				if(count($query_array) === 1){
+					$conditions['CatalogsComment.text LIKE ?'] = '%'.$query_array[0].'%';					
+				}elseif(count($query_array) > 1){
+					foreach($query_array as $query_key => $query_value){
+						if(!empty($query_value)){
+							$conditions['or'][$query_key]['CatalogsComment.text LIKE ?'] = '%'.$query_value.'%';
+						}
+					}					
+				}
+			}else{
+				$query = '';
+			}		
+			$this->set('query', $query);
+						
+			//条件に合致するデータを取得
+			$this->paginate['limit'] = 10;
+			//$this->paginate['limit'] = 1;
+			$catalogsComments = $this->paginate('CatalogsComment', $conditions);
+	    	$this->set('catalogsComments', $catalogsComments);
+	    	
+	    	//カタログマスタデータを取得
+	    	$catalogDatas = $this->Catalog->find('all',array('conditions' => array('Catalog.flag' => 1)));        
+			foreach($catalogDatas as $value){
+				$catalog_id = $value['Catalog']['id'];
+				$catalogTitleList[$catalog_id]['title'] = $value['Catalog']['title'];
+				$catalogTitleList[$catalog_id]['template'] = $value['Catalog']['template'];
+				$catalogTitleList[$catalog_id]['catalog_image'] = $value['Catalog']['catalog_image'];
+			}
+			$this->set('catalogTitleList', $catalogTitleList);
+	    	
+	    	//タイトルメッセージのセット
+            $this->set('title_for_layout','大塚Catalogs 皆様からのコメント一覧');
+	    	
+	    	//パンくずリストの設定 
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => '大塚Catalogs', 'link' => array('controller' => 'catalogs', 'action' => 'index')),
+                array('name' => '皆様からのコメント一覧','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb);
+	    	
+	    	//最大レコード数を取得
+	    	$hit_max_count = $this->CatalogsComment->find('count', array('conditions' => $conditions));
+	    	$this->set('hit_max_count', $hit_max_count);
+	    	
+    	} catch (Exception $e){
+            
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect('/catalogs/index');
+            
+        }
+	    
+    }
+    
+    //詳細表示
+    public function view($id = null){
+	    //コメント情報を取得する
+	    try{
+	    
+	        //idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id)){
+                 $this->redirect('/catalogs/');
+            }
+            
+            //データを取得する
+            $this->data = $this->CatalogsComment->find('first',
+                array(
+                    'conditions' => array(
+                    	'CatalogsComment.id' => $id, 
+						'CatalogsComment.flag' => 1
+					),
+                )
+            );
+            
+            //変数をセット
+            if($this->data === false){
+                $this->redirect('/catalogs/');
+            }else{
+                $this->set('data', $this->data);
+                
+                //カタログマスタデータを取得する
+                $catalogDatas = $this->Catalog->find('all',array('conditions' => array('Catalog.flag' => 1)));        
+				foreach($catalogDatas as $value){
+					$catalog_id = $value['Catalog']['id'];
+					$catalogTitleList[$catalog_id]['title'] = $value['Catalog']['title'];
+					$catalogTitleList[$catalog_id]['template'] = $value['Catalog']['template'];
+					$catalogTitleList[$catalog_id]['catalog_image'] = $value['Catalog']['catalog_image'];
+				}
+				$this->set('catalogTitleList', $catalogTitleList);
+            }
+            
+            //タイトルメッセージのセット
+            $this->set('title_for_layout','大塚Catalogs（'.$catalogTitleList[$this->data['CatalogsComment']['catalog_id']]['title'].'）内のコメント');
+            
+            //パンくずリストの設定 
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => '大塚Catalogs', 'link' => array('controller' => 'catalogs', 'action' => 'index')),
+                array('name' => '皆様からのコメント一覧','link' => array('controller' => 'catalogs_comments', 'action' => 'search')),
+                array('name' => $catalogTitleList[$this->data['CatalogsComment']['catalog_id']]['title'].'に関するコメント','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb); 
+		    
+	    }catch(Exception $e){
+		    //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect("/catalogs/");
+	    }
+	    	    
+    }
     
     
 }

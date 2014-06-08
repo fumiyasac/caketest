@@ -1,3 +1,5 @@
+<!-- enquete contents -->
+
 <h1>Blog posts</h1>
 <p>
 <?php echo $html->link("記事を追加する", "/posts/add"); ?>

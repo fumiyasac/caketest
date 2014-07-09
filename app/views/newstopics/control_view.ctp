@@ -1,12 +1,12 @@
 <!-- ## Cake View Content Start ## -->
 <article class="adminBlock">
 <header class="adminTitle">
-<h2>特集記事の詳細</h2>
+<h2>ニュース&トピックの詳細</h2>
 </header>
 
 <article class="adminContentList adminContact">
 <header>
-<h3>ここでは現在登録されている特集記事の詳細を見ることが出来ます。</h3>
+<h3>ここでは現在登録されているニュース&トピックの詳細を見ることが出来ます。</h3>
 </header>
 <section>
 <div class="adminContentsBody padt10">

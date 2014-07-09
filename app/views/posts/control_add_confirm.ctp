@@ -1,64 +1,34 @@
 <!-- ## Cake View Content Start ## -->
 <article class="adminBlock">
 <header class="adminTitle">
-<h2>カタログの編集確認</h2>
+<h2>アンケートの追加確認</h2>
 </header>
 
 <article class="adminContentList adminContact">
 <header>
-<h3>ここではカタログ一覧の内容を編集することが出来ます。</h3>
+<h3>ここではアンケートを追加することが出来ます。</h3>
 </header>
 <section>
 <div class="adminContentsBody">
-<p>この内容でカタログを投稿します。よろしいですか？</p>
+<p>この内容でアンケートを登録します。よろしいですか？</p>
 <ol class="magt10 magb10 padl20">
 <li><span class="requierd">*</span>が付いている項目は必須項目になります。</li>
 <li>タイトルは256文字まで入力可能です。</li>
 <li>本文は1000字まで入力可能です。</li>
 <li>画像の容量は合計2MB以内までです。</li>
 <li>メイン画像は600×200のサイズで投稿して下さい。<br>指定サイズより大きい場合は自動的にリサイズされます。<br>(横のピクセル)=3×(縦のピクセル)の比率であれば綺麗にリサイズされます。</li>
-<li><span class="requierd">注意</span>&nbsp;画像の変更を行わない場合は写真を入力しないで下さい。</li>
 </ol>
-    
 <div class="forms">
-<?php echo $this->Form->create('Catalog'); ?>
+<?php echo $this->Form->create('Post'); ?>
 <table cellspacing="0" cellpadding="0" id="formAdmin">
 <tr>
-<th>カタログタイトル&nbsp;<span class="requierd">*</span></th>
+<th>タイトル&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php echo h($this->Form->value('title')); ?>
 </td>
 </tr>
 <tr>
-<th>カタログキャッチコピー&nbsp;<span class="requierd">*</span></th>
-<td>
-<?php echo h($this->Form->value('kcpy')); ?>
-</td>
-</tr>
-<tr>
-<th>カタログテンプレート&nbsp;<span class="requierd">*</span></th>
-<td>
-/catalogs/<?php echo $this->Form->value('template'); ?>
-</td>
-</tr>
-<tr>
-<th>サムネイル画像&nbsp;<span class="requierd">*</span></th>
-<td>
-<?php if($saveTmpImageResult['catalog_image'] == 1): ?>    
-<img src="/img/tmp_catalog/<?php echo h($data['Catalog']['catalog_image']['name']); ?>" height="50" width="150">
-<br>
-<span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['catalog_image'] == 0): ?>
-<span class="requierd">※画像アップロード失敗！</span>
-<?php elseif($saveTmpImageResult['catalog_image'] == 2): ?>
-<img src="/img/catalog/<?php echo h($alreadyAddedImgName['Catalog']['catalog_image']); ?>" height="50" width="150">
-<br>
-<span>画像変更なし</span>
-<?php endif; ?>
-</td>
-</tr>
-<tr>
-<th>本文&nbsp;<span class="requierd">*</span></th>
+<th>内容&nbsp;<span class="requierd">*</span></th>
 <td>
 <div class="CKEditorContents">
 <?php echo $this->Form->value('description'); ?>
@@ -66,9 +36,31 @@
 </td>
 </tr>
 <tr>
-<th>公開日</th>
+<th>サムネイル画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php echo h($this->Html->dateFormat($data['Catalog']['published']['year'].'-'.$data['Catalog']['published']['month'].'-'.$data['Catalog']['published']['day']." 00:00:00")); ?>
+<?php if($saveTmpImageResult['post_image'] == 1): ?>    
+<img src="/img/tmp_post/<?php echo h($data['Post']['post_image']['name']); ?>" height="50" width="150">
+<br>
+<span>画像アップロード成功！</span>
+<?php elseif($saveTmpImageResult['post_image'] == 0): ?>
+<span class="requierd">※画像アップロードに失敗しました</span>
+<?php endif; ?>
+</td>
+</tr>
+<tr>
+<th>開始日</th>
+<td>
+<?php
+echo h($this->Html->dateFormat($data['Post']['start_date']['year'].'-'.$data['Post']['start_date']['month'].'-'.$data['Post']['start_date']['day']." 00:00:00"));
+?>
+</td>
+</tr>
+<tr>
+<th>終了日</th>
+<td>
+<?php
+echo h($this->Html->dateFormat($data['Post']['end_date']['year'].'-'.$data['Post']['end_date']['month'].'-'.$data['Post']['end_date']['day']." 00:00:00"));
+?>
 </td>
 </tr>
 <tr>
@@ -81,12 +73,12 @@
 <?php echo $this->Form->end(); ?>
 <div class="sendButton">
 <p>
-<?php echo $this->Form->create('Catalog', array('type' => 'file', 'action' => 'control_edit')); ?>
+<?php echo $this->Form->create('Post', array('type' => 'file', 'action' => 'control_add')); ?>
 <?php echo $this->Formhidden->hiddenVars(); ?>
 <?php echo $this->Form->submit('入力画面に戻る', array('div' => false, 'id' => 'indexButton')); ?>
 <?php echo $this->Form->end(); ?>
 &nbsp;
-<?php echo $this->Form->create('Catalog', array('type' => 'file', 'action' => 'control_edit_complete')); ?>
+<?php echo $this->Form->create('Post', array('type' => 'file', 'action' => 'control_add_complete')); ?>
 <?php echo $this->Formhidden->hiddenVars(); ?>
 <?php echo $this->Form->submit('この内容で登録する', array('div' => false, 'id' => 'completeButton')); ?>
 <?php echo $this->Form->end(); ?>

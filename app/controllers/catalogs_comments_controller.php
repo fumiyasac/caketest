@@ -166,16 +166,15 @@ class CatalogsCommentsController extends AppController{
         $this->set(compact('filename', 'headRow', 'contentsRows'));        
     }
     
-    //一覧表示
+    //エレメント表示のみ（searchへリダイレクト）
     public function index(){
         
         if(isset($this->params['requested'])){
             $catalogComments = $this->paginate('CatalogsComment', array('CatalogsComment.flag' => 1));
             return $catalogComments;
         }else{
-			
-			//コメント一覧を表示する時に使用予定（まだ未定）
-			
+			//コメント検索ページにリダイレクト
+			$this->redirect('/catalogs_comments/search');
         }
         
     }

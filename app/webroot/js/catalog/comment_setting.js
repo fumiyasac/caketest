@@ -28,14 +28,8 @@ $(document).ready(function(){
 		catalog_id = targetCatalogId.val();
 		username = targetUsername.val();
 		text = targetText.val();
-		
-		console.log(catalog_id);
-		console.log(username);
-		console.log(text);
-		
+				
 		if(catalog_id.length == 0 || username.length == 0 || text.length == 0 || text.length > 1000) {
-			
-			console.log(errorStatement.length);
 			
 			if(errorStatement.length == 0) {
 				targetLeaveResult.append('<p class="error">' + errorMessage + '</p>');

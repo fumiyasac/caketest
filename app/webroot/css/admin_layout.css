@@ -556,19 +556,46 @@ border: none;
         display: inline-block;
 }
 
+.sendButton #PostControlAddForm,
+.sendButton #PostControlAddCompleteForm,
+.sendButton #PostControlEditForm,
+.sendButton #PostControlEditCompleteForm{
+        display: inline-block;
+}
+
 .sendButton #indexButton,
 .sendButton #confirmButton,
 .sendButton #completeButton{
 	text-align: center;
 /*	width: 120px;*/
-        padding: 0 5px;
-        line-height: 30px;
+    padding: 0 5px;
+    line-height: 30px;
 	height: 30px;
 	background: #a7a7a7;
 	border: 0px solid;
-        color: #ffffff;
-        cursor: pointer;
-        font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* フォーム編集コンテンツ用CSS */
+.sendButton #postEditCompleteButton{
+	text-align: center;
+/*	width: 120px;*/
+    padding: 0 5px;
+    line-height: 30px;
+	height: 30px;
+	background: #a7a7a7;
+	border: 0px solid;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.errorPostQuestionText .error,
+.errorPostAnswerText .error{
+	color: #ff0000;
 }
 
 

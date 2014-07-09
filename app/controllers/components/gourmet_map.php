@@ -200,8 +200,8 @@ class GourmetMapComponent extends Object {
             //キーワード
             if( !empty($params['keywords']) ){
                 $keywords = preg_replace('/　/', ' ', $params['keywords']);   //全角スペースを半角スペースへ
-                $keywords = preg_replace('/\s+/', ' ', $keywords);               //連続する半角スペースを1つの半角スペースへ
-                $keywords = preg_replace('/ /', ', ', $keywords);                   //1つの半角スペースをカンマへ
+                $keywords = preg_replace('/\s+/', ' ', $keywords);            //連続する半角スペースを1つの半角スペースへ
+                $keywords = preg_replace('/ /', ', ', $keywords);             //1つの半角スペースをカンマへ
                 $str .= "&freeword=" . $keywords;
             }
             //検索範囲

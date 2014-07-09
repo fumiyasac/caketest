@@ -3,7 +3,7 @@ class CatalogsController extends AppController{
     
     //メンバ変数の設定
     public $name = 'Catalogs';
-    public $uses = array('Catalog'/*,'CatalogComment'*/);
+    public $uses = array('Catalog');
     public $layout = 'common_format_blog';
     public $components = array('Auth','Session','RequestHandler','GourmetMap');
     public $helpers = array('Formhidden','Csv','Html','Dateform','GourmetMap');
@@ -549,7 +549,7 @@ class CatalogsController extends AppController{
                     //画像の移動と切り取り
                     $saveImageResultMain = $this->addImageReplaceAndCrop(
                         "Catalog", 
-                        array("catalog_image"), 
+                        $this->image_array, 
                         array(600, 200),
                         5
                     );

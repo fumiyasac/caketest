@@ -26,7 +26,7 @@
 </section>
 <?php endforeach; ?>
 <?php endif; ?>
-<p class="wholeCommentLink"><a href="/catalogs_comments/search/">コメント一覧ページへ</a></p>
+<p class="wholeCommentLink"><a href="/catalogs_comments/search">コメント一覧ページへ</a></p>
 </aside>
 <!-- ## Cake Element Content End ## -->
 

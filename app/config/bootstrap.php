@@ -50,16 +50,16 @@
  */
 Configure::write('MAIL_CONF', array(
     'admin' => array(
-        'to' => 'fumiya.def.mathmatica@gmail.com',
-        'from' => 'fumiya.def.mathmatica@gmail.com',
-        'return' => 'fumiya.def.mathmatica@gmail.com',
+        'to' => 'just1factory@gmail.com',
+        'from' => 'just1factory@gmail.com',
+        'return' => 'just1factory@gmail.com',
         'subject' => '大塚「珍しいもん」Store | お問い合わせフォームよりお問い合わせがありました。',
         'template' => 'thanks_mail_admin',
    ),
    'custmor' => array(
         'to' => '',
-        'from' => 'fumiya.def.mathmatica@gmail.com',
-        'return' => 'fumiya.def.mathmatica@gmail.com',
+        'from' => 'just1factory@gmail.com',
+        'return' => 'just1factory@gmail.com',
         'subject' => '大塚「珍しいもん」Store | この度はお問い合わせ頂きまして誠にありがとうございます。',
         'template' => 'thanks_mail_customer', 
    ),
@@ -111,6 +111,7 @@ Configure::write('UPLOAD_TMP_PATH_CONF', array(
         '3' => 'tmp_slide',
         '4' => 'tmp_newstopic',
         '5' => 'tmp_catalog',
+        '6' => 'tmp_post',
     ),
 ));
 
@@ -121,6 +122,7 @@ Configure::write('UPLOAD_PATH_CONF', array(
         '3' => 'slide',
         '4' => 'newstopic',
         '5' => 'catalog',
+        '6' => 'post',
    ),
 ));
 
@@ -143,5 +145,21 @@ Configure::write('GENDER_CONF', array(
     'flag' => array(
         '1' => '男性 ',
         '2' => '女性 ',
+   ),
+));
+
+Configure::write('POST_PARTS_CONF', array(
+    'type' => array(
+        '1' => 'テキストボックス ',
+        '2' => 'テキストエリア ',
+        '3' => 'ラジオボタン ',
+        '4' => 'チェックボックス ',
+   ),
+));
+
+Configure::write('POST_REQIRE_CONF', array(
+    'flag' => array(
+        '1' => '必須項目 ',
+        '2' => '任意 ',
    ),
 ));

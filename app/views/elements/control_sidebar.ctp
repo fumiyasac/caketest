@@ -57,6 +57,7 @@
 <ul>
 <li><a href="/control/newstopics/index">ニュース&amp;トピックの管理</a></li>
 <li><a href="/control/catalogs/index">カタログ情報の管理</a></li>
+<li><a href="/control/showcases/index">ショーケースの管理</a></li>
 </ul>
 </div>
 </section>
@@ -68,6 +69,17 @@
 <ul>
 <li><a href="/control/contacts">お問い合わせの一覧</a></li>
 <li><a href="/control/contacts/csvdownload">CSVファイルダウンロード</a></li>
+</ul>
+</div>
+</section>
+<section class="adminSidePanel">
+<header>
+<h5>アンケートの管理</h5>
+</header>
+<div>
+<ul>
+<li><a href="/control/posts">アンケートの一覧</a></li>
+<li><a href="/control/posts">アンケートの結果を見る</a></li>
 </ul>
 </div>
 </section>

@@ -9,12 +9,13 @@
 	01: index
 	02: detail
 	03: specials
-    04: about
-	05: contact
+    04: abouts
+	05: contacts
 	06: newstopics
 	07: members
 	08: catalogs
 	09: catalogComments
+	10: posts
 */
 
 /* ============================================================
@@ -1644,3 +1645,190 @@ aside.commentSubPageArea header h3{
     margin-right: auto;
 }
 */
+
+/* ============================================================
+10: posts
+============================================================ */
+/* Post Area */
+.postArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.postArticle .postTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.postArticle .postTitle h2{
+}
+
+/* Article List */
+.postArticle .formList{
+}
+
+.postArticle .formList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.postArticle .formList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.postArticle .formList aside.enquetesMain{
+	width: 600px;
+	height: 200px;
+	padding-bottom: 20px;
+}
+
+.postArticle .formList section{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.postArticle .formList section .forms{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.postArticle .formList section .forms p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+span.remarked{
+	color: #ffa200;
+}
+
+span.requierd{
+	color: #ff0000;
+}
+
+a.blue{
+        color: #3333ff;
+        text-decoration: underline;
+}
+
+a.blue:visited{
+        color: #3333ff;
+        text-decoration: underline;
+}
+
+.postArticle .formList section .forms #formInquiry{
+	width: 576px;
+	border-right: solid 1px #e2e2e2!important; 
+	border-bottom: solid 1px #e2e2e2!important;
+}
+
+.postArticle .formList section .forms #formInquiry th{
+	text-align: left;
+	width: 178px;
+	background: #ebebeb;
+	color: #683800;
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.postArticle .formList section .forms #formInquiry td{
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.postArticle .formList section .forms #formInquiry td div.error-message{
+    color: #ff0000;
+}
+
+.postArticle .formList section .forms #formInquiry input.formArea{
+	width: 368px;
+	height: 22px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.postArticle .formList section .forms #formInquiry label{
+	height: 16px;
+	line-height: 16px;
+}
+
+.postArticle .formList section .forms #formInquiry input.check{
+	width: 16px;
+	height: 16px;
+}
+
+.postArticle .formList section .forms #formInquiry textarea{
+	width: 368px;
+	height: 88px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.postArticle .formList section .forms #formEnquete{
+	width: 576px;
+	border-right: solid 1px #e2e2e2!important; 
+	border-bottom: solid 1px #e2e2e2!important;
+}
+
+.postArticle .formList section .forms #formEnquete th{
+	text-align: left;
+	background: #ebebeb;
+	color: #683800;
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.postArticle .formList section .forms #formEnquete td{
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.postArticle .formList section .forms #formEnquete input{
+	width: 559px;
+	height: 22px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.postArticle .formList section .forms #formEnquete textarea{
+	width: 559px;
+	height: 88px;
+	border: solid 1px #ebebeb;
+	font-size: 100%;
+}
+
+.postArticle .formList section .forms .sendButton{
+	text-align: center;    
+}
+
+.postArticle .formList section .forms .sendButton p{
+	text-align: center;
+}
+
+.postArticle .formList section .forms .sendButton #PostIndexForm,
+.postArticle .formList section .forms .sendButton #PostCompleteForm{
+        display: inline-block;
+}
+
+.postArticle .formList section .forms .sendButton #indexButton,
+.postArticle .formList section .forms .sendButton #confirmButton,
+.postArticle .formList section .forms .sendButton #completeButton{
+	text-align: center;
+/*	width: 120px;*/
+        padding: 0 5px;
+        line-height: 30px;
+	height: 30px;
+	background: #e39943;
+	border: 0px solid;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
+}

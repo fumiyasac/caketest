@@ -254,7 +254,7 @@ Class ContactsController extends AppController{
                     $this->render('complete');
                     
                 }else{
-                    $this->flash("エラーが発生しました。\nお手数ではありますが再度入力をお願いします。",array('controller' => 'entries', 'aciton' => 'index')); 
+                    $this->flash("エラーが発生しました。\nお手数ではありますが再度入力をお願いします。",array('controller' => 'contacts', 'aciton' => 'index')); 
                 }
                 
                 //トークンの消去(CSRF対策)

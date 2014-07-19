@@ -3,9 +3,9 @@ Class PostsController extends AppController{
 
 	//メンバ変数の設定
 	var $name = 'Posts';
-    public $uses = array('Post','PostsQuestion','PostsAnswer');
+    public $uses = array('Post','PostsQuestion','PostsAnswer','PostsEnquete');
     public $layout = 'common_format_blog';
-    public $components = array('Auth','Session','RequestHandler','PostEnquete');
+    public $components = array('Auth','Session','RequestHandler','PostEnqueteAccess');
     public $helpers = array('Formhidden','Csv','Html','Dateform','MakeEnquete');
     
     public $paginate = array(
@@ -734,7 +734,7 @@ Class PostsController extends AppController{
 	    );
 
 	    //アンケートコンテンツの生成
-		$posts_enquetes = $this->PostEnquete->mergeEnqueteElements($posts_questions, $posts_answers);
+		$posts_enquetes = $this->PostEnqueteAccess->mergeEnqueteElements($posts_questions, $posts_answers);
 	    $this->set('posts_enquetes', $posts_enquetes);
 	}
 
@@ -831,29 +831,281 @@ Class PostsController extends AppController{
 	    );
 
 	    //アンケートサンプルの生成
-		$posts_enquetes = $this->PostEnquete->mergeEnqueteElements($posts_questions, $posts_answers);
+		$posts_enquetes = $this->PostEnqueteAccess->mergeEnqueteElements($posts_questions, $posts_answers);
 	    $this->set('posts_enquetes', $posts_enquetes);
 	    	
 	}
 	
-	//
+	//アンケート一覧表示
 	function index(){
-		
+		//タイトルメッセージのセット
+        $this->set('title_for_layout','アンケート一覧');
+        $breadcrumb = array(
+            array('name' => 'HOME', 'link' => '/'),
+            array('name' => 'アンケート一覧','link' => false),
+        );
+        $this->set('breadcrumb', $breadcrumb);
+        
+        //start_dateとend_dateではさみうち用に現在時刻を設定
+        $now = date('Y-m-d',strtotime('now'));
+        
+        if(isset($this->params['requested'])){
+            $posts = $this->paginate('Post', array(
+            	'Post.flag'          => 1,
+            	'Post.start_date <=' => $now,
+            	'Post.end_date >='   => $now
+            ));
+            return $posts;
+        }else{
+            //ページングのリミットを10にする
+            $this->paginate['limit'] = 10;
+        
+            //newstopicsテーブルからデータを持ってくる
+            $posts = $this->paginate('Post', array(
+            	'Post.flag'          => 1,
+            	'Post.start_date <=' => $now,
+            	'Post.end_date >='   => $now
+            ));
+            $this->set('posts', $posts);
+            
+        }
+        //ビューのレンダリング
+        $this->render('index');
 	}
 
-	//
-	function view(){
+	//アンケート一覧
+	function view($id = null){
 		
+		try {
+            
+            //idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id)){
+                 $this->redirect('/posts/');
+            }
+            
+            //start_dateとend_dateではさみうち用に現在時刻を設定
+			$now = date('Y-m-d',strtotime('now'));
+            
+            //データを取得する
+            $this->data = $this->Post->find('first', array('conditions' => array(
+            	'Post.id'            => $id,
+            	'Post.flag'          => 1,
+            	'Post.start_date <=' => $now,
+            	'Post.end_date >='   => $now
+			)));
+            if($this->data === false){
+                $this->redirect('/posts/');
+            }else{
+                //変数をセット
+                $this->set('data', $this->data);
+            }
+            
+            //タイトルメッセージのセット
+            $this->set('title_for_layout','アンケート（'.$this->data['Post']['title'].'）');
+        
+            //パンくずリストの設定 
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => 'アンケート一覧', 'link' => array('controller' => 'posts', 'action' => 'index')),
+                array('name' => 'アンケート（'.$this->data['Post']['title'].'）','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb); 
+
+            //トークンの生成
+            $this->Session->write('token', String::uuid());
+            
+            //posts_questions,posts_answersテーブルからアンケート質問事項をもってくる
+		    $conditions = array('post_id' => $id);
+		    $order = array('id ASC');
+		    $posts_questions = $this->PostsQuestion->find('all',
+	        	array('conditions' => $conditions, 'order' => $order)
+	        );
+		    $posts_answers = $this->PostsAnswer->find('all',
+	        	array('conditions' => $conditions, 'order' => $order)
+		    );
+	
+		    //アンケートサンプルの生成
+			$posts_enquetes = $this->PostEnqueteAccess->mergeEnqueteElements($posts_questions, $posts_answers);
+		    $this->set('posts_enquetes', $posts_enquetes);
+            $this->set('post_data', array());
+            
+        } catch (Exception $e) {
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect("/posts/");
+        }
 	}
 	
-	//
+	//アンケート内容確認
 	function confirm(){
 		
+		//フォームでPOSTされた値を取得する
+		$post_data = $this->params['form'];
+		$id 	   = $this->params['form']['post_id'];
+		$username  = $this->params['form']['username'];
+		
+		try{			
+			//idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id)){
+                 $this->redirect('/posts/');
+            }
+			
+			//タイトルメッセージのセット
+            $this->set('title_for_layout','アンケート内容の確認');
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => 'アンケート一覧', 'link' => array('controller' => 'posts', 'action' => 'index')),
+                array('name' => 'アンケート内容の確認','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb);
+			
+			if(!empty($post_data) && $this->Session->check('token')){
+				
+				//バリデーションチェック
+				$error_msg_array = $this->PostEnqueteAccess->enqueteValidate($post_data);
+                if( empty($error_msg_array) ){
+					
+					$post_data = $this->PostEnqueteAccess->enqueteMigrateForHidden($post_data);
+					$post_data = $this->PostEnqueteAccess->mergeElementsForConfirm($post_data);
+                    $this->set('post_data', $post_data);
+					
+                    $base_data = $this->Post->find('first', array('conditions' => array(
+						'Post.id' => $id,
+					)));
+                    $this->set('base_data', $base_data);
+                    $this->set('post_id'  , $id);
+                    $this->set('username',  $username);
+                                        
+                    //ビューのレンダリング
+                    $this->render('confirm');
+                    
+                }else{
+                    
+                    //エラーメッセージを表示する
+                    $this->set('error_announce' ,'入力内容に誤りがあります。もう一度入力内容を確認して下さい');
+                    $this->set('error_msg_array',$error_msg_array);                    
+                    
+                    //postしたデータ配列を取得する
+                    $this->set('post_data', $post_data);
+                    
+		            //start_dateとend_dateではさみうち用に現在時刻を設定
+					$now = date('Y-m-d',strtotime('now'));
+		            
+		            //データを取得する
+		            $this->data = $this->Post->find('first', array('conditions' => array(
+		            	'Post.id'            => $id,
+		            	'Post.flag'          => 1,
+		            	'Post.start_date <=' => $now,
+		            	'Post.end_date >='   => $now
+					)));
+		            if($this->data === false){
+		                $this->redirect('/posts/');
+		            }else{
+		                //変数をセット
+		                $this->set('data', $this->data);
+		            }
+
+		            //タイトルメッセージのセット
+		            $this->set('title_for_layout','アンケート（'.$this->data['Post']['title'].'）');
+		        
+		            //パンくずリストの設定 
+		            $breadcrumb = array(
+		                array('name' => 'HOME', 'link' => '/'),
+		                array('name' => 'アンケート一覧', 'link' => array('controller' => 'posts', 'action' => 'index')),
+		                array('name' => 'アンケート（'.$this->data['Post']['title'].'）','link' => false),
+		            );
+		            $this->set('breadcrumb', $breadcrumb); 
+
+		            //posts_questions,posts_answersテーブルからアンケート質問事項をもってくる
+				    $conditions = array('post_id' => $id);
+				    $order = array('id ASC');
+				    $posts_questions = $this->PostsQuestion->find('all',
+			        	array('conditions' => $conditions, 'order' => $order)
+			        );
+				    $posts_answers = $this->PostsAnswer->find('all',
+			        	array('conditions' => $conditions, 'order' => $order)
+				    );
+			
+				    //アンケートサンプルの生成
+					$posts_enquetes = $this->PostEnqueteAccess->mergeEnqueteElements($posts_questions, $posts_answers);
+				    $this->set('posts_enquetes', $posts_enquetes);
+
+                    //ビューのレンダリング
+                    $this->render('view');
+                }
+				
+				
+			}else{
+                //データがないのにアクセスした場合、Exceptionを投げる
+                throw new Exception(__('不正アクセスが行われた可能性があります', true));
+			}
+			
+		}catch(Exception $e){
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect("/posts/");
+		}
+		
 	}
 	
-	//
+	//アンケート回答完了
 	function complete(){
-		
+
+        //postされたデータを受け取る
+        $id                         = $this->params['form']['post_id'];            
+        $this->data['PostsEnquete'] = $this->params['form'];
+
+        try{
+            
+            //idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id)){
+                 $this->redirect('/posts/');
+            }
+            
+            //パンくずリストの設定
+            $this->set('title_for_layout','アンケートの回答完了');
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => 'アンケート一覧', 'link' => array('controller' => 'posts', 'action' => 'index')),
+                array('name' => 'アンケートの回答完了','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb);
+            
+            //アクセスのチェック
+            if(!empty($this->data) && $this->Session->check('token')){
+                            
+                //取得データをDBへ保存する
+                if($this->PostsEnquete->save($this->data['PostsEnquete']) !== false){
+                    
+                    $base_data = $this->Post->find('first', array('conditions' => array(
+						'Post.id' => $id,
+					)));
+                    $this->set('base_data', $base_data);
+                    $this->set('form_description','アンケート内容の送信が正常に完了しました。アンケートの回答履歴に関しましてはマイページからも閲覧ができます。<br>ご協力ありがとうございました。' );
+                        
+                    //ビューのレンダリング
+                    $this->render('complete');
+
+                }else{
+                    $this->flash("エラーが発生しました。\nお手数ではありますが再度入力をお願いします。",array('controller' => 'posts', 'aciton' => 'index')); 
+                }
+                
+                //トークンの消去(CSRF対策)
+                $this->Session->destroy();
+                
+            }else{
+                //データがないのにアクセスした場合、Exceptionを投げる
+                throw new Exception(__('不正アクセスが行われた可能性があります', true));                                    
+            }
+            
+            
+        } catch (Exception $e){
+            
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect('/posts/');
+        }
+
 	}
 
 }

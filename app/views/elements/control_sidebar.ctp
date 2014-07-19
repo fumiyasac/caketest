@@ -68,7 +68,7 @@
 <div>
 <ul>
 <li><a href="/control/contacts">お問い合わせの一覧</a></li>
-<li><a href="/control/contacts/csvdownload">CSVファイルダウンロード</a></li>
+<li><a href="/control/contacts/csvdownload">お問い合わせの一覧のCSVファイルダウンロード</a></li>
 </ul>
 </div>
 </section>
@@ -79,7 +79,8 @@
 <div>
 <ul>
 <li><a href="/control/posts">アンケートの一覧</a></li>
-<li><a href="/control/posts">アンケートの結果を見る</a></li>
+<li><a href="/control/posts_enquetes/index">アンケート回答結果の一覧</a></li>
+<li><a href="/control/posts_enquetes/csvdownload">アンケート回答結果のCSVファイルダウンロード</a></li>
 </ul>
 </div>
 </section>

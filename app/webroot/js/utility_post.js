@@ -95,7 +95,7 @@ function beforeEditForm(num){
 			'answer'           : answer
 		},
 		function(res) {
-			location.href = "/control/posts/form_edit/" + num;
+			location.href = "/control/posts/form_edit/" + post_id;
 		});	    
 	    
     }else{

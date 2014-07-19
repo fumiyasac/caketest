@@ -208,7 +208,7 @@ echo $this->Html->getCrumbs(' > ');
         <h3>使用API一覧</h3>
     </header>
     <div>
-        <p>このコンテンツでは以下のAPIを使用しています。</p>
+        <p>このコンテンツでは以下のAPIを使用しています。<br>（店舗の住所情報はぐるなびAPIを基準にしています）</p>
         <p class="padt10">
             <a href="http://webservice.recruit.co.jp/"><img src="http://webservice.recruit.co.jp/banner/hotpepper-m.gif" alt="ホットペッパー Webサービス" width="88" height="35" border="0" title="ホットペッパー Webサービス"></a>
             &nbsp;

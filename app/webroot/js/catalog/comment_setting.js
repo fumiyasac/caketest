@@ -1,4 +1,12 @@
-//コメントAjax化用の共通関数
+/*
+    comment_setting.js	
+	
+	Fumiya Sakai(just1factory.net)
+	
+	カタログコンテンツのコメントAjax化用の共通関数
+*/
+
+//
 $(document).ready(function(){
     //Common Settings
     var catalog_id;

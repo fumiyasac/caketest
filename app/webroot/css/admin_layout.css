@@ -4,7 +4,7 @@
 /*
     layout.css
 	
-	Fumiya Sakai(just1factory)
+	Fumiya Sakai(just1factory.net)
 	
 	00: default
 	01: common
@@ -60,143 +60,143 @@ background:#ffffff;
 
 /* for IE8 (default:16px) */
 html>/**/body {
-	font-size /*\**/: 82%\9;
+font-size /*\**/: 82%\9;
 }
 
 /* Layout Template */
 #wrapper{
-    background-image: url(../images/common/bg_pattern.png);
-    width: auto;
-    height: auto;
+background-image: url(../images/common/bg_pattern.png);
+width: auto;
+height: auto;
 }
 
 #container{
-    width: 1000px;
-    height: auto;
-    margin: 0 auto;
-    background: #ffffff;
+width: 1000px;
+height: auto;
+margin: 0 auto;
+background: #ffffff;
 }
 
 /* Header Template */
 #globalHeader{
-	width: 1000px;
-	height: 120px;
+width: 1000px;
+height: 120px;
 }
 
 /* 2012/12/23:div.subnavi #Start */
 #globalHeader .subNav{
-	padding-left: 30px;
-	padding-right: 30px;
-	height: 20px;
-	background: #4a4a4a;
-	position: relative;
+padding-left: 30px;
+padding-right: 30px;
+height: 20px;
+background: #4a4a4a;
+position: relative;
 }
 
 #globalHeader .subNav p{
-	line-height: 20px;
-	color: #ffffff;
-	font-size: 93%;
-	display: block;
-	height: 20px;
-	width: 250px;
-	position: absolute;
-	left: 32px;
-	top: 0px;
+line-height: 20px;
+color: #ffffff;
+font-size: 93%;
+display: block;
+height: 20px;
+width: 250px;
+position: absolute;
+left: 32px;
+top: 0px;
 }
 
 #globalHeader .subNav ul{
-	display: block;
-	position: absolute;
-	right: 32px;
-	top: 0px;
+display: block;
+position: absolute;
+right: 32px;
+top: 0px;
 }
 
 #globalHeader .subNav ul li{
-	font-size: 93%;
-	display: inline;
-	padding-left: 12px;
+font-size: 93%;
+display: inline;
+padding-left: 12px;
 }
 
 #globalHeader .subNav ul li a{
-	color: #ffffff;
-	text-decoration: none;
+color: #ffffff;
+text-decoration: none;
 }
 
 #globalHeader .subNav ul li a:hover{
-	text-decoration: underline;
+text-decoration: underline;
 }
 
 #globalHeader .subNav ul li span{
-	color: #ffa200;
-	font-size: 93%;
-	font-weight: bold;
+color: #ffa200;
+font-size: 93%;
+font-weight: bold;
 }
 /* 2012/12/23:div.subnavi #End */
 
 #globalHeader .mainNav{
-	padding-left: 30px;
-	padding-right: 30px;
-	width: 940px;
-	height: 100px;
-	overflow: hidden;
+padding-left: 30px;
+padding-right: 30px;
+width: 940px;
+height: 100px;
+overflow: hidden;
 }
 
 #globalHeader .mainNav h1{
-	float: left;
-	width: 310px;
-	height: 60px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+float: left;
+width: 310px;
+height: 60px;
+padding-top: 20px;
+padding-bottom: 20px;
 }
 
 #globalHeader .mainNav h1 a{
-	background: url(../images/common/logo_admin.png) top left no-repeat;
-	display: block;
-	width: 310px;
-	height: 60px;
-	text-indent: -9999px;
+background: url(../images/common/logo_admin.png) top left no-repeat;
+display: block;
+width: 310px;
+height: 60px;
+text-indent: -9999px;
 }
 
 /* BreadCramb Template */
 .breadCramb{
-	padding: 0px 30px 20px	;
-	width: 940px;
-	height: 30px;
+padding: 0px 30px 20px	;
+width: 940px;
+height: 30px;
 }
 
 #bread{
-	width: 940px;
-	height: 30px;
-	background: #ebebeb;
+width: 940px;
+height: 30px;
+background: #ebebeb;
 }
 
 #bread p{
-	margin-left: 13px;
-	font-size: 85%;
-	line-height: 30px;
+margin-left: 13px;
+font-size: 85%;
+line-height: 30px;
 }
 
 #bread p a{
-	text-decoration: none;
+text-decoration: none;
 }
 
 #bread p a:hover{
-	text-decoration: underline;
+text-decoration: underline;
 }
 
 /* Main Contents Template */
 #mainContents{
-	padding-left: 30px;
-	padding-right: 30px;
-	width: 940px;
-	height: auto;
-	overflow: hidden;
+padding-left: 30px;
+padding-right: 30px;
+width: 940px;
+height: auto;
+overflow: hidden;
 }
 
 #leftContents{
-	float: left;
-	width: 600px;
-	height: auto;
+float: left;
+width: 600px;
+height: auto;
 }
 
 /* adminContent Template */
@@ -204,17 +204,17 @@ html>/**/body {
 }
 
 .adminBlock .adminTitle{
-	width: 598px;
-	height: 28px;
-	background: #f0f0f0;
-	border: solid 1px #fdfdfd;
+width: 598px;
+height: 28px;
+background: #f0f0f0;
+border: solid 1px #fdfdfd;
 }
 
 .adminBlock .adminTitle h2{
-	height: 30px;
-	line-height: 30px;
-	margin-left: 7px;
-	font-size: 100%;
+height: 30px;
+line-height: 30px;
+margin-left: 7px;
+font-size: 100%;
 }
 
 .adminBlock .adminContentList{
@@ -236,104 +236,104 @@ html>/**/body {
 }
 
 .pagenationArea {
-    padding-bottom: 20px;
-    text-align: center;
+padding-bottom: 20px;
+text-align: center;
 }
 
 #rightContents{
-	float: right;
-	width: 300px;
-	height: auto;
+float: right;
+width: 300px;
+height: auto;
 }
 
 /* adminSide Template */
 .adminSide{
-	width: 300px;
-	height: auto;
+width: 300px;
+height: auto;
 /*	margin-bottom: 40px;*/
 }
 
 .adminSide .adminSideHeader{
-	width: 298px;
-	height: 28px;
-	background: #f0f0f0;
-	border: solid 1px #fdfdfd;
+width: 298px;
+height: 28px;
+background: #f0f0f0;
+border: solid 1px #fdfdfd;
 }
 
 .adminSide .adminSideHeader h4{
-	height: 30px;
-	line-height: 30px;
-	margin-left: 7px;
+height: 30px;
+line-height: 30px;
+margin-left: 7px;
 }
 
 .adminSide .adminSidePanel{
-	padding: 8px 5px;
-	border-bottom: dotted 1px #ebebeb;
+padding: 8px 5px;
+border-bottom: dotted 1px #ebebeb;
 }
 
 .adminSide .adminSidePanel header h5{
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-left: 3px;
-	color: blue;
-	cursor: pointer;
+padding-top: 5px;
+padding-bottom: 5px;
+margin-left: 3px;
+color: blue;
+cursor: pointer;
 }
 
 .adminSide .adminSidePanel div{
 }
 
 .adminSide .adminSidePanel div ul{
-	margin-left: 25px;
+margin-left: 25px;
 }
 
 .adminSide .adminSidePanel div ul li{
-	font-size: 100%;
-	line-height: 1.8;
+font-size: 100%;
+line-height: 1.8;
 }
 
 .adminSide .adminSidePanel div ul li a{
-	text-decoration: none;
+text-decoration: none;
 }
 
 .adminSide .adminSidePanel div ul li a:hover{
-	text-decoration: underline;
+text-decoration: underline;
 }
 
 /* Footer Template */
 #globalFooter{
-	margin-top: 70px;
-	padding-left: 30px;
-	padding-right: 30px;
-	width: 940px;
-	background: #4a4a4a;
-	height: 270px;
-	overflow: hidden;
+margin-top: 70px;
+padding-left: 30px;
+padding-right: 30px;
+width: 940px;
+background: #4a4a4a;
+height: 270px;
+overflow: hidden;
 }
 
 #footerSub1{
-	float: left;
-	width: 320px;
+float: left;
+width: 320px;
 }
 
 #footerSub1 h2{
-	margin-top: 20px;
-	width: 320px;
-	height: 60px;
-	display: block;
+margin-top: 20px;
+width: 320px;
+height: 60px;
+display: block;
 }
 
 #footerSub1 section .whatsThat{
-	margin-top: 15px;
-	font-size: 93%;
-	line-height: 1.8;
-	color: #ffffff;
+margin-top: 15px;
+font-size: 93%;
+line-height: 1.8;
+color: #ffffff;
 }
 
 #footerSub1 section .footerBanner{
-	margin-top: 15px;
-	width: 320px;
-	height: 74px;
-	display: block;
+margin-top: 15px;
+width: 320px;
+height: 74px;
+display: block;
 }
 
 #footerSub2{
@@ -528,74 +528,69 @@ border: none;
 }
 
 .sendButton{
-	text-align: center;    
+text-align: center;    
 }
 
 .sendButton p{
-	text-align: center;
+text-align: center;
 }
 
 .sendButton #SpecialControlAddForm,
 .sendButton #SpecialControlAddCompleteForm,
 .sendButton #SpecialControlEditForm,
-.sendButton #SpecialControlEditCompleteForm{
-        display: inline-block;
-}
-
+.sendButton #SpecialControlEditCompleteForm,
 .sendButton #NewstopicControlAddForm,
 .sendButton #NewstopicControlAddCompleteForm,
 .sendButton #NewstopicControlEditForm,
-.sendButton #NewstopicControlEditCompleteForm{
-        display: inline-block;
-}
-
+.sendButton #NewstopicControlEditCompleteForm,
 .sendButton #CatalogControlAddForm,
 .sendButton #CatalogControlAddCompleteForm,
 .sendButton #CatalogControlEditForm,
-.sendButton #CatalogControlEditCompleteForm{
-        display: inline-block;
-}
-
+.sendButton #CatalogControlEditCompleteForm,
 .sendButton #PostControlAddForm,
 .sendButton #PostControlAddCompleteForm,
 .sendButton #PostControlEditForm,
-.sendButton #PostControlEditCompleteForm{
-        display: inline-block;
+.sendButton #PostControlEditCompleteForm,
+.sendButton #ShowcaseControlAddForm,
+.sendButton #ShowcaseControlAddCompleteForm,
+.sendButton #ShowcaseControlEditForm,
+.sendButton #ShowcaseControlEditCompleteForm{
+display: inline-block;
 }
 
 .sendButton #indexButton,
 .sendButton #confirmButton,
 .sendButton #completeButton{
-	text-align: center;
+text-align: center;
 /*	width: 120px;*/
-    padding: 0 5px;
-    line-height: 30px;
-	height: 30px;
-	background: #a7a7a7;
-	border: 0px solid;
-    color: #ffffff;
-    cursor: pointer;
-    font-weight: bold;
+padding: 0 5px;
+line-height: 30px;
+height: 30px;
+background: #a7a7a7;
+border: 0px solid;
+color: #ffffff;
+cursor: pointer;
+font-weight: bold;
 }
 
 /* フォーム編集コンテンツ用CSS */
 .sendButton #postEditCompleteButton{
-	text-align: center;
+text-align: center;
 /*	width: 120px;*/
-    padding: 0 5px;
-    line-height: 30px;
-	height: 30px;
-	background: #a7a7a7;
-	border: 0px solid;
-    color: #ffffff;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 5px;
+padding: 0 5px;
+line-height: 30px;
+height: 30px;
+background: #a7a7a7;
+border: 0px solid;
+color: #ffffff;
+cursor: pointer;
+font-weight: bold;
+margin-bottom: 5px;
 }
 
 .errorPostQuestionText .error,
 .errorPostAnswerText .error{
-	color: #ff0000;
+color: #ff0000;
 }
 
 
@@ -663,31 +658,31 @@ padding-top: 10px;
 }
 /* CKEditor Contents (Control) */
 .linkAreaOfView{
-    font-size: 93%;
-    text-align: right;
+font-size: 93%;
+text-align: right;
 }
 
 .CKEditorContents p{
-    text-align: left!important;
-    padding-top: 0px!important;
+text-align: left!important;
+padding-top: 0px!important;
 }
 
 .CKEditorContents table{
-    border-top:1px solid #e2e2e2!important;
-    border-left:1px solid #e2e2e2!important;
+border-top:1px solid #e2e2e2!important;
+border-left:1px solid #e2e2e2!important;
 }
 
 .CKEditorContents ol li{
-    margin-left: 30px;
+margin-left: 30px;
 }
 
 .CKEditorContents ul li{
-    margin-left: 25px;
+margin-left: 25px;
 }
 
 .CKEditorContents table td,.CKEditorContents table th{
-    border-bottom:1px solid #e2e2e2!important;
-    border-right:1px solid #e2e2e2!important;
+border-bottom:1px solid #e2e2e2!important;
+border-right:1px solid #e2e2e2!important;
 }
 
 /* ============================================================

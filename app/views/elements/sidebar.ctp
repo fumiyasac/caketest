@@ -1,22 +1,40 @@
 <aside class="specialArticle">
 <header class="specialHeader">
-<h4><img src="/images/common/h4_special.png" width="300" height="40" alt=""></h4>
+<h4><img src="/images/common/h4_other.png" width="300" height="40" alt=""></h4>
 </header>
 <div class="specialVisual">
 <a href="#"><img src="/images/sample/sample_special_thumb.png" width="300" height="119" alt=""></a>
 </div>
+<?php $posts = $this->requestAction('posts/index/limit:2'); ?>
+<?php foreach ($posts as $post): ?>
+<section>
+<header>
+<h5><?php echo h($post['Post']['title']); ?>【アンケート】</h5>
+</header>
+<div>
+<p class="specialDate">
+期間：
+<?php echo h($this->Html->dateFormat($post['Post']['start_date']." 00:00:00")); ?>
+〜
+<?php echo h($this->Html->dateFormat($post['Post']['end_date']." 00:00:00")); ?>
+</p>
+<p>&gt;&nbsp;<a href="/posts/view/<?php echo h($post['Post']['id']); ?>">アンケートに回答する</a></p>
+</div>
+</section>
+<?php endforeach; ?>
 <?php $specials = $this->requestAction('specials/index/limit:2'); ?>
 <?php foreach ($specials as $special): ?>
 <section>
 <header>
-<h5><?php echo h($special['Special']['title']); ?></h5>
+<h5><?php echo h($special['Special']['title']); ?>【特集記事】</h5>
 </header>
 <div>
 <p class="specialDate"><?php echo h($this->Html->dateFormat($special['Special']['published']." 00:00:00")); ?></p>
-<p><a href="/specials/view/<?php echo h($special['Special']['id']); ?>"><?php echo h($special['Special']['kcpy']); ?></a></p>
+<p>&gt;&nbsp;<a href="/specials/view/<?php echo h($special['Special']['id']); ?>">この記事を見る</a></p>
 </div>
 </section>
 <?php endforeach; ?>
+
 </aside>
 <!-- ## Cake Element Content End ## -->
 <!-- ## Cake Element Content Start ## -->

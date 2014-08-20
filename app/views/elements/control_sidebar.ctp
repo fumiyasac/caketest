@@ -21,7 +21,6 @@
 <div>
 <ul>
 <li><a href="#">記事（archives）の管理</a></li>
-<li><a href="/control/specials">特集記事（specials）の管理</a></li>
 <li><a href="#">カテゴリー（categories）の管理</a></li>
 <li><a href="#">タグ（tags）の管理</a></li>
 </ul>
@@ -55,6 +54,7 @@
 </header>
 <div>
 <ul>
+<li><a href="/control/specials">特集記事の管理</a></li>
 <li><a href="/control/newstopics/index">ニュース&amp;トピックの管理</a></li>
 <li><a href="/control/catalogs/index">カタログ情報の管理</a></li>
 <li><a href="/control/showcases/index">ショーケースの管理</a></li>

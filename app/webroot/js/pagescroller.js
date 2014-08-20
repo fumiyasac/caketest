@@ -1,7 +1,9 @@
 /*
     pagescroller.js	
 	
-	Fumiya Sakai(Just One Factory)
+	Fumiya Sakai(just1factory.net)
+	
+	トップへのスクロール関数
 	
 */
 $(function(){

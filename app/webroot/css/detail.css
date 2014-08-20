@@ -4,7 +4,7 @@
 /*
     detail.css
 	
-	Fumiya Sakai(fumiyasac.com). 
+	Fumiya Sakai(just1factry.net). 
 
 	01: index
 	02: detail
@@ -16,6 +16,7 @@
 	08: catalogs
 	09: catalogComments
 	10: posts
+	11: showcase
 */
 
 /* ============================================================
@@ -273,54 +274,54 @@ text-align: center;
 
 /* Special Contents */
 .specialsArticle .sentenseList section.contentList{
-        border-top: dotted 1px #ebebeb;	
+    border-top: dotted 1px #ebebeb;	
 	padding-bottom: 20px;
-        color: #683800;
-        overflow: hidden;
+    color: #683800;
+    overflow: hidden;
 }
 
 .specialsArticle .sentenseList section.contentList header{
-        margin-top: 20px;
-        margin-bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
 
 }
 
 .specialsArticle .sentenseList section.contentList .kcpy{
-        font-size: 93%; 
+    font-size: 93%; 
 }
 
 .specialsArticle .sentenseList section.contentList .main_image img{
-        border: solid 1px #f7f7f7; 
+    border: solid 1px #f7f7f7; 
 }
 
 .specialsArticle .sentenseList section.contentList .published{
-        font-size: 93%; 
-        color: #ffa200;
+    font-size: 93%; 
+    color: #ffa200;
 }
 
 .specialsArticle .sentenseList section.contentList .main_image{
-        float: left;
+    float: left;
 }
 
 .specialsArticle .sentenseList section.contentList .readMore{
-        text-align: right;
+    text-align: right;
 }
 
 .specialsArticle .sentenseList section.contentList .readMore a{
-        color: #683800;
-        text-decoration: none;
-        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
-        padding-left: 12px;
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;
 }
 
 .specialsArticle .sentenseList section.contentList .readMore a:hover{
-        text-decoration: underline;
+    text-decoration: underline;
 }
 
 .specialsArticle .sentenseList section.contentListNone .emptyData{
-        text-align: center;
-        color: #ff0000;
-        font-weight: bold;
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
 }
 
 /* Special Contents Detail */
@@ -352,8 +353,8 @@ text-align: center;
 }
 
 .specialsArticle .sentenseView section.introduction .spacialMain p.image_main{
-        margin-left: auto;
-        margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Special Contents Detail(Main) */
@@ -362,7 +363,7 @@ text-align: center;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialMain header{
-        margin:0;
+    margin:0;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialMain header h4{
@@ -387,7 +388,7 @@ text-align: center;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialSub header{
-        margin:0;
+    margin:0;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialSub header h4{
@@ -403,41 +404,41 @@ text-align: center;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialSub div{
-        width: 600px;
-        height: auto;
+    width: 600px;
+    height: auto;
 	color:#683800;
-        overflow: hidden;
+    overflow: hidden;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialSub div p.image_sub{
-        float: right;
+    float: right;
 }
 
 /* Special Contents Detail(Etc) */
 .specialsArticle .sentenseView section.detailOfSpecialEtc{
-        width: 600px;
-        height: auto;
-        padding-bottom: 25px;
+    width: 600px;
+    height: auto;
+    padding-bottom: 25px;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialEtc div{
-        width: 596px;
-        padding: 2px;
-        background:#ebebeb;
+    width: 596px;
+    padding: 2px;
+    background:#ebebeb;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialEtc div div.etcContents{
-        background: #ffffff;
-        line-height: 1.6;
-        padding: 0 5px;
-        width: 586px;
-        margin: 0;
+    background: #ffffff;
+    line-height: 1.6;
+    padding: 0 5px;
+    width: 586px;
+    margin: 0;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialEtc div div.etcContents div.CKEditorContents{
-        padding: 5px;
-        width: 576px;
-        background: #ffffff;
+    padding: 5px;
+    width: 576px;
+    background: #ffffff;
 }
 
 /* CKEditor Contents (User) */
@@ -466,54 +467,54 @@ text-align: center;
 
 
 .specialsArticle .sentenseView section.detailOfSpecialEtc div p.etcInfo{
-        padding: 5px;
-        font-weight: bold;
+    padding: 5px;
+    font-weight: bold;
 }
 
 .specialsArticle .sentenseView section.detailOfSpecialEtc div p.etcInfo span{
-        color: #ffa200;
+    color: #ffa200;
 }
 
 aside.afterLinks{
-        border-top: dotted 1px #ebebeb;	
-        width: 600px;
-        height: 24px;
-        position: relative;
+    border-top: dotted 1px #ebebeb;	
+    width: 600px;
+    height: 24px;
+    position: relative;
 }
 
 aside.afterLinks p.backLink{
-        color: #683800;
-        font-size: 93%;
-        position: absolute;
-        top: 4px;
-        left: 0px;
+    color: #683800;
+    font-size: 93%;
+    position: absolute;
+    top: 4px;
+    left: 0px;
         
 }
 
 aside.afterLinks p.backLink a{
-        color: #683800;
-        text-decoration: none;
-        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
-        padding-left: 12px;        
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;        
 }
 
 aside.afterLinks p.backLink a:hover{
-        text-decoration: underline;
+    text-decoration: underline;
 }
 
 aside.afterLinks p.publishedDate{
-        font-size: 93%; 
-        color: #ffa200;
-        position: absolute;
-        top: 4px;
-        right: 0px;
+    font-size: 93%; 
+    color: #ffa200;
+    position: absolute;
+    top: 4px;
+    right: 0px;
 }
 
 /*
 .specialsArticle .sentenseView section.introduction .spacialMain p.publishDate{
-        font-size: 93%; 
-        color: #ffa200;
-        text-align: right;
+    font-size: 93%; 
+    color: #ffa200;
+    text-align: right;
 }
 
 .specialsArticle .sentenseView section.introduction .detailOfSpecial{
@@ -644,13 +645,13 @@ span.requierd{
 }
 
 a.blue{
-        color: #3333ff;
-        text-decoration: underline;
+    color: #3333ff;
+    text-decoration: underline;
 }
 
 a.blue:visited{
-        color: #3333ff;
-        text-decoration: underline;
+    color: #3333ff;
+    text-decoration: underline;
 }
 
 .contactArticle .formList section .forms #formInquiry{
@@ -734,7 +735,7 @@ a.blue:visited{
 
 .contactArticle .formList section .forms .sendButton #ContactIndexForm,
 .contactArticle .formList section .forms .sendButton #ContactCompleteForm{
-        display: inline-block;
+    display: inline-block;
 }
 
 .contactArticle .formList section .forms .sendButton #indexButton,
@@ -742,14 +743,14 @@ a.blue:visited{
 .contactArticle .formList section .forms .sendButton #completeButton{
 	text-align: center;
 /*	width: 120px;*/
-        padding: 0 5px;
-        line-height: 30px;
+    padding: 0 5px;
+    line-height: 30px;
 	height: 30px;
 	background: #e39943;
 	border: 0px solid;
-        color: #ffffff;
-        cursor: pointer;
-        font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 /* ============================================================
@@ -808,42 +809,42 @@ a.blue:visited{
 
 /* Newstopic Contents */
 .newstopicsArticle .sentenseList section.contentList{
-        border-top: dotted 1px #ebebeb;	
+    border-top: dotted 1px #ebebeb;	
 	padding-bottom: 20px;
-        color: #683800;
-        overflow: hidden;
+    color: #683800;
+    overflow: hidden;
 }
 
 .newstopicsArticle .sentenseList section.contentList header{
-        margin-top: 20px;
-        margin-bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
 
 }
 
 .newstopicsArticle .sentenseList section.contentList .published{
-        font-size: 93%; 
-        color: #ffa200;
+    font-size: 93%; 
+    color: #ffa200;
 }
 
 .newstopicsArticle .sentenseList section.contentList .readMore{
-        text-align: right;
+    text-align: right;
 }
 
 .newstopicsArticle .sentenseList section.contentList .readMore a{
-        color: #683800;
-        text-decoration: none;
-        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
-        padding-left: 12px;
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;
 }
 
 .newstopicsArticle .sentenseList section.contentList .readMore a:hover{
-        text-decoration: underline;
+    text-decoration: underline;
 }
 
 .newstopicsArticle .sentenseList section.contentListNone .emptyData{
-        text-align: center;
-        color: #ff0000;
-        font-weight: bold;
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
 }
 
 /* Newstopic Contents Detail */
@@ -875,8 +876,8 @@ a.blue:visited{
 }
 
 .newstopicsArticle .sentenseView section.introduction .newstopicMain p.image_main{
-        margin-left: auto;
-        margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Newstopic Contents Detail(Main) */
@@ -889,16 +890,16 @@ a.blue:visited{
 }
 
 .newstopicsArticle .sentenseView section.detailOfNewstopicMain div table{
-        border-bottom:1px dotted #e2e2e2;
-        border-right:1px dotted #e2e2e2;
+    border-bottom:1px dotted #e2e2e2;
+    border-right:1px dotted #e2e2e2;
 }
 
 .newstopicsArticle .sentenseView section.detailOfNewstopicMain div ol li{
-        margin-left: 30px;
+    margin-left: 30px;
 }
 
 .newstopicsArticle .sentenseView section.detailOfNewstopicMain div ul li{
-        margin-left: 25px;
+    margin-left: 25px;
 }
 
 .newstopicsArticle .sentenseView section.detailOfNewstopicMain div ul td,
@@ -970,13 +971,13 @@ span.requierd{
 }
 
 a.blue{
-        color: #3333ff;
-        text-decoration: underline;
+    color: #3333ff;
+    text-decoration: underline;
 }
 
 a.blue:visited{
-        color: #3333ff;
-        text-decoration: underline;
+    color: #3333ff;
+    text-decoration: underline;
 }
 
 .memberArticle .formList section .forms #formInquiry{
@@ -1046,19 +1047,19 @@ a.blue:visited{
 }
 
 .memberArticle .formList section .forms #formEnquete td .servicePolicy{
-    	width: 553px;
-        padding: 5px;
+    width: 553px;
+    padding: 5px;
 	height: 300px;
 	border: solid 1px #ebebeb;
 	font-size: 100%;
-        color: #333333;
-        overflow-x: hidden;
-        overflow-y: scroll;        
+    color: #333333;
+    overflow-x: hidden;
+    overflow-y: scroll;        
 }
 
 .memberArticle .formList section .forms #formEnquete td .servicePolicy p{
 	font-size: 100%;
-        color: #333333;
+    color: #333333;
 }
 
 .memberArticle .formList section .forms #formEnquete input{
@@ -1069,8 +1070,8 @@ a.blue:visited{
 }
 
 .memberArticle .formList section .forms #formEnquete input.chkbox{
-    	width: 18px;
-        height: 18px;
+    width: 18px;
+    height: 18px;
 }
 
 .memberArticle .formList section .forms #formEnquete textarea{
@@ -1090,7 +1091,7 @@ a.blue:visited{
 
 .memberArticle .formList section .forms .sendButton #MemberAddForm,
 .memberArticle .formList section .forms .sendButton #MemberCompleteForm{
-        display: inline-block;
+    display: inline-block;
 }
 
 .memberArticle .formList section .forms .sendButton #indexButton,
@@ -1098,14 +1099,14 @@ a.blue:visited{
 .memberArticle .formList section .forms .sendButton #completeButton{
 	text-align: center;
 /*	width: 120px;*/
-        padding: 0 5px;
-        line-height: 30px;
+    padding: 0 5px;
+    line-height: 30px;
 	height: 30px;
 	background: #e39943;
 	border: 0px solid;
-        color: #ffffff;
-        cursor: pointer;
-        font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 /* ============================================================
@@ -1164,42 +1165,42 @@ a.blue:visited{
 
 /* Catalog Contents */
 .catalogsArticle .sentenseList section.contentList{
-        border-top: dotted 1px #ebebeb;	
+    border-top: dotted 1px #ebebeb;	
 	padding-bottom: 20px;
-        color: #683800;
-        overflow: hidden;
+    color: #683800;
+    overflow: hidden;
 }
 
 .catalogsArticle .sentenseList section.contentList header{
-        margin-top: 20px;
-        margin-bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
 
 }
 
 .catalogsArticle .sentenseList section.contentList .published{
-        font-size: 93%; 
-        color: #ffa200;
+    font-size: 93%; 
+    color: #ffa200;
 }
 
 .catalogsArticle .sentenseList section.contentList .readMore{
-        text-align: right;
+    text-align: right;
 }
 
 .catalogsArticle .sentenseList section.contentList .readMore a{
-        color: #683800;
-        text-decoration: none;
-        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
-        padding-left: 12px;
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;
 }
 
 .catalogsArticle .sentenseList section.contentList .readMore a:hover{
-        text-decoration: underline;
+    text-decoration: underline;
 }
 
 .catalogsArticle .sentenseList section.contentListNone .emptyData{
-        text-align: center;
-        color: #ff0000;
-        font-weight: bold;
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
 }
 
 /* Catalog Contents Detail */
@@ -1231,8 +1232,8 @@ a.blue:visited{
 }
 
 .catalogsArticle .sentenseView section.introduction .catalogMain p.image_main{
-        margin-left: auto;
-        margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Catalog Contents Detail(Main) */
@@ -1245,16 +1246,16 @@ a.blue:visited{
 }
 
 .catalogsArticle .sentenseView section.detailOfCatalogMain div table{
-        border-bottom:1px dotted #e2e2e2;
-        border-right:1px dotted #e2e2e2;
+    border-bottom:1px dotted #e2e2e2;
+    border-right:1px dotted #e2e2e2;
 }
 
 .catalogsArticle .sentenseView section.detailOfCatalogMain div ol li{
-        margin-left: 30px;
+    margin-left: 30px;
 }
 
 .catalogsArticle .sentenseView section.detailOfCatalogMain div ul li{
-        margin-left: 25px;
+    margin-left: 25px;
 }
 
 .catalogsArticle .sentenseView section.detailOfCatalogMain div ul td,
@@ -1319,54 +1320,54 @@ a.blue:visited{
 
 /* catalogComments Contents */
 .catalogCommentsArticle .sentenseList section.contentList{
-        border-top: dotted 1px #ebebeb;	
+    border-top: dotted 1px #ebebeb;	
 	padding-bottom: 20px;
-        color: #683800;
-        overflow: hidden;
+    color: #683800;
+    overflow: hidden;
 }
 
 .catalogCommentsArticle .sentenseList section.contentList header{
-        margin-top: 20px;
-        margin-bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
 
 }
 
 .catalogCommentsArticle .sentenseList section.contentList .kcpy{
-        font-size: 93%; 
+    font-size: 93%; 
 }
 
 .catalogCommentsArticle .sentenseList section.contentList .main_image img{
-        border: solid 1px #f7f7f7; 
+    border: solid 1px #f7f7f7; 
 }
 
 .catalogCommentsArticle .sentenseList section.contentList .published{
-        font-size: 93%; 
-        color: #ffa200;
+    font-size: 93%; 
+    color: #ffa200;
 }
 
 .catalogCommentsArticle .sentenseList section.contentList .main_image{
-        float: left;
+    float: left;
 }
 
 .catalogCommentsArticle .sentenseList section.contentList .readMore{
-        text-align: right;
+    text-align: right;
 }
 
 .catalogCommentsArticle .sentenseList section.contentList .readMore a{
-        color: #683800;
-        text-decoration: none;
-        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
-        padding-left: 12px;
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;
 }
 
 .catalogCommentsArticle .sentenseList section.contentList .readMore a:hover{
-        text-decoration: underline;
+    text-decoration: underline;
 }
 
 .catalogCommentsArticle .sentenseList section.contentListNone .emptyData{
-        text-align: center;
-        color: #ff0000;
-        font-weight: bold;
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
 }
 
 /* catalogComments Contents Detail */
@@ -1398,8 +1399,8 @@ a.blue:visited{
 }
 
 .catalogCommentsArticle .sentenseView section.introduction .spacialMain p.image_main{
-        margin-left: auto;
-        margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* catalogComments Contents Detail(Main) */
@@ -1408,7 +1409,7 @@ a.blue:visited{
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialMain header{
-        margin:0;
+    margin:0;
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialMain header h4{
@@ -1433,7 +1434,7 @@ a.blue:visited{
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialSub header{
-        margin:0;
+    margin:0;
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialSub header h4{
@@ -1449,41 +1450,41 @@ a.blue:visited{
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialSub div{
-        width: 600px;
-        height: auto;
+    width: 600px;
+    height: auto;
 	color:#683800;
-        overflow: hidden;
+    overflow: hidden;
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialSub div p.image_sub{
-        float: right;
+    float: right;
 }
 
 /* catalogComments Contents Detail(Etc) */
 .catalogCommentsArticle .sentenseView section.detailOfSpecialEtc{
-        width: 600px;
-        height: auto;
-        padding-bottom: 25px;
+    width: 600px;
+    height: auto;
+    padding-bottom: 25px;
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialEtc div{
-        width: 596px;
-        padding: 2px;
-        background:#ebebeb;
+    width: 596px;
+    padding: 2px;
+    background:#ebebeb;
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialEtc div div.etcContents{
-        background: #ffffff;
-        line-height: 1.6;
-        padding: 0 5px;
-        width: 586px;
-        margin: 0;
+    background: #ffffff;
+    line-height: 1.6;
+    padding: 0 5px;
+    width: 586px;
+    margin: 0;
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialEtc div div.etcContents div.CKEditorContents{
-        padding: 5px;
-        width: 576px;
-        background: #ffffff;
+    padding: 5px;
+    width: 576px;
+    background: #ffffff;
 }
 
 /* CKEditor Contents (User) */
@@ -1511,12 +1512,12 @@ a.blue:visited{
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialEtc div p.etcInfo{
-        padding: 5px;
-        font-weight: bold;
+    padding: 5px;
+    font-weight: bold;
 }
 
 .catalogCommentsArticle .sentenseView section.detailOfSpecialEtc div p.etcInfo span{
-        color: #ffa200;
+    color: #ffa200;
 }
 
 /* コメントページの検索エリア */
@@ -1525,89 +1526,89 @@ a.blue:visited{
     padding-left: 5px;
     padding-right: 5px;
     width: 590px;
-/*    text-align: center;*/
+/*  text-align: center;*/
 }
 
 .commentSearchBoxArea .commentSearchCountTxt{
-        margin-left: 5px;
-        font-size: 93%;
-        padding-bottom: 7px;
+    margin-left: 5px;
+    font-size: 93%;
+    padding-bottom: 7px;
 }
 
 .commentSearchBoxArea .commentSearchCountTxt strong.red{
-        color:#ff0000!important;
+    color:#ff0000!important;
 }
 
 .commentSearchBoxArea #commentSearchKeywordTxtBox,
 .commentSearchBoxArea #commentSearchAddressBox{
-        border: medium none;
-        font-size: 100%;
-        height: 22px;
-        width: 440px;
-        border: 1px solid #E2E2E2;
+    border: medium none;
+    font-size: 100%;
+    height: 22px;
+    width: 440px;
+    border: 1px solid #E2E2E2;
 }
 
 .commentSearchBoxArea .commentSearchTbl{
-        font-size: 93%;
-        margin-bottom: 0;
+    font-size: 93%;
+    margin-bottom: 0;
 }
 
 .commentSearchBoxArea .commentSearchTbl th{
-        width: 100px;
-        text-align: left;
-        vertical-align: top;
+    width: 100px;
+    text-align: left;
+    vertical-align: top;
 }
 
 .commentSearchBoxArea .commentSearchTbl td label{
-        margin-left: 2px;
-        margin-right: 15px;
+    margin-left: 2px;
+    margin-right: 15px;
 }
 
 .commentSearchBoxArea .searchAPIButtonArea{
-        text-align: center;
+    text-align: center;
 }
 
 .commentSearchBoxArea .searchAPIButtonArea #searchAPIButton{
-        background: url("../../images/catalogs/comment_search_btn.gif") no-repeat scroll left top;
-        border: 0 solid;
-        height: 24px;
-        width: 245px;        
+    background: url("../../images/catalogs/comment_search_btn.gif") no-repeat scroll left top;
+    border: 0 solid;
+    height: 24px;
+    width: 245px;        
 }
 /* 検索エリア（ここまで） */
 
 aside.afterLinks{
-        border-top: dotted 1px #ebebeb;	
-        width: 600px;
-        height: 24px;
-        position: relative;
+    border-top: dotted 1px #ebebeb;	
+    width: 600px;
+    height: 24px;
+    position: relative;
 }
 
 aside.afterLinks p.backLink{
-        color: #683800;
-        font-size: 93%;
-        position: absolute;
-        top: 4px;
-        left: 0px;
+    color: #683800;
+    font-size: 93%;
+    position: absolute;
+    top: 4px;
+    left: 0px;
         
 }
 
 aside.afterLinks p.backLink a{
-        color: #683800;
-        text-decoration: none;
-        background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
-        padding-left: 12px;        
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;        
 }
 
 aside.afterLinks p.backLink a:hover{
-        text-decoration: underline;
+    text-decoration: underline;
 }
 
 aside.afterLinks p.publishedDate{
-        font-size: 93%; 
-        color: #ffa200;
-        position: absolute;
-        top: 4px;
-        right: 0px;
+    font-size: 93%; 
+    color: #ffa200;
+    position: absolute;
+    top: 4px;
+    right: 0px;
 }
 
 /* コメントページのサブエリア */
@@ -1632,9 +1633,9 @@ aside.commentSubPageArea header h3{
 
 /*
 .specialsArticle .sentenseView section.introduction .spacialMain p.publishDate{
-        font-size: 93%; 
-        color: #ffa200;
-        text-align: right;
+    font-size: 93%; 
+    color: #ffa200;
+    text-align: right;
 }
 
 .specialsArticle .sentenseView section.introduction .detailOfSpecial{
@@ -1715,13 +1716,13 @@ span.requierd{
 }
 
 a.blue{
-        color: #3333ff;
-        text-decoration: underline;
+    color: #3333ff;
+    text-decoration: underline;
 }
 
 a.blue:visited{
-        color: #3333ff;
-        text-decoration: underline;
+    color: #3333ff;
+    text-decoration: underline;
 }
 
 .postArticle .formList section .forms #formInquiry{
@@ -1815,7 +1816,7 @@ a.blue:visited{
 
 .postArticle .formList section .forms .sendButton #PostIndexForm,
 .postArticle .formList section .forms .sendButton #PostCompleteForm{
-        display: inline-block;
+    display: inline-block;
 }
 
 .postArticle .formList section .forms .sendButton #indexButton,
@@ -1823,12 +1824,350 @@ a.blue:visited{
 .postArticle .formList section .forms .sendButton #completeButton{
 	text-align: center;
 /*	width: 120px;*/
-        padding: 0 5px;
-        line-height: 30px;
+    padding: 0 5px;
+    line-height: 30px;
 	height: 30px;
 	background: #e39943;
 	border: 0px solid;
-        color: #ffffff;
-        cursor: pointer;
-        font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
 }
+
+/* ============================================================
+11: showcase
+============================================================ */
+/* Showcase Area */
+.showcasesArticle{
+	background: #ffffff;
+	width: 600px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.showcasesArticle .showcasesTitle{
+	width: 600px;
+	height: 40px;
+}
+
+.showcasesArticle .showcasesTitle h2{
+}
+
+/* Showcase List */
+.showcasesArticle .sentenseList{
+}
+
+.showcasesArticle .sentenseList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.showcasesArticle .sentenseList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.showcasesArticle .sentenseList section.introduction{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.showcasesArticle .sentenseList section.introduction .sentenses{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.showcasesArticle .sentenseList section.introduction .sentenses p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+/* Showcase Contents */
+.showcasesArticle .sentenseList section.contentList{
+    border-top: dotted 1px #ebebeb;	
+	padding-bottom: 20px;
+    color: #683800;
+    overflow: hidden;
+}
+
+.showcasesArticle .sentenseList section.contentList header{
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.showcasesArticle .sentenseList section.contentList .kcpy{
+    font-size: 93%; 
+}
+
+.showcasesArticle .sentenseList section.contentList .main_image img{
+    border: solid 1px #f7f7f7; 
+}
+
+.showcasesArticle .sentenseList section.contentList .published{
+    font-size: 93%; 
+    color: #ffa200;
+}
+
+.showcasesArticle .sentenseList section.contentList .price{
+    font-size: 93%; 
+    color: #ff0000;
+}
+
+.showcasesArticle .sentenseList section.contentList .main_image{
+    float: left;
+}
+
+.showcasesArticle .sentenseList section.contentList .readMore{
+    text-align: right;
+}
+
+.showcasesArticle .sentenseList section.contentList .readMore a{
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;
+}
+
+.showcasesArticle .sentenseList section.contentList .readMore a:hover{
+    text-decoration: underline;
+}
+
+.showcasesArticle .sentenseList section.contentListNone .emptyData{
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+/* Showcase Contents Detail */
+.showcasesArticle .sentenseView{
+}
+
+.showcasesArticle .sentenseView header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.showcasesArticle .sentenseView header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.showcasesArticle .sentenseView section.introduction{
+	padding-bottom: 15px;
+}
+
+.showcasesArticle .sentenseView section.introduction .showcaseMain{
+	width: 600px;
+	height: auto;
+	overflow: hidden;
+}
+
+.showcasesArticle .sentenseView section.introduction .showcaseMain p.image_main{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ----- 以下すべてはあとで変更する部分 ----- */
+/* Showcase Contents Detail(Main) */
+.showcasesArticle .sentenseView section.detailOfShowcaseMain{
+	padding-bottom: 25px;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseMain header{
+    margin:0;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseMain header h4{
+	margin:0 0 10px 0;
+	padding:2px 8px;
+	border-width:0 0 0 5px;
+	border-color: #ffa200;
+	border-style:solid;
+	background:#ffffff;
+	color:#ffa200;
+	line-height:140%;
+	font-weight:bold;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseMain div{
+	color:#683800;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseMain div p.price{
+	padding: 1px 0 7px;
+	color:#ff0000;
+}
+
+/* Showcase Cloud Zoom */
+.showcasesArticle .sentenseView section.detailOfShowcaseSub{
+	padding-bottom: 25px;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub header{
+    margin:0;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub header h4{
+	margin:0 0 10px 0;
+	padding:2px 8px;
+	border-width:0 0 0 5px;
+	border-color: #ffa200;
+	border-style:solid;
+	background:#ffffff;
+	color:#ffa200;
+	line-height:140%;
+	font-weight:bold;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div{
+    width: 600px;
+    height: auto;
+	color:#683800;
+    overflow: hidden;
+}
+
+/* Customize jqzoom Style */
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div section.showcaseGalleryPhotoMain a img{
+	vertical-align:bottom;	
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div aside.showcaseGalleryPhotoSub ul#thumblist{
+	display: block;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div aside.showcaseGalleryPhotoSub ul#thumblist li{
+	float: left;
+	list-style: none;
+	display: inline;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div aside.showcaseGalleryPhotoSub ul#thumblist li a{
+	display: block;
+	border: 1px solid #cccccc;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div aside.showcaseGalleryPhotoSub ul#thumblist li a.zoomThumbActive{
+    border:1px solid #ff0000;
+}
+
+.jqzoom{
+	text-decoration:none;
+	float:left;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div aside.showcaseGalleryPhotoSub ul#thumblist li a img{
+	vertical-align:bottom;	
+}
+
+/*
+.showcasesArticle .sentenseView section.detailOfSpecialSub div p.image_sub{
+    float: right;
+}
+*/
+/* Showcase API */
+
+
+
+/* Showcase Showcase Etc */
+.showcasesArticle .sentenseView section.detailOfShowcaseEtc{
+    width: 600px;
+    height: auto;
+    padding-bottom: 25px;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseEtc div{
+    width: 596px;
+    padding: 2px;
+    background:#ebebeb;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseEtc div div.etcContents{
+    background: #ffffff;
+    line-height: 1.6;
+    padding: 0 5px;
+    width: 586px;
+    margin: 0;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseEtc div div.etcContents div.CKEditorContents{
+    padding: 5px;
+	width: 576px;
+    background: #ffffff;
+}
+
+/* CKEditor Contents (User) */
+.CKEditorContents p{
+    text-align: left;
+}
+
+.CKEditorContents table{
+    border-bottom:1px dotted #e2e2e2;
+    border-right:1px dotted #e2e2e2;
+}
+
+.CKEditorContents ol li{
+    margin-left: 30px;
+}
+
+.CKEditorContents ul li{
+    margin-left: 25px;
+}
+
+.CKEditorContents td,.CKEditorContents th{
+    border-top:1px dotted #e2e2e2;
+    border-left:1px dotted #e2e2e2;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseEtc div p.etcInfo{
+    padding: 5px;
+    font-weight: bold;
+}
+
+.showcasesArticle .sentenseView section.detailOfShowcaseEtc div p.etcInfo span{
+    color: #ffa200;
+}
+
+
+/* Special Contents Detail(Sub) */
+/*
+.specialsArticle .sentenseView section.detailOfSpecialSub{
+	padding-bottom: 25px;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub header{
+    margin:0;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub header h4{
+	margin:0 0 10px 0;
+	padding:2px 8px;
+	border-width:0 0 0 5px;
+	border-color: #ffa200;
+	border-style:solid;
+	background:#ffffff;
+	color:#ffa200;
+	line-height:140%;
+	font-weight:bold;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub div{
+    width: 600px;
+    height: auto;
+	color:#683800;
+    overflow: hidden;
+}
+
+.specialsArticle .sentenseView section.detailOfSpecialSub div p.image_sub{
+    float: right;
+}
+*/

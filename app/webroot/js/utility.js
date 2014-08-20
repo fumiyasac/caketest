@@ -1,3 +1,10 @@
+/*
+    tabview.js	
+	
+	Fumiya Sakai(just1factory.net)
+	
+	管理画面サイド用の共通関数	
+*/
 $(document).ready(function(){
 	
 	//Parameters

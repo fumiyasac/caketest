@@ -1,8 +1,9 @@
 /*
     tabview.js	
 	
-	Fumiya Sakai(Just One Factory)
+	Fumiya Sakai(just1factory.net)
 	
+	タブビューの制御
 */
 
 $(document).ready(function(){

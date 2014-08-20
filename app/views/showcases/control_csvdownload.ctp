@@ -1,0 +1,30 @@
+<?php
+$csv->addRow($headRow);
+foreach ($contentsRows as $contentsRow) {
+    //CSV出力用のforeach
+    $csv->addField($contentsRow['Showcase']['id']);
+    $csv->addField($contentsRow['Showcase']['title']);
+    $csv->addField($contentsRow['Showcase']['kcpy']);
+    $csv->addField($contentsRow['Showcase']['image_main']);
+    $csv->addField($contentsRow['Showcase']['description_main']);
+    $csv->addField($contentsRow['Showcase']['image_sub1']);
+    $csv->addField($contentsRow['Showcase']['caption_sub1']);
+    $csv->addField($contentsRow['Showcase']['image_sub2']);
+    $csv->addField($contentsRow['Showcase']['caption_sub2']);
+    $csv->addField($contentsRow['Showcase']['image_sub3']);
+    $csv->addField($contentsRow['Showcase']['caption_sub3']);
+    $csv->addField($contentsRow['Showcase']['image_sub4']);
+    $csv->addField($contentsRow['Showcase']['caption_sub4']);
+    $csv->addField($contentsRow['Showcase']['api_id_gurunabi']);
+    $csv->addField($contentsRow['Showcase']['api_id_hotpepper']);
+    $csv->addField($contentsRow['Showcase']['api_id_rakuten']);
+    $csv->addField($contentsRow['Showcase']['api_id_jaran']);
+    $csv->addField($contentsRow['Showcase']['price']);
+    $csv->addField($contentsRow['Showcase']['other_title']);
+    $csv->addField($contentsRow['Showcase']['other_description']);
+    $csv->addField($contentsRow['Showcase']['published']);
+    $csv->addField(Configure::read("FLAG_CONF.flag.{$contentsRow['Showcase']['flag']}"));
+    $csv->endRow();
+}
+$csv->setFilename($filename);
+echo $csv->render(true, 'sjis', 'UTF-8'); 

@@ -1,10 +1,10 @@
 /*
     definition.js	
 	
-	Fumiya Sakai(Just One Factory)
+	Fumiya Sakai(just1factory.net)
 	
+	大塚珍しいもんStoreの共通定義
 */
-
 $(document).ready(function(){
 	
 	//Configure

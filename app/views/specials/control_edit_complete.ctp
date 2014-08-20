@@ -31,7 +31,7 @@
 
 <div class="sendButton">
 <p>
-<?php echo $this->Form->create('Contact', array('type' => 'post', 'url' => 'index')); ?>
+<?php echo $this->Form->create('Special', array('type' => 'post', 'url' => 'index')); ?>
 <?php echo $this->Form->submit('特集記事の一覧に戻る', array('div' => false, 'id' => 'indexButton')); ?>
 <?php echo $this->Form->end(); ?>
 </p>

@@ -1,3 +1,11 @@
+/*
+    gourmet_map.js	
+	
+	Fumiya Sakai(just1factory.net)
+	
+	カタログコンテンツ「大塚のぐるめ」の共通定義
+*/
+
 //見た目調整用
 $(document).ready(function(){
     //Button Settings

@@ -1,4 +1,11 @@
-//アンケート項目Ajax化用の共通関数
+/*
+    tabview.js	
+	
+	Fumiya Sakai(just1factory.net)
+	
+	アンケート項目Ajax化用の共通関数	
+*/
+
 //チェックボックス・ラジオボタン選択時の変数
 var selectFlagValue;
 var cssBgElements = "background-color";

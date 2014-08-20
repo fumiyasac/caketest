@@ -112,6 +112,7 @@ Configure::write('UPLOAD_TMP_PATH_CONF', array(
         '4' => 'tmp_newstopic',
         '5' => 'tmp_catalog',
         '6' => 'tmp_post',
+        '7' => 'tmp_showcase',
     ),
 ));
 
@@ -123,6 +124,7 @@ Configure::write('UPLOAD_PATH_CONF', array(
         '4' => 'newstopic',
         '5' => 'catalog',
         '6' => 'post',
+        '7' => 'showcase',
    ),
 ));
 

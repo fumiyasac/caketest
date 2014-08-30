@@ -38,10 +38,9 @@
 <div id="commentResultArea"></div>
 <div class="commentWriteArea" id="addComment">
 <?php echo $this->Form->create('CatalogsComment', array('type' => 'post', 'action' => 'complete')); ?>
-<p class="padb10 authorWrite">投稿者：fumiyasac</p>
-<?php /* authorは自分のユーザーネームで決めうち（会員登録機能が完成次第実装） */ 
-echo $this->Form->input('author', array('type' => 'hidden', 'value' => 'fumiyasac', 'id' => 'commentUsername'));
-?>
+<p class="padb10 authorWrite">投稿者：</p>
+<?php echo $this->Form->text('author', array('value' => '', 'id' => 'commentUsername')); ?>
+<p class="padt10 padb10 authorWrite">内容：</p>
 <?php
 echo $this->Form->textarea('text',array(
     'class'=>'formCommentAreaText',

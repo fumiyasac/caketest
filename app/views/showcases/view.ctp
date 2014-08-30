@@ -35,18 +35,18 @@
 <link rel="stylesheet" type="text/css" href="/css/jquery.jqzoom.css" />
 <script type="text/javascript" src="/js/jquery.jqzoom-core.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+$(document).ready(function(){
 	$('.jqzoom').jqzoom({
      	zoomType: 'innerzoom',
         lens:true,
-        title: false,
+        //title: false,
         preloadImages: false,
         alwaysOn:false
     });	
 });
 </script>
 <section class="showcaseGalleryPhotoMain clearfix">
-<a href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub1']); ?>" class="jqzoom" rel='gal1'>
+<a href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub1']); ?>" class="jqzoom" rel='gal1' title="マウスを動かすと画像の位置が拡大表示されます">
 <img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>">
 </a>
 </section>
@@ -71,6 +71,7 @@ $(document).ready(function() {
 <!-- //End of detailOfShowcaseSub -->
 
 <!-- Start of detailOfShowcaseApi// -->
+
 <!-- //End of detailOfShowcaseApi -->
 
 <!--

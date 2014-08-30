@@ -109,20 +109,22 @@ echo $this->Html->getCrumbs(' > ');
 <section id="shopSlider">
 <ul>
 <!-- # Loop Start #  -->
+<?php $showcases = $this->requestAction('showcases/index/limit:4'); ?>
+<?php foreach ($showcases as $showcase): ?>
 <li><div>
-<img src="/images/sample/sample_showcase_thumb.jpg" width="280" height="160" alt="" class="showcaseThumb">
-<p class="showcaseTitle"><span>●</span>&nbsp;銘酒「大塚ものがたり」</p>
-<p class="showcasePrice">￥5,000</p>
-<p class="description">商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文</p>
-<p class="showcaseButton"><a href="#"><img src="/images/common/shoplink_button.png" width="143" height="23" alt=""></a></p>
+<img src="/img/showcase/resized_<?php echo h($showcase['Showcase']['image_main']); ?>" width="280" height="160" alt="" class="showcaseThumb">
+<p class="showcaseTitle"><span>●</span>&nbsp;<?php echo h($showcase['Showcase']['title']); ?></p>
+<p class="showcasePrice"><?php echo h($showcase['Showcase']['price']); ?></p>
+<p class="description">
+<?php if(mb_strlen($showcase['Showcase']['description_main']) > 50): ?>
+<?php echo h(mb_substr($showcase['Showcase']['description_main'], 0, 50)."..."); ?>
+<?php else: ?>
+<?php echo h($showcase['Showcase']['description_main']); ?>
+<?php endif; ?>
+</p>
+<p class="showcaseButton"><a href="/showcases/view/<?php echo h($showcase['Showcase']['id']); ?>"><img src="/images/common/shoplink_button.png" width="143" height="23" alt=""></a></p>
 </div></li>
-<li><div>
-<img src="/images/sample/sample_showcase_thumb.jpg" width="280" height="160" alt="" class="showcaseThumb">
-<p class="showcaseTitle"><span>●</span>&nbsp;銘酒「大塚ものがたり」</p>
-<p class="showcasePrice">￥5,000</p>
-<p class="description">商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文商品紹介文</p>
-<p class="showcaseButton"><a href="#"><img src="/images/common/shoplink_button.png" width="143" height="23" alt=""></a></p>
-</div></li>
+<?php endforeach; ?>
 <!-- # Loop End #  -->
 </ul>
 </section>

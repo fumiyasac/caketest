@@ -5,7 +5,6 @@
 	
 	カタログコンテンツのコメントAjax化用の共通関数
 */
-
 //
 $(document).ready(function(){
     //Common Settings
@@ -30,6 +29,9 @@ $(document).ready(function(){
     //Click targetSubmitButton
     targetSubmitButton.click(function(e){
 		
+		//Default off
+		e.preventDefault();
+		
 		//validation
     	var errorStatement = $(".error");
 		
@@ -40,7 +42,7 @@ $(document).ready(function(){
 		if(catalog_id.length == 0 || username.length == 0 || text.length == 0 || text.length > 1000) {
 			
 			if(errorStatement.length == 0) {
-				targetLeaveResult.append('<p class="error">' + errorMessage + '</p>');
+				targetLeaveResult.append('<p class="padb5 error">' + errorMessage + '</p>');
 			}
 			return false;
 

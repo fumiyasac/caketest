@@ -35,8 +35,8 @@ $(document).ready(function(){
 		$("a[href="+CookieName+"]").addClass(tabActive);
 		$(CookieName).fadeIn(300);
 	} else {
-		$(".tabButton p a:first").addClass(tabActive);
-		$(tabContents+" section:first").fadeIn(300);
+		$("a[href=#shopTabView]").addClass(tabActive);
+		$("#shopTabView").fadeIn(300);
 	}
 
 });

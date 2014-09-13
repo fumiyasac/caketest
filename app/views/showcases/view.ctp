@@ -32,37 +32,49 @@
 </header>
 <div>
 <p class="padb10">表示されている画像にマウスを置くと拡大表示されます。<br>下のサムネイル画像をクリックして画像を切り替えることもできます。</p>
-<link rel="stylesheet" type="text/css" href="/css/jquery.jqzoom.css" />
-<script type="text/javascript" src="/js/jquery.jqzoom-core.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.jqzoom').jqzoom({
-     	zoomType: 'innerzoom',
-        lens:true,
-        //title: false,
-        preloadImages: false,
-        alwaysOn:false
-    });	
-});
-</script>
+<link rel="stylesheet" type="text/css" href="/css/cloud-zoom.css" />
+<script type="text/javascript" src="/js/cloud-zoom.js"></script>
+<script type="text/javascript" src="/js/showcase.js"></script>
+
 <section class="showcaseGalleryPhotoMain clearfix">
-<a href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub1']); ?>" class="jqzoom" rel='gal1' title="マウスを動かすと画像の位置が拡大表示されます">
-<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>">
+<div class="selectedZoomArea displayTarget0">
+<a href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub1']); ?>" class="cloud-zoom" rel="position:'inside',titleOpacity:0.6">
+<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>" title="マウスを動かすと画像の位置が拡大表示されます">
 </a>
+</div>
+
+<div class="selectedZoomArea displayTarget1">
+<a href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub2']); ?>" class="cloud-zoom" rel="position:'inside',titleOpacity:0.6">
+<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub2']); ?>" title="マウスを動かすと画像の位置が拡大表示されます">
+</a>
+</div>
+
+<div class="selectedZoomArea displayTarget2">
+<a href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub3']); ?>" class="cloud-zoom" rel="position:'inside',titleOpacity:0.6">
+<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub3']); ?>" title="マウスを動かすと画像の位置が拡大表示されます">
+</a>
+</div>
+
+<div class="selectedZoomArea displayTarget3">
+<a href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub4']); ?>" class="cloud-zoom" rel="position:'inside',titleOpacity:0.6">
+<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub4']); ?>" title="マウスを動かすと画像の位置が拡大表示されます">
+</a>
+</div>
 </section>
+
 <aside class="showcaseGalleryPhotoSub clearfix">
 <ul id="thumblist" class="clearfix">
-<li>
-<a class="zoomThumbActive vtip" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>',largeimage: '/img/showcase/<?php echo h($this->data['Showcase']['image_sub1']); ?>'}" title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub1']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>' width="148" height="98"></a>
+<li class="thumItem">
+<a class="zoomThumbActive vtip" href='javascript:void(0);' title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub1']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>' width="148" height="98"></a>
 </li>
-<li>
-<a class="vtip" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub2']); ?>',largeimage: '/img/showcase/<?php echo h($this->data['Showcase']['image_sub2']); ?>'}" title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub2']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub2']); ?>' width="148" height="98" title="aaa"></a>
+<li class="thumItem">
+<a class="vtip" href='javascript:void(0);' title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub2']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub2']); ?>' width="148" height="98"></a>
 </li>
-<li>
-<a class="vtip" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub3']); ?>',largeimage: '/img/showcase/<?php echo h($this->data['Showcase']['image_sub3']); ?>'}" title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub3']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub3']); ?>' width="148" height="98"></a>
+<li class="thumItem">
+<a class="vtip" href='javascript:void(0);' title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub3']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub3']); ?>' width="148" height="98"></a>
 </li>
-<li>
-<a class="vtip" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub4']); ?>',largeimage: '/img/showcase/<?php echo h($this->data['Showcase']['image_sub4']); ?>'}" title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub4']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub4']); ?>' width="148" height="98"></a>
+<li class="thumItem">
+<a class="vtip" href='javascript:void(0);' title="<strong class='vTitle'><span>&raquo;</span>&nbsp;<?php echo h($this->data['Showcase']['caption_sub4']); ?></strong>"><img src='/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub4']); ?>' width="148" height="98"></a>
 </li>
 </ul>
 </aside>

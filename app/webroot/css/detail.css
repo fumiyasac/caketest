@@ -2036,7 +2036,14 @@ a.blue:visited{
     overflow: hidden;
 }
 
-/* Customize jqzoom Style */
+/* Customize Cloud Style */
+.showcasesArticle .sentenseView section.detailOfShowcaseSub div section.showcaseGalleryPhotoMain{
+	width: 600px;
+	height: 400px;
+	overflow: hidden;
+	position: relative;
+}
+
 .showcasesArticle .sentenseView section.detailOfShowcaseSub div section.showcaseGalleryPhotoMain a img{
 	vertical-align:bottom;	
 }

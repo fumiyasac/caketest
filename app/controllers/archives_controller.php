@@ -8,6 +8,10 @@ class ArchivesController extends AppController{
     public function index(){
         
     }
+
+    public function test(){
+    	
+    }
     
 }
 ?>

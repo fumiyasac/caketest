@@ -35,18 +35,16 @@ Class MembersController extends AppController{
         parent::beforeFilter();
         
         //ログインが必要なアクションを設定（管理画面系は除く）
-        /*
         $this->Auth->deny(
-            'mypage',
+            'mypage'
+/*
             'profile',
             'help',
             'favorite',
             'inquiry'
+*/
         );
-        */
         
-        //初期設定の自動リダイレクト機能をoff
-        //$this->Auth->loginRedirect = '/members/mypage';
     }
 
     //管理画面時のレイアウトの切り替え
@@ -54,7 +52,7 @@ Class MembersController extends AppController{
         parent::beforeRender();
     }
 
-    // ログイン処理
+    //ログイン処理
     public function login(){
         
         //タイトルメッセージのセット
@@ -64,14 +62,30 @@ Class MembersController extends AppController{
             array('name' => 'ログイン','link' => false),
         );
         $this->set('breadcrumb', $breadcrumb);
-        
+        		
     }
 
-    // ログアウト処理
+    //ログアウト処理
     public function logout(){
         $this->Auth->logout();
+        $this->redirect('/members/login');
     }
-    
+	
+	//マイページ（会員画面）
+    public function mypage(){
+
+		//タイトルメッセージのセット
+        $this->set('title_for_layout','マイページ');
+        $breadcrumb = array(
+            array('name' => 'HOME', 'link' => '/'),
+            array('name' => 'マイページ','link' => false)
+        );
+        $this->set('breadcrumb', $breadcrumb);
+        
+        //@test:セッションの値を取得する
+        //pr($this->Session->read('Auth'));
+    }	
+
     //会員とは（ユーザー画面）
     public function index(){
         

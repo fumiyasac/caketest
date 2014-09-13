@@ -16,8 +16,26 @@ class AppController extends Controller {
         $this->Security->validatePost = false;
         
         //認証に使用するモデルを'Member'に変更する
-        $this->Auth->userModel = 'Members';
+        $this->Auth->userModel = 'Member';
         $this->Auth->allow('*');
+        
+        //認証の実装
+        $this->Auth->loginAction = array(
+        	'controller' => 'members',
+			'action'     => 'login',
+			'admin'      => false
+		);
+        $this->Auth->fields = array(
+        	'username' => 'username',
+			'password' => 'password'
+		);
+		$this->Auth->userScope = array(
+			'Member.agree'  => 1,
+			'Member.status' => 0
+		);
+        $this->Auth->loginRedirect = '/members/mypage';
+        $isLogin = $this->Auth->user();
+        $this->set('isLogin', $isLogin);
         
         //管理者専用ページにはBasic認証をつける
         if (!empty($this->params['control'])) {

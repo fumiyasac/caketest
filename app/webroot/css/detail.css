@@ -970,6 +970,11 @@ span.requierd{
 	color: #ff0000;
 }
 
+#authMessage{
+	padding-top: 15px;
+	color: #ff0000!important;
+}
+
 a.blue{
     color: #3333ff;
     text-decoration: underline;

@@ -36,11 +36,6 @@
 <header id="globalHeader">
 <div class="subNav">
 <p>大塚で見つける出会いのもの</p>
-<ul>
-<li><span>・</span><a href="#">メンバー募集に関して</a></li>
-<li><span>・</span><a href="#">メンバー登録</a></li>
-<li><span>・</span><a href="#">ログイン</a></li>
-</ul>
 </div>
 <div class="mainNav">
 <h1><a href="/">大塚「珍しいもん」ストア　-マスター管理画面-</a></h1>

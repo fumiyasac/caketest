@@ -46,7 +46,11 @@
 <ul>
 <li><span>・</span><a href="/members/">メンバー募集に関して</a></li>
 <li><span>・</span><a href="/members/add">メンバー登録</a></li>
+<?php if( empty($isLogin) ): ?>
 <li><span>・</span><a href="/members/login">ログイン</a></li>
+<?php else: ?>
+<li><span>・</span><a href="/members/logout">ログアウト</a></li>
+<?php endif; ?>
 </ul>
 </div>
 <div class="mainNav">

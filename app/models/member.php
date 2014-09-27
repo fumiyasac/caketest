@@ -4,6 +4,19 @@ class Member extends AppModel{
     //モデル名
     public $name = 'Member';
     
+    //private変数（会員規約同意フラグ　1:同意済）
+	private $is_agree_flag     = 1;
+
+    //private変数（仮会員認証用トークン長　デフォルト：16）
+	private $auth_token_length = 16;
+	
+    //public変数（仮会員権限フラグ　2:一般ユーザー）
+    public $default_role 	   = 2;
+    
+    //public変数（ステータスフラグ 0:メール認証未対応,1:メール認証対応済）
+    public $mail_auth_yet      = 0;
+    public $mail_auth_already  = 1;
+
     //バリデーション
     public $validate = array(
         //ユーザー名
@@ -106,7 +119,7 @@ class Member extends AppModel{
         $p_agree = array_shift($data);
         
         //会員規約に同意しているか
-        if($p_agree != 1){
+        if($p_agree != $this->is_agree_flag){
             return false;
         }else{
             return true;
@@ -128,7 +141,7 @@ class Member extends AppModel{
     
     //32バイトのトークン値を作成する
     public function createTokenForSite(){
-        $token_length = 16;
+        $token_length = $this->auth_token_length;
         $bytes = openssl_random_pseudo_bytes($token_length);
         $token = bin2hex($bytes);
         
@@ -163,16 +176,16 @@ class Member extends AppModel{
             $now = date("Y-m-d H:i:s");
             $this->updateAll(
                 $fields = array(
-                    'Member.status' => 1,
+                    'Member.status' => $this->mail_auth_already,
                     'Member.modified' => "'".$now."'"
                 ),
                 $conditions = array(
                     'Member.id' => $memberId
                 )
             );
-            return true;
+            return $this->mail_auth_already;
         }else{
-            return false;
+            return $this->mail_auth_yet;
         }
     }
 }

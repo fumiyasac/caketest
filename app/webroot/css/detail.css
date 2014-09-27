@@ -927,6 +927,138 @@ a.blue:visited{
 .memberArticle .memberTitle h2{
 }
 
+/* Article For Member */
+.memberArticle .sentenseList{
+}
+
+.memberArticle .sentenseList header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 600px;
+}
+
+.memberArticle .sentenseList header h3{
+	background: url(../images/common/h3_title_entries.png) left center no-repeat;
+	font-size: 114%;
+	margin-left: 9px;
+	padding-left: 30px;
+	color: #683800;
+}
+
+.memberArticle .sentenseList section.introduction{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+
+.memberArticle .sentenseList section.introduction .sentenses{
+	width: 580px;
+	height: auto;
+	overflow: hidden;
+}
+
+.memberArticle .sentenseList section.introduction .sentenses p{
+	color: #683800;
+	line-height: 1.8;
+}
+
+/* Member Contents */
+.memberArticle .sentenseList section.contentList{
+    border-top: dotted 1px #ebebeb;	
+	padding-bottom: 20px;
+    color: #683800;
+    overflow: hidden;
+}
+
+.memberArticle .sentenseList section.contentList header{
+    margin-top: 20px;
+    margin-bottom: 0;
+
+}
+
+.memberArticle .sentenseList section.contentList .published{
+    font-size: 93%; 
+    color: #ffa200;
+}
+
+.memberArticle .sentenseList section.contentList .readMore{
+    text-align: right;
+}
+
+.memberArticle .sentenseList section.contentList .readMore a{
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;
+}
+
+.memberArticle .sentenseList section.contentList .readMore a:hover{
+    text-decoration: underline;
+}
+
+.memberArticle .sentenseList section.contentListNone .emptyData{
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+/* Member Mypage */
+.memberArticle .sentenseList div.mypageListArea{
+    border-bottom: dotted 1px #ebebeb;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageList{
+    border-top: dotted 1px #ebebeb;	
+	padding-bottom: 8px;
+    color: #683800;
+    overflow: hidden;
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageList header{
+    margin-top: 8px;
+    margin-bottom: 0;
+
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageList .published{
+    font-size: 93%; 
+    color: #ffa200;
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageList .readMore{
+    text-align: right;
+    margin-top: -20px; /* ←これはアリなのか？ */
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageList .readMore a{
+    color: #683800;
+    text-decoration: none;
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center;
+    padding-left: 12px;
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageList .readMore a:hover{
+    text-decoration: underline;
+}
+
+.memberArticle .sentenseList section.mypageListNone .emptyData{
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+/* マイページのサブエリア */
+aside.mypageSubPageArea{
+    padding-bottom: 20px;
+    font-size: 93%;
+}
+
+aside.mypageSubPageArea header h3{
+    color: #FFA200;
+}
+
 /* Article List */
 .memberArticle .formList{
 }

@@ -5,9 +5,25 @@
 <div class="specialVisual">
 <a href="#"><img src="/images/sample/sample_special_thumb.png" width="300" height="119" alt=""></a>
 </div>
+
+<?php if($member_page_flag): ?>
+<!-- 会員ページサイドバー（はじめ） -->
+<section class="membersNav">
+<ul>
+<li><a href="#">会員専用お知らせ一覧</a></li>
+<li><a href="#">マイプロフィール</a></li>
+<li><a href="#">マイクーポン情報</a></li>
+<li><a href="#">ユーザー詳細設定</a></li>
+<li><a href="#">マイブログ一覧</a></li>
+<li><a href="#">会員の心得</a></li>
+</ul>
+</section>
+<!-- 会員ページサイドバー（おわり） -->
+<?php else: ?>
+<!-- 非会員ページサイドバー（はじめ） -->
 <?php $posts = $this->requestAction('posts/index/limit:2'); ?>
 <?php foreach ($posts as $post): ?>
-<section>
+<section class="contentsNav">
 <header>
 <h5><?php echo h($post['Post']['title']); ?>【アンケート】</h5>
 </header>
@@ -24,7 +40,7 @@
 <?php endforeach; ?>
 <?php $specials = $this->requestAction('specials/index/limit:2'); ?>
 <?php foreach ($specials as $special): ?>
-<section>
+<section class="contentsNav">
 <header>
 <h5><?php echo h($special['Special']['title']); ?>【特集記事】</h5>
 </header>
@@ -34,6 +50,8 @@
 </div>
 </section>
 <?php endforeach; ?>
+<!-- 非会員ページサイドバー（おわり） -->
+<?php endif; ?>
 
 </aside>
 <!-- ## Cake Element Content End ## -->

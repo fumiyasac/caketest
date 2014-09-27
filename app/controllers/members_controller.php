@@ -1,4 +1,5 @@
 <?php
+App::import('Lib','CommonDefine');
 Class MembersController extends AppController{
     
     //メンバ変数の設定
@@ -35,16 +36,11 @@ Class MembersController extends AppController{
         parent::beforeFilter();
         
         //ログインが必要なアクションを設定（管理画面系は除く）
+		$member_action_list = CommonDefine::member_page_settings();
+		$target_controller  = $this->params['controller'];        
         $this->Auth->deny(
-            'mypage'
-/*
-            'profile',
-            'help',
-            'favorite',
-            'inquiry'
-*/
+			implode(",", $member_action_list[$target_controller])
         );
-        
     }
 
     //管理画面時のレイアウトの切り替え
@@ -203,7 +199,7 @@ Class MembersController extends AppController{
                 
                 //生成したトークン/権限:2を追加する
                 $this->data['Member']['token'] = $this->Member->createTokenForSite();
-                $this->data['Member']['role'] = 2;
+                $this->data['Member']['role'] = $this->Member->default_role;
                 
                 //取得データをDBへ保存する。
                 if($this->Member->saveMemberInfo($this->data['Member']) !== false){
@@ -254,7 +250,7 @@ Class MembersController extends AppController{
     //トークン認証完了
     public function register($token = null){
         
-        //前のページのタイトルを追加                    
+        //タイトルメッセージのセット
         $this->set('title_for_layout','会員登録完了');
         $breadcrumb = array(
             array('name' => 'HOME', 'link' => '/'),
@@ -262,14 +258,8 @@ Class MembersController extends AppController{
         );
         $this->set('breadcrumb', $breadcrumb);
         
-        //トークンの妥当性の検証を行う
-        if($this->Member->checkTokenForParam($token)){
-            $registFlag = 1;
-        }else{
-            $registFlag = 0;
-        }
-        
-        //トークン妥当性検証結果
+        //トークンの妥当性の検証を行う(検証結果を返す)
+        $registFlag = $this->Member->checkTokenForParam($token);
         $this->set('register_flag', $registFlag);      
         
         //ビューのレンダリング

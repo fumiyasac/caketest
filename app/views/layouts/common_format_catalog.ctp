@@ -45,9 +45,15 @@
 <div class="subNav">
 <p>大塚で見つける出会いのもの</p>
 <ul>
+<?php if( empty($is_login) ): ?>
 <li><span>・</span><a href="/members/">メンバー募集に関して</a></li>
 <li><span>・</span><a href="/members/add">メンバー登録</a></li>
 <li><span>・</span><a href="/members/login">ログイン</a></li>
+<?php else: ?>
+<li><span>・</span><a href="/members/mypage">マイページ</a></li>
+<li><span>・</span><a href="/members/logout">ログアウト</a></li>
+<?php endif; ?>
+
 </ul>
 </div>
 <div class="mainNav">

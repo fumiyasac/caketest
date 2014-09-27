@@ -44,11 +44,13 @@
 <div class="subNav">
 <p>大塚で見つける出会いのもの</p>
 <ul>
+<?php if( empty($is_login) ): ?>
 <li><span>・</span><a href="/members/">メンバー募集に関して</a></li>
 <li><span>・</span><a href="/members/add">メンバー登録</a></li>
-<?php if( empty($isLogin) ): ?>
 <li><span>・</span><a href="/members/login">ログイン</a></li>
 <?php else: ?>
+<li><span>・</span><a href="/members/mypage">マイページ</a></li>
+<li><span>・</span><a href="#">クーポン情報一覧</a></li>
 <li><span>・</span><a href="/members/logout">ログアウト</a></li>
 <?php endif; ?>
 </ul>
@@ -66,6 +68,7 @@
 </header>
 <!-- //Header Contents Area -->
         
+<?php if(!$member_page_flag): ?>
 <!-- Header Contents Area// -->
 <aside class="slideGallery">
 <div id="slide">
@@ -78,11 +81,12 @@
 <?php $attr = ''; ?>
 <?php endif; ?>
 <li><a href="<?php echo $slide['Slide']['link_url']; ?>" <?php echo $attr; ?> class="vtip" title="<strong class='vTitle'><span>●</span>&nbsp;<?php echo $slide['Slide']['title']; ?></strong><br><?php echo $slide['Slide']['description']; ?>"><img src="/img/slide/<?php echo $slide['Slide']['slide_image']; ?>" width="360" height="250" alt=""></a></li>
-<? endforeach; ?>
+<?php endforeach; ?>
 </ul>
 </div>
 </aside>
 <!-- //Header Contents Area -->
+<?php endif; ?>
 
 <!-- BreadCramb Contents Area// -->
 <aside class="breadCramb">

@@ -201,6 +201,7 @@ html>/**/body {
 .slideGallery{
 	padding-left: 30px;
 	padding-right: 30px;
+	padding-bottom: 20px;
 	width: 940px;
 	height: 250px;
 }
@@ -221,7 +222,7 @@ html>/**/body {
 
 /* BreadCramb Template */
 .breadCramb{
-	padding: 20px 30px;
+	padding: 0 30px 20px;
 	width: 940px;
 	height: 30px;
 }
@@ -289,36 +290,64 @@ html>/**/body {
 	margin-top: 20px;
 }
 
-.specialArticle section{
+/* Special contentsNav */
+.specialArticle section.contentsNav{
 	padding: 8px 5px;
 	border-bottom: dotted 1px #ebebeb;
 }
 
-.specialArticle section header h5{
+.specialArticle section.contentsNav header h5{
 	color: #683800;
 }
 
-.specialArticle section div{
+.specialArticle section.contentsNav div{
 }
 
-.specialArticle section div p{
+.specialArticle section.contentsNav div p{
 	font-size: 93%;
 }
 
-.specialArticle section div p.specialDate{
+.specialArticle section.contentsNav div p.specialDate{
 	color: #ffa200;
 	padding-bottom: 2px;
 }
 
-.specialArticle section div p a{
+.specialArticle section.contentsNav div p a{
 	color: #683800;
 	text-decoration: none;
 }
 
-.specialArticle section div p a:hover{
+.specialArticle section.contentsNav div p a:hover{
 	text-decoration: underline;
 }
 
+/* Special membersNav */
+.specialArticle section.membersNav{
+	padding: 20px 0 0;
+/*	border-bottom: dotted 1px #ebebeb;*/
+}
+
+.specialArticle section.membersNav ul{
+    border-top: 1px dotted #ebebeb;
+}
+
+.specialArticle section.membersNav ul li{
+    border-bottom: 1px dotted #ebebeb;
+    padding: 10px 0;
+    display: block;
+}
+
+.specialArticle section.membersNav ul li a{
+    background: url("../images/common/icon_bg_arrow.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    color: #683800;
+    padding-left: 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.specialArticle section.membersNav ul li a:hover{
+	text-decoration: underline;
+}
 
 /* Search Template */
 .searchArea{

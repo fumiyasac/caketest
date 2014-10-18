@@ -1,11 +1,14 @@
 <?php
+/**
+ * 
+ * アンケートコンテンツ専用コンポーネント 
+ * Date:    2014/10/18
+ * Created: Fumiya Sakai
+ *
+ */
+
 class PostEnqueteAccessComponent extends Object {
     
-    /**
-     * アンケート用関数
-     * アンケートコンテンツ専用コンポーネント 
-     */
-	
 	private $loop_max_count = 5;
 	
 	//アンケートのコンテンツをマージした配列を返す
@@ -122,4 +125,3 @@ class PostEnqueteAccessComponent extends Object {
 	}
 
 }
-?>

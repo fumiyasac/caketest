@@ -53,9 +53,9 @@ echo $this->Form->textarea('description',array(
 <?php echo $this->Form->file('post_image', array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/post/<?php echo h($alreadyAddedImgName['Post']['post_image']); ?>" height="45" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Post']['post_image'], 6, 50, 150, false); ?>
 <?php else: ?>
-<img src="/img/post/<?php echo h($this->data['Post']['post_image']); ?>" height="45" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Post']['post_image'], 6, 50, 150, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>

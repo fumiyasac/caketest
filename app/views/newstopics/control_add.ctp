@@ -69,10 +69,10 @@ echo $this->Form->textarea('link_url',array(
 <th>リンクの種類&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php
-if($this->Form->value('blank_flag')){
-    $value_link = $this->Form->value('blank_flag');
+if($this->Form->value('blank_flag') == INNER_SITE){
+    $value_link = INNER_SITE;
 }else{
-    $value_link = 1;
+    $value_link = OUTER_SITE;
 }
 echo $this->Form->input('blank_flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('LINK_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value_link));
 ?>
@@ -99,10 +99,10 @@ echo $this->Dateform->dateYMD('published', null,
 <th>公開フラグ&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php
-if($this->Form->value('flag')){
-    $value = $this->Form->value('flag');
+if($this->Form->value('flag') == COMMON_PUBLISHED){
+    $value = COMMON_PUBLISHED;
 }else{
-    $value = 2;
+    $value = ADMIN_ONLY;
 }
 echo $this->Form->input('flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('FLAG_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value));
 ?>

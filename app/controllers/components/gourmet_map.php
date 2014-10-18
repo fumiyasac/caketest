@@ -1,10 +1,13 @@
 <?php
-class GourmetMapComponent extends Object {
+/**
+ * 
+ * 第1回：大塚グルメマップ用APIデータ表示用コンポーネント
+ * Date:    2014/10/18
+ * Created: Fumiya Sakai
+ *
+ */
 
-    /**
-     * 第1回：大塚グルメマップ用変数
-     * API表示用コンポーネント 
-     */
+class GourmetMapComponent extends Object {
     
     //ベースURI用変数
     public $base_uri_gnavi;
@@ -12,13 +15,13 @@ class GourmetMapComponent extends Object {
     public $base_uri_category_large;
     
     //API検索用定数
-    private $gnavi_key_id = "afda483163ce455f81f1a911db51d3f6";
-    private $hotpepper_key_id = "baf5261d36850873";
-    private $lat = "35.731010";
-    private $lng = "139.728688";
+    private $gnavi_key_id           = "afda483163ce455f81f1a911db51d3f6";
+    private $hotpepper_key_id       = "baf5261d36850873";
+    private $lat                    = "35.731010";
+    private $lng                    = "139.728688";
     private $gnavi_coordinates_mode = 2;
-    private $hotpepper_count = 1;
-    private $hotpepper_range  = 2;
+    private $hotpepper_count        = 1;
+    private $hotpepper_range        = 2;
         
     //検索条件：検索範囲の条件
     public static $range_array = array(
@@ -219,4 +222,3 @@ class GourmetMapComponent extends Object {
     }
     
 }
-?>

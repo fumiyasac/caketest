@@ -28,11 +28,11 @@
 <th>ショーケースメイン画像</th>
 <td>
 <div class="padt10">
-<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_main']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Showcase']['image_main'], 7, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="/img/showcase/<?php echo h($this->data['Showcase']['image_main']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_main']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_main'], 7, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_main'], 7, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>
@@ -41,17 +41,15 @@
 <th>ショーケース本文</th>
 <td><?php echo h($data['Showcase']['description_main']); ?></td>
 </tr>
-
-
 <tr>
 <th>サブ1画像</th>
 <td>
 <div class="padt10">
-<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Showcase']['image_sub1'], 7, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub1']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub1']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub1'], 7, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub1'], 7, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>
@@ -64,11 +62,11 @@
 <th>サブ2画像</th>
 <td>
 <div class="padt10">
-<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub2']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Showcase']['image_sub2'], 7, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub2']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub2']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub2'], 7, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub2'], 7, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>
@@ -81,11 +79,11 @@
 <th>サブ3画像</th>
 <td>
 <div class="padt10">
-<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub3']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Showcase']['image_sub3'], 7, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub3']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub3']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub3'], 7, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub3'], 7, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>
@@ -98,11 +96,11 @@
 <th>サブ4画像</th>
 <td>
 <div class="padt10">
-<img src="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub4']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Showcase']['image_sub4'], 7, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="/img/showcase/<?php echo h($this->data['Showcase']['image_sub4']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="/img/showcase/resized_<?php echo h($this->data['Showcase']['image_sub4']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Showcase']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub4'], 7, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Showcase']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Showcase']['image_sub4'], 7, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>

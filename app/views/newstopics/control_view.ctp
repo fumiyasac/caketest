@@ -24,11 +24,11 @@
 <th>画像</th>
 <td>
 <div class="padt10">
-<img src="/img/newstopic/resized_<?php echo h($data['Newstopic']['newstopic_image']); ?>" height="50" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Newstopic']['newstopic_image'], 4, 50, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Newstopic']['id']); ?> 元画像" href="/img/newstopic/<?php echo h($data['Newstopic']['newstopic_image']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Newstopic']['id']); ?> リサイズ済み画像" href="/img/newstopic/resized_<?php echo h($data['Newstopic']['newstopic_image']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Newstopic']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Newstopic']['newstopic_image'], 4, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Newstopic']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Newstopic']['newstopic_image'], 4, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>

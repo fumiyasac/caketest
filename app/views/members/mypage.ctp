@@ -43,6 +43,24 @@
 <p class="readMore"><a href="#">続きを読む</a></p>
 </div>
 </section>
+<section class="mypageList">
+<header>
+<h4 class="title">会員専用情報のタイトル</h4>
+</header>
+<div class="contentDetail">
+<p class="published">2014年09月27日 公開</p>
+<p class="readMore"><a href="#">続きを読む</a></p>
+</div>
+</section>
+<section class="mypageList">
+<header>
+<h4 class="title">会員専用情報のタイトル</h4>
+</header>
+<div class="contentDetail">
+<p class="published">2014年09月27日 公開</p>
+<p class="readMore"><a href="#">続きを読む</a></p>
+</div>
+</section>
 </div>
 <!-- 会員専用記事（最大5件） #End-->
 

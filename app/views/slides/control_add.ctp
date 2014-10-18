@@ -22,7 +22,7 @@
 </ol>
     
 <div class="forms">
-<?php echo $this->Form->create('Slide', array('type' => 'file', 'action' => 'add_complete')); ?>
+<?php echo $this->Form->create('Slide', array('type' => 'file', 'action' => 'add_confirm')); ?>
 <table cellspacing="0" cellpadding="0" id="formAdmin">
 <tr>
 <th>タイトル&nbsp;<span class="requierd">*</span></th>
@@ -34,18 +34,17 @@
 <tr>
 <th>スライドショー画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if(!empty($this->data['Slide']['slide_image'])): ?>
-<div>
-<img src="/img/tmp_banner/<?php echo h($this->data['Slide']['slide_image']); ?>">
+<?php echo $this->Form->file('slide_image', array('class' => 'formArea')); ?>
+<div class="padt10">
+<?php if(!empty($error_announce)): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Slide']['slide_image'], 3, 250, 360, false); ?>
+<?php else: ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Slide']['slide_image'], 3, 250, 360, false); ?>
+<?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>
 </div>
-<?php endif; ?>
-<?php echo $this->Form->file('slide_image',array('class' => 'formArea')); ?>
 <?php echo $this->Form->error('slide_image'); ?>
-<?php if($sizeValidateFlag === 0 && !$this->Form->error('slide_image')): ?>
-<div class="error-message">画像サイズは横:360px, 縦:250pxにして下さい</div>
-<?php endif; ?>
 </td>
 </tr>
 <tr>
@@ -78,10 +77,10 @@ echo $this->Form->textarea('link_url',array(
 <th>リンクの種類&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php
-if($this->Form->value('blank_flag')){
-    $value_link = $this->Form->value('blank_flag');
+if($this->Form->value('blank_flag') == INNER_SITE){
+    $value_link = INNER_SITE;
 }else{
-    $value_link = 1;
+    $value_link = OUTER_SITE;
 }
 echo $this->Form->input('blank_flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('LINK_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value_link));
 ?>
@@ -108,10 +107,10 @@ echo $this->Dateform->dateYMD('published', null,
 <th>公開フラグ&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php
-if($this->Form->value('flag')){
-    $value = $this->Form->value('flag');
+if($this->Form->value('flag') == COMMON_PUBLISHED){
+    $value = COMMON_PUBLISHED;
 }else{
-    $value = 2;
+    $value = ADMIN_ONLY;
 }
 echo $this->Form->input('flag', array('class' => 'radio', 'type' => 'radio', 'options' => Configure::read('FLAG_CONF.flag'), 'legend' => false, 'div' => false, 'label' => false, 'value' => $value));
 ?>

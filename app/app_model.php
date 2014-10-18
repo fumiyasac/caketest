@@ -89,6 +89,18 @@ class AppModel extends Model {
             return true;
         }
     }
+
+    //画像に関するチェック（縦横サイズ完全一致チェック）
+    public function imagePixelMatchCheck($data, $field, $pixel){
+    	
+    	list($width, $height, $type, $attr) = getimagesize($this->data[$this->alias][$field]['tmp_name']);
+    
+        if($width != $pixel[0] || $height != $pixel[1]){
+            return false;
+        }else{
+            return true;
+        }
+    }
     
     //次のAUTO_INCREMENTの値を取得する
     public function getNextAutoIncrement(){ 

@@ -44,9 +44,9 @@
 <?php echo $this->Form->file('image_main',array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/showcase/<?php echo h($alreadyAddedImgName['Showcase']['image_main']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Showcase']['image_main'], 7, 100, 150, false); ?>
 <?php else: ?>
-<img src="/img/showcase/<?php echo h($this->data['Showcase']['image_main']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Showcase']['image_main'], 7, 100, 150, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>
@@ -73,9 +73,9 @@ echo $this->Form->textarea('description_main',array(
 <?php echo $this->Form->file('image_sub1',array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/showcase/<?php echo h($alreadyAddedImgName['Showcase']['image_sub1']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Showcase']['image_sub1'], 7, 100, 150, false); ?>
 <?php else: ?>
-<img src="/img/showcase/<?php echo h($this->data['Showcase']['image_sub1']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Showcase']['image_sub1'], 7, 100, 150, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>
@@ -96,9 +96,9 @@ echo $this->Form->textarea('description_main',array(
 <?php echo $this->Form->file('image_sub2',array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/showcase/<?php echo h($alreadyAddedImgName['Showcase']['image_sub2']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Showcase']['image_sub2'], 7, 100, 150, false); ?>
 <?php else: ?>
-<img src="/img/showcase/<?php echo h($this->data['Showcase']['image_sub2']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Showcase']['image_sub2'], 7, 100, 150, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>
@@ -119,11 +119,10 @@ echo $this->Form->textarea('description_main',array(
 <?php echo $this->Form->file('image_sub3',array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/showcase/<?php echo h($alreadyAddedImgName['Showcase']['image_sub3']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Showcase']['image_sub3'], 7, 100, 150, false); ?>
 <?php else: ?>
-<img src="/img/showcase/<?php echo h($this->data['Showcase']['image_sub3']); ?>" height="100" width="150">
-<?php endif; ?>
-<br>
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Showcase']['image_sub3'], 7, 100, 150, false); ?>
+<?php endif; ?><br>
 <span>現在アップロードされている画像</span>
 </div>
 <?php echo $this->Form->error('image_sub3'); ?>
@@ -142,9 +141,9 @@ echo $this->Form->textarea('description_main',array(
 <?php echo $this->Form->file('image_sub4',array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/showcase/<?php echo h($alreadyAddedImgName['Showcase']['image_sub4']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Showcase']['image_sub4'], 7, 100, 150, false); ?>
 <?php else: ?>
-<img src="/img/showcase/<?php echo h($this->data['Showcase']['image_sub4']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Showcase']['image_sub4'], 7, 100, 150, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>

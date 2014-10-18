@@ -12,16 +12,18 @@ class MakeEnqueteHelper extends AppHelper{
 	    //テキストボックス
 		if($type == 1){
 			
-			$nameTag = 'enquete' . $num;
-			$nameValue = $this->getValuesByArrayKey($params, $nameTag);
-			$tag = '<input type="text" name="' . $nameTag . '" value="' . $nameValue . '" class="formArea" />';
+			$name_tag   = 'enquete' . $num;
+			$name_value = $this->getValuesByArrayKey($params, $name_tag);
+			
+			$tag = '<input type="text" name="' . $name_tag . '" value="' . $name_value . '" class="formArea" />';
 			
 		//テキストエリア
 		}elseif($type == 2){
 			
-			$nameTag = 'enquete' . $num;
-			$nameValue = $this->getValuesByArrayKey($params, $nameTag);
-			$tag = '<textarea name="' . $nameTag . '" cols="40" rows="5" class="formAreaText">'. $nameValue .'</textarea>';
+			$name_tag   = 'enquete' . $num;
+			$name_value = $this->getValuesByArrayKey($params, $name_tag);
+			
+			$tag = '<textarea name="' . $name_tag . '" cols="40" rows="5" class="formAreaText">'. $name_value .'</textarea>';
 			
 		//ラジオボタン
 		}elseif($type == 3){
@@ -29,19 +31,19 @@ class MakeEnqueteHelper extends AppHelper{
 			$data_array = explode(',', $answer);
 			$tag = '';
 			
-			$nameTag = 'enquete' . $num;
-			$nameValue = $this->getValuesByArrayKey($params, $nameTag);
+			$name_tag   = 'enquete' . $num;
+			$name_value = $this->getValuesByArrayKey($params, $name_tag);
 			
 			foreach($data_array as $value){
 				
-				if($nameValue == $value){
+				if($name_value == $value){
 					$checked = 'checked';
 				}else{
 					$checked = '';					
 				}
 			
 				$tag .= '<label>';
-				$tag .= '<input class="radio" type="radio" name="'. $nameTag .'" value="' . $value . '" '. $checked .'>' . $value;
+				$tag .= '<input class="radio" type="radio" name="'. $name_tag .'" value="' . $value . '" '. $checked .'>' . $value;
 				$tag .= '</label> ';
 			}
 			
@@ -50,20 +52,21 @@ class MakeEnqueteHelper extends AppHelper{
 
 			$data_array = explode(',', $answer);
 			$tag = '';
+			
 			$counter = 1;
 			foreach($data_array as $value){			
 
-				$nameTag = 'enquete' . $num .'Check'. $counter;
-				$nameValue = $this->getValuesByArrayKey($params, $nameTag);
+				$name_tag   = 'enquete' . $num .'Check'. $counter;
+				$name_value = $this->getValuesByArrayKey($params, $name_tag);
 				
-				if($nameValue == $value){
+				if($name_value == $value){
 					$checked = 'checked';
 				}else{
 					$checked = '';					
 				}
 
 				$tag .= '<label>';
-				$tag .= '<input class="check" type="checkbox" name="'. $nameTag .'" value="' . $value . '" '. $checked .'>' . $value;
+				$tag .= '<input class="check" type="checkbox" name="'. $name_tag .'" value="' . $value . '" '. $checked .'>' . $value;
 				$tag .= '</label> ';
 				$counter++;
 			}
@@ -71,9 +74,9 @@ class MakeEnqueteHelper extends AppHelper{
 		//ヒドゥンタグ
 		}else{
 			
-			$nameTag = 'enquete' . $num;
-			$nameValue = $this->getValuesByArrayKey($params, $nameTag);
-			$tag = '<input type="hidden" name="' . $nameTag . '" value="' . $nameValue . '" />';
+			$name_tag   = 'enquete' . $num;
+			$name_value = $this->getValuesByArrayKey($params, $name_tag);
+			$tag = '<input type="hidden" name="' . $name_tag . '" value="' . $name_value . '" />';
 			
 		}
 		$tag .= '<input type="hidden" name="enqueteType' . $num . '" value="' . $type . '" />';	    

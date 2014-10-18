@@ -22,7 +22,7 @@
 </ol>
     
 <div class="forms">
-<?php echo $this->Form->create('Slide', array('type' => 'file', 'action' => 'edit_complete')); ?>
+<?php echo $this->Form->create('Slide', array('type' => 'file', 'action' => 'edit_confirm')); ?>
 <table cellspacing="0" cellpadding="0" id="formAdmin">
 <tr>
 <th>タイトル&nbsp;<span class="requierd">*</span></th>
@@ -34,20 +34,17 @@
 <tr>
 <th>スライドショー画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<div>
-<?php if(!empty($alreadyAddedImgName)): ?>
-<img src="/img/slide/<?php echo h($alreadyAddedImgName['Slide']['slide_image']); ?>" width="360" height="250">
+<?php echo $this->Form->file('slide_image', array('class' => 'formArea')); ?>
+<div class="padt10">
+<?php if(!empty($error_announce)): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Slide']['slide_image'], 3, 250, 360, false); ?>
 <?php else: ?>
-<img src="/img/slide/<?php echo h($this->data['Slide']['slide_image']); ?>" width="360" height="250">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Slide']['slide_image'], 3, 250, 360, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>
 </div>
-<?php echo $this->Form->file('slide_image',array('class' => 'formArea')); ?>
 <?php echo $this->Form->error('slide_image'); ?>
-<?php if($sizeValidateFlag === 0 && !$this->Form->error('slide_image')): ?>
-<div class="error-message">画像サイズは横:350px, 縦:260pxにして下さい</div>
-<?php endif; ?>
 </td>
 </tr>
 <tr>

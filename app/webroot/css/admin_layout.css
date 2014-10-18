@@ -539,6 +539,14 @@ text-align: center;
 .sendButton #SpecialControlAddCompleteForm,
 .sendButton #SpecialControlEditForm,
 .sendButton #SpecialControlEditCompleteForm,
+.sendButton #BannerControlAddForm,
+.sendButton #BannerControlAddCompleteForm,
+.sendButton #BannerControlEditForm,
+.sendButton #BannerControlEditCompleteForm,
+.sendButton #SlideControlAddForm,
+.sendButton #SlideControlAddCompleteForm,
+.sendButton #SlideControlEditForm,
+.sendButton #SlideControlEditCompleteForm,
 .sendButton #NewstopicControlAddForm,
 .sendButton #NewstopicControlAddCompleteForm,
 .sendButton #NewstopicControlEditForm,
@@ -554,7 +562,12 @@ text-align: center;
 .sendButton #ShowcaseControlAddForm,
 .sendButton #ShowcaseControlAddCompleteForm,
 .sendButton #ShowcaseControlEditForm,
-.sendButton #ShowcaseControlEditCompleteForm{
+.sendButton #ShowcaseControlEditCompleteForm,
+.sendButton #MembersTopicControlAddForm,
+.sendButton #MembersTopicControlAddCompleteForm,
+.sendButton #MembersTopicControlEditForm,
+.sendButton #MembersTopicControlEditCompleteForm
+{
 display: inline-block;
 }
 

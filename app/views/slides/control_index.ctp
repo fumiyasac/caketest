@@ -33,11 +33,11 @@
 <th>スライドショー画像情報</th>
 <td>
 <div class="padt10">
-<img src="/img/slide/<?php echo h($slide['Slide']['slide_image']); ?>" height="260" width="350">
+<?php echo $this->DisplayImage->displayControlThumbnail($slide['Slide']['slide_image'], 3, 250, 360, false); ?>
 <br>    
 <ul class="magl15">
 <li>URL：
-<?php if($slide['Slide']['blank_flag'] == 1): ?>
+<?php if($slide['Slide']['blank_flag'] == OUTER_SITE): ?>
 <?php $arr = array('target' => '_blank'); $context = '外部'; ?>
 <?php else: ?>
 <?php $arr = array(); $context = '内部'; ?>

@@ -16,6 +16,17 @@
 </section>
 <section class="adminSidePanel">
 <header>
+<h5>会員専用情報の管理</h5>
+</header>
+<div>
+<ul>
+<li><a href="/control/members_topics">会員専用情報の一覧</a></li>
+<li><a href="#">会員発行クーポンの一覧</a></li>
+</ul>
+</div>
+</section>
+<section class="adminSidePanel">
+<header>
 <h5>記事の管理</h5>
 </header>
 <div>
@@ -54,7 +65,7 @@
 </header>
 <div>
 <ul>
-<li><a href="/control/specials">特集記事の管理</a></li>
+<li><a href="/control/specials/index">特集記事の管理</a></li>
 <li><a href="/control/newstopics/index">ニュース&amp;トピックの管理</a></li>
 <li><a href="/control/catalogs/index">カタログ情報の管理</a></li>
 <li><a href="/control/showcases/index">ショーケースの管理</a></li>
@@ -67,7 +78,7 @@
 </header>
 <div>
 <ul>
-<li><a href="/control/contacts">お問い合わせの一覧</a></li>
+<li><a href="/control/contacts/index">お問い合わせの一覧</a></li>
 <li><a href="/control/contacts/csvdownload">お問い合わせの一覧のCSVファイルダウンロード</a></li>
 </ul>
 </div>
@@ -78,7 +89,7 @@
 </header>
 <div>
 <ul>
-<li><a href="/control/posts">アンケートの一覧</a></li>
+<li><a href="/control/posts/index">アンケートの一覧</a></li>
 <li><a href="/control/posts_enquetes/index">アンケート回答結果の一覧</a></li>
 <li><a href="/control/posts_enquetes/csvdownload">アンケート回答結果のCSVファイルダウンロード</a></li>
 </ul>

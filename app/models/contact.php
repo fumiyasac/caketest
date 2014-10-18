@@ -55,7 +55,7 @@ class Contact extends AppModel{
         
     );
     
-    //メールアドレスの照合（確認で入力したものと同じか否か）
+    //バリデーション：メールアドレスの照合（確認で入力したものと同じか否か）
     public function mailAddressMatch($data){        
         //確認用ではないメールアドレスのデータを取得
         $p_mail = $this->data['Contact']['mail'];
@@ -69,18 +69,32 @@ class Contact extends AppModel{
         }
     }
     
-    //業種とその他ボックスの連携を行う
+    //バリデーション：業種とその他ボックスの連携を行う
     public function relatedEtc($data){
         //業種のテキスト欄を取得
         $p_purpose_etc = $this->data['Contact']['purpose_etc'];
         $p_purpose = array_shift($data);
         
         //その他か否かの判定
-        if($p_purpose==7 && !$p_purpose_etc){
+        if($p_purpose == 7 && !$p_purpose_etc){
             return false;
         }else{
             return true;
         }
     }
+    
+    //データを物理削除する
+    public function deleteDataById($id){
+        
+        //削除処理
+        $this->delete($id);
+
+        //全ての件数の取得
+        $allAmount = count($this->find('all'));
+		
+        //変更したステータスの取得
+        $response = array('id' => $id, 'allAmount' => $allAmount);
+		return $response;
+    }
+    
 }
-?>

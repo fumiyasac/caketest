@@ -22,7 +22,7 @@
 </ol>
     
 <div class="forms">
-<?php echo $this->Form->create('Banner', array('type' => 'file', 'action' => 'edit_complete')); ?>
+<?php echo $this->Form->create('Banner', array('type' => 'file', 'action' => 'edit_confirm')); ?>
 <table cellspacing="0" cellpadding="0" id="formAdmin">
 <tr>
 <th>タイトル&nbsp;<span class="requierd">*</span></th>
@@ -34,20 +34,17 @@
 <tr>
 <th>バナー画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<div>
-<?php if(!empty($alreadyAddedImgName)): ?>
-<img src="/img/banner/<?php echo h($alreadyAddedImgName['Banner']['banner_image']); ?>" width="300" height="80">
+<?php echo $this->Form->file('banner_image', array('class' => 'formArea')); ?>
+<div class="padt10">
+<?php if(!empty($error_announce)): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Banner']['banner_image'], 2, 80, 300, false); ?>
 <?php else: ?>
-<img src="/img/banner/<?php echo h($this->data['Banner']['banner_image']); ?>" width="300" height="80">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Banner']['banner_image'], 2, 80, 300, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>
 </div>
-<?php echo $this->Form->file('banner_image',array('class' => 'formArea')); ?>
 <?php echo $this->Form->error('banner_image'); ?>
-<?php if($sizeValidateFlag === 0 && !$this->Form->error('banner_image')): ?>
-<div class="error-message">画像サイズは横:300px, 縦:80pxにして下さい</div>
-<?php endif; ?>
 </td>
 </tr>
 <tr>

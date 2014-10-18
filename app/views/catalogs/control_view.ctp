@@ -35,11 +35,11 @@ URL：<a href="/catalogs/<?php echo h($data['Catalog']['template']); ?>/" target
 <th>サムネイル画像</th>
 <td>
 <div class="padt10">
-<img src="/img/catalog/resized_<?php echo h($data['Catalog']['catalog_image']); ?>" height="50" width="150">
-<br>
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Catalog']['catalog_image'], 5, 50, 150, true); ?>
+<br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Catalog']['id']); ?> 元画像" href="/img/catalog/<?php echo h($data['Catalog']['catalog_image']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Catalog']['id']); ?> リサイズ済み画像" href="/img/catalog/resized_<?php echo h($data['Catalog']['catalog_image']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Catalog']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Catalog']['catalog_image'], 5, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Catalog']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Catalog']['catalog_image'], 5, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>

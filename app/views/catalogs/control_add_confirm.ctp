@@ -43,11 +43,11 @@
 <tr>
 <th>サムネイル画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['catalog_image'] == 1): ?>    
-<img src="/img/tmp_catalog/<?php echo h($data['Catalog']['catalog_image']['name']); ?>" height="50" width="150">
+<?php if($saveTmpImageResult['catalog_image']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['catalog_image']['tmp_file_name'], 5, 100, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['catalog_image'] == 0): ?>
+<?php elseif($saveTmpImageResult['catalog_image']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロードに失敗しました</span>
 <?php endif; ?>
 </td>

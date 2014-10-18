@@ -44,14 +44,14 @@
 <tr>
 <th>サムネイル画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['catalog_image'] == 1): ?>    
-<img src="/img/tmp_catalog/<?php echo h($data['Catalog']['catalog_image']['name']); ?>" height="50" width="150">
+<?php if($saveTmpImageResult['catalog_image']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($data['Catalog']['catalog_image']['name'], 5, 50, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['catalog_image'] == 0): ?>
+<?php elseif($saveTmpImageResult['catalog_image']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロード失敗！</span>
-<?php elseif($saveTmpImageResult['catalog_image'] == 2): ?>
-<img src="/img/catalog/<?php echo h($alreadyAddedImgName['Catalog']['catalog_image']); ?>" height="50" width="150">
+<?php elseif($saveTmpImageResult['catalog_image']['result_code'] == UPLOAD_NO_DATA): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Catalog']['catalog_image'], 5, 50, 150, false); ?>
 <br>
 <span>画像変更なし</span>
 <?php endif; ?>

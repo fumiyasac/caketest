@@ -31,11 +31,11 @@
 <tr>
 <th>画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['newstopic_image'] == 1): ?>    
-<img src="/img/tmp_newstopic/<?php echo h($data['Newstopic']['newstopic_image']['name']); ?>" height="50" width="150">
+<?php if($saveTmpImageResult['newstopic_image']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['newstopic_image']['tmp_file_name'], 4, 50, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['newstopic_image'] == 0): ?>
+<?php elseif($saveTmpImageResult['newstopic_image']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロードに失敗しました</span>
 <?php endif; ?>
 </td>

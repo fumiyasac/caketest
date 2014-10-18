@@ -1,4 +1,12 @@
 <?php
+/**
+ *
+ * PostsEnquetesコントローラークラス
+ * Date:    2014/10/18
+ * Created: Fumiya Sakai
+ *
+ */
+
 class PostsEnquetesController extends AppController{
     
     //メンバ変数の設定
@@ -38,6 +46,9 @@ class PostsEnquetesController extends AppController{
         'order' => 'PostsEnquete.id DESC',
     );
     
+    //URL遷移先のページ
+    private $uri_control_index = '/control/posts_enquetes/index';
+	    
     //認証関連の設定
     public function beforeFilter() {
        parent::beforeFilter();
@@ -80,40 +91,37 @@ class PostsEnquetesController extends AppController{
         
         //URLの直アクセスの禁止  
         if($this->RequestHandler->isGet()){
-            $this->redirect(array('action' => 'control_index'));
+            $this->redirect($this->uri_control_index);
         }
         
         //Ajaxリクエスト時のみ削除を行う
         if($this->RequestHandler->isAjax()){
-            if($this->PostsEnquete->delete($id)){
-                $this->autoRender = false;
-                $this->autoLayout = false;
-                //全ての件数の取得
-                $allAmount = $this->PostsEnquete->find('count');
-                $response = array('id' => $id, 'allAmount' => $allAmount);                
-                $this->header('Content-type: application/json');
-                //debugKitのAjax対策
-                Configure::write('debug', 0);
-                echo json_encode($response);
-                exit();
-            }
+            
+            //レイアウトを使用しない
+            $this->autoRender = false;
+            $this->autoLayout = false;
+
+			//レスポンスを出力する
+			$response = $this->PostsEnquete->deleteDataById($id);
+            $this->header('Content-type: application/json');
+            
+            //debugKitのAjax対策
+            Configure::write('debug', 0);
+            echo json_encode($response);
+            exit();
         }
-        $this->redirect(array('action' => 'control_index'));
+        $this->redirect($this->uri_control_index);
     }
     
     //CSVファイルのダウンロード（管理画面）
     public function control_csvdownload(){
         
-        Configure::write('debug', 0);
-        
         //レイアウトを使用しない
+        Configure::write('debug', 0);
         $this->layout = false;
         
-        //ファイル名
         $filename = 'アンケート回答結果の一覧'.date('Ymd');
-        
-        //表の1行目の作成
-        $headRow = array(
+        $headRow  = array(
             'ID',
             'アンケートID',
             'ユーザー名',
@@ -135,8 +143,6 @@ class PostsEnquetesController extends AppController{
             '登録日',
             '更新日',
         );
-        
-        //データを取得
         $contentsRows = $this->PostsEnquete->find('all');
         
         //変数を値へセット
@@ -144,4 +150,3 @@ class PostsEnquetesController extends AppController{
     }
     
 }
-?>

@@ -40,14 +40,14 @@
 <tr>
 <th>サムネイル画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['post_image'] == 1): ?>    
-<img src="/img/tmp_post/<?php echo h($data['Post']['post_image']['name']); ?>" height="50" width="150">
+<?php if($saveTmpImageResult['post_image']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($data['Post']['post_image']['name'], 6, 50, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['post_image'] == 0): ?>
+<?php elseif($saveTmpImageResult['post_image']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロード失敗！</span>
-<?php elseif($saveTmpImageResult['post_image'] == 2): ?>
-<img src="/img/post/<?php echo h($alreadyAddedImgName['Post']['post_image']); ?>" height="50" width="150">
+<?php elseif($saveTmpImageResult['post_image']['result_code'] == UPLOAD_NO_DATA): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Post']['post_image'], 6, 50, 150, false); ?>
 <br>
 <span>画像変更なし</span>
 <?php endif; ?>

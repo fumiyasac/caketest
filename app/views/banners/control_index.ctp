@@ -33,11 +33,11 @@
 <th>バナー情報</th>
 <td>
 <div class="padt10">
-<img src="/img/banner/<?php echo h($banner['Banner']['banner_image']); ?>" height="80" width="300">
+<?php echo $this->DisplayImage->displayControlThumbnail($banner['Banner']['banner_image'], 2, 80, 300, false); ?>
 <br>    
 <ul class="magl15">
 <li>URL：
-<?php if($banner['Banner']['blank_flag'] == 1): ?>
+<?php if($banner['Banner']['blank_flag'] == OUTER_SITE): ?>
 <?php $arr = array('target' => '_blank'); $context = '外部'; ?>
 <?php else: ?>
 <?php $arr = array(); $context = '内部'; ?>

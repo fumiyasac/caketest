@@ -1,12 +1,20 @@
 <?php
-Class BannersController extends AppController{
+/**
+ *
+ * Bannersコントローラークラス
+ * Date:    2014/10/16
+ * Created: Fumiya Sakai
+ *
+ */
+
+class BannersController extends AppController{
     
     //メンバ変数の設定
     public $name = 'Banners';
     public $uses = array('Banner');
     public $layout = 'common_format_blog';
     public $components = array('Session','RequestHandler');
-    public $helpers = array('Formhidden','Csv','Html','Dateform');
+    public $helpers = array('Formhidden','Csv','Html','Dateform','DisplayImage');
     
     //ページャーの設定
     public $paginate = array(
@@ -29,9 +37,11 @@ Class BannersController extends AppController{
         'order' => 'Banner.id DESC',
     );
     
-    //画像格納カラム名の配列
-    private $image_array = array("banner_image");
-    
+	//URL遷移先のページ
+    private $uri_control_index = '/control/banners/index';
+    private $uri_control_add   = '/control/banners/add';
+    private $uri_control_edit  = '/control/banners/edit';
+	    
     //認証関連の設定
     public function beforeFilter() {
        parent::beforeFilter();
@@ -47,14 +57,8 @@ Class BannersController extends AppController{
         
         //パンくずリストの設定
         $breadcrumb = array(
-            array(
-                'name' => '管理画面TOP',
-                'link' => false
-            ),
-            array(
-                'name' => '登録バナーの一覧',
-                'link' => false
-            ),
+            array('name' => '管理画面TOP','link' => false),
+            array('name' => '登録バナーの一覧','link' => false)
         );
         $this->set('breadcrumb',$breadcrumb);
         
@@ -75,61 +79,72 @@ Class BannersController extends AppController{
         
     }
     
-    //登録バナー表示ステータス変更（管理画面）
+    //公開ステータス変更（管理画面）
     public function control_change($id = null){
+        
         //URLの直アクセスの禁止  
         if($this->RequestHandler->isGet()){
-            $this->redirect(array('action' => 'control_index'));
+            $this->redirect($this->uri_control_index);
         }
         
         //Ajaxリクエスト時のみ公開ステータスの変更を行う
         if($this->RequestHandler->isAjax()){
             
-            $this->Banner->id = $id;
+            //レイアウトを使用しない
+            $this->autoRender = false;
+            $this->autoLayout = false;
             
-            //ステータスを変更する
-            if($this->Banner->field('flag') == 2){
-                $flag_id = 1;
-            } else if($this->Banner->field('flag') == 1) {
-                $flag_id = 2;
-            }
+			//レスポンスを取得する
+			$response = $this->Banner->changeFlagStatus($id);
+            $this->header('Content-type: application/json');
             
-            if($this->Banner->saveField('flag', $flag_id)){
-                $this->autoRender = false;
-                $this->autoLayout = false;
-                //変更したステータスの取得
-                $response = array('id' => $id, 'flagStatus' => Configure::read("FLAG_CONF.flag.{$flag_id}"));                
-                $this->header('Content-type: application/json');
-                //debugKitのAjax対策
-                Configure::write('debug', 0);
-                echo json_encode($response);
-                exit();
-            }
+            //debugKitのAjax対策
+            Configure::write('debug', 0);
+            echo json_encode($response);
+            exit();
         }
-        $this->redirect(array('action' => 'control_index'));
+        $this->redirect($this->uri_control_index);
     }
-    
-    //登録バナー追加（管理画面）
-    public function control_add(){
-        try {
+
+    //登録バナー削除（管理画面）
+    public function control_delete($id = null){
+        
+        //URLの直アクセスの禁止  
+        if($this->RequestHandler->isGet()){
+            $this->redirect($this->uri_control_index);
+        }
+        
+        //Ajaxリクエスト時のみ削除を行う
+        if($this->RequestHandler->isAjax()){
             
+            //レイアウトを使用しない
+            $this->autoRender = false;
+            $this->autoLayout = false;
+
+			//レスポンスを出力する
+			$response = $this->Banner->deleteImageAndDataById($id);
+            $this->header('Content-type: application/json');
+            
+            //debugKitのAjax対策
+            Configure::write('debug', 0);
+            echo json_encode($response);
+            exit();
+        }
+        $this->redirect($this->uri_control_index);
+    }
+	
+    //登録バナー記事追加（管理画面）
+    public function control_add(){
+    	
+        try {
+        	
             //パンくずリストの設定
             $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '登録バナーの一覧',
-                    'link' => array('controller' => 'banners', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => 'バナーの追加',
-                    'link' => false
-                ),
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '登録バナーの一覧','link' => $this->uri_control_index),
+                array('name' => '登録バナーの追加','link' => false)
             );
             $this->set('breadcrumb', $breadcrumb);
-            $this->set('sizeValidateFlag', 1);
             
             //トークンの生成
             $this->Session->write('token', String::uuid());
@@ -138,494 +153,283 @@ Class BannersController extends AppController{
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/control/banners/add');
+            $this->redirect($this->uri_control_add);
         }
     }
-
-    //登録バナー追加完了（管理画面）
-    public function control_add_complete(){
-
-       try{
-            
-            if(!empty($this->data) && $this->Session->check('token')){
+    
+    //登録バナー追加確認（管理画面）
+    public function control_add_confirm(){
+        
+        try{
+			
+        	if(!empty($this->data) && $this->Session->check('token')){
                 
                 //変数に値をセット
                 $this->Banner->set($this->data);
                 
-                //次の番号のIDを出力する
-                $banner_picture_id = $this->Banner->getNextAutoIncrement();
-
-                //画像を一時保存場所へアップロードする                    
-                $saveTmpImageResult = $this->loopAndGenerateImages(
-                    "Banner", 
-                    $this->image_array,
-                    $banner_picture_id,
-                    2
-                );
-                
-                //画像処理結果を出力する
-                $this->set('saveTmpImageResult', 
-                    $saveTmpImageResult
-                );
-                
-                //サイズバリデーションのフラグ（0:NG,1:OK,2:画像なし）
-                $sizeValidateFlag = false;
-                
-                //画像のアップロードが正しく成功したら、画像サイズチェックをする
-                if($saveTmpImageResult['banner_image'] === 1){
-                    
-                    $sizeValidateResult = $this->imagePixelCheck(
-                        "Banner",
-                        $this->image_array,
-                        2,
-                        array(300, 80),
-                        array(true, true)
-                    );
-                    
-                    if($sizeValidateResult['banner_image'] === 1){
-                        $sizeValidateFlag = 1;
-                    }else{
-                        $sizeValidateFlag = 0;
-                    }
-                    
-
-                //対象の画像がない場合、正しい画像がtmpフォルダにあるかを確認
-                }else if($saveTmpImageResult['banner_image'] === 2){
-                    
-                    //現在紐づいている画像ファイル名を取得する
-                    $r = $this->isTmpImageExistSingle("banner_image_".$banner_picture_id, 2);
-                    
-                    //tmp_bannerに正しい画像がある場合
-                    if($r !== ''){
-                        //すでに正しい画像がtmp_banner内にあるので画像バリデーションをキャンセル
-                        $this->disableValidate('Banner', $this->image_array);
-                        $this->data['Banner']['banner_image']['name'] = $r;
-                        $sizeValidateFlag = 1;
-                    } else {
-                        $sizeValidateFlag = 2;
-                    }
-                    
-                //アップロードミスの場合は何もしない
-                }else{    
-                    $sizeValidateFlag = 2;
-                }
-                
-                $this->set('sizeValidateFlag', 
-                    $sizeValidateFlag
-                );
-                
                 //バリデーションチェック
-                if($this->Banner->validates() && $sizeValidateFlag === 1){
+                if($this->Banner->validates()){
                     
-                    //フィールドへ格納する為の値を作成
-                    $this->imageFieldChange("Banner", $this->image_array);
+                    //画像を一時保存場所へアップロードする
+                    $saveTmpImageResult = $this->Banner->getSaveTmpImageResult();
+                    $this->set('saveTmpImageResult',$saveTmpImageResult); 
+                   
+                    //変数をセット
+                    $this->set('data', $this->data);
                     
-                    //バリデーションを無効にする
-                    $this->disableValidate("Banner", $this->image_array);
-                    
-                    //取得データをDBへ保存する
-                    if($this->Banner->save($this->data['Banner']) !== false){
-                        
-                        //画像の移動と切り取り
-                        $saveImageResult = $this->addImageReplaceOnly(
-                            "Banner", 
-                            array("banner_image"),
-                            2
-                        );
-                        
-                        //画像処理結果を出力する
-                        $this->set('saveImageResult', 
-                            $saveImageResult
-                        );
-                        
-                        //残った画像は削除
-                        $this->deleteTmpImageAllPattern("banner_image_".$banner_picture_id, 2);
-                        
-                        //パンくずリストの設定
-                        $breadcrumb = array(
-                            array(
-                                'name' => '管理画面TOP',
-                                'link' => false
-                            ),
-                            array(
-                                'name' => '登録バナーの一覧',
-                                'link' => array('controller' => 'banners', 'action' => 'control_index')
-                            ),
-                            array(
-                                'name' => 'バナーの追加完了',
-                                'link' => false
-                            ),
-                        );
-                        $this->set('breadcrumb', $breadcrumb);
-
-                        //ビューのレンダリング
-                        $this->render('control_add_complete');
-                        
-                    }
+		            //パンくずリストの設定
+		            $breadcrumb = array(
+		                array('name' => '管理画面TOP','link' => false),
+		                array('name' => '登録バナーの一覧','link' => $this->uri_control_index),
+		                array('name' => '登録バナー追加内容の確認','link' => false)
+		            );
+		            $this->set('breadcrumb', $breadcrumb);
+                                        
+                    //ビューのレンダリング
+                    $this->render('control_add_confirm');
                     
                 }else{
                     
-                    //フィールドへ格納する為の値を作成
-                    $this->imageFieldChange("Banner", $this->image_array);
-                    
-                    //正しい画像がアップされていない場合は、画像(ファイル)を削除
-                    if($sizeValidateFlag == 0){
-                        
-                        //新しくアップロードしたファイルを削除
-                        $this->deleteTmpImage('Banner', $this->image_array, 2);
-                        //tmp_banner内に残っている該当IDの画像を全て削除
-                        $this->deleteTmpImageAllPattern("banner_image_".$banner_picture_id, 2);
-                        //banner_imageフィールドを空にする
-                        $this->data['Banner']['banner_image'] = "";
-                        
-                    }
-                   
-                    //前のページのタイトルを追加
-                    $breadcrumb = array(
-                        array(
-                            'name' => '管理画面TOP',
-                            'link' => false
-                        ),
-                        array(
-                            'name' => '登録バナーの一覧',
-                            'link' => array('controller' => 'banners', 'action' => 'control_index')
-                        ),
-                        array(
-                            'name' => 'バナーの追加',
-                            'link' => false
-                        ),
-                    );
-                    $this->set('breadcrumb', $breadcrumb);
-                    $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
+		            //パンくずリストの設定
+		            $breadcrumb = array(
+		                array('name' => '管理画面TOP', 'link' => false),
+		                array('name' => '登録バナーの一覧', 'link' => $this->uri_control_index),
+		                array('name' => '登録バナーの追加', 'link' => false)
+		            );
+		            $this->set('breadcrumb', $breadcrumb);
+                    $this->set('error_announce', ERROR_ANNOUNCE_VALIDATE);
                     
                     //ビューのレンダリング
-                    $this->render('control_add');
-                    
+                    $this->render('control_add');                    
                 }
                 
             }else{
                 
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));
             }
+                
+        } catch (Exception $e){
             
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect($this->uri_control_add);
+        }        
+    }
+
+    //登録バナー記事追加完了（管理画面）
+    public function control_add_complete(){
+        
+        try{
+            
+            //パンくずリストの設定
+            $breadcrumb = array(
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '登録バナーの一覧','link' => $this->uri_control_index),
+                array('name' => '登録バナー追加完了','link' => false)
+            );
+            $this->set('breadcrumb', $breadcrumb);
+            
+            //アクセスのチェック
+            if(!empty($this->data) && $this->Session->check('token')){
+                  
+                //画像アップロード前の準備を行う
+                $this->data = $this->Banner->beforeUploadImageAdd($this->data);
+                
+                //取得データをDBへ保存する
+                if($this->Banner->save($this->data['Banner']) !== false){
+                    
+                    //画像の移動と切り取りを行い画像処理結果を出力する
+                    $saveImageResult = $this->Banner->getSaveImageResult($this->data, false);
+                    $this->set('saveImageResult', $saveImageResult);
+                    
+                    //ビューのレンダリング
+                    $this->render('control_add_complete');
+				}
+                
+            }else{
+                //データがないのにアクセスした場合、Exceptionを投げる
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));                                    
+            }
             
         } catch (Exception $e){
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/control/banners/add');
-            
+            $this->redirect($this->uri_control_add);
         }
-        
     }
 
-    //登録バナー編集（管理画面）
+    //登録バナー記事編集（管理画面）
     public function control_edit($id = null){
+    	
         try {
             
             //idがなければ一覧ページへリダイレクト
             if(!isset($id) && is_numeric($id)){
-                 $this->redirect('/control/banners');
+                 $this->redirect($this->uri_control_index);
             }
-            
-            //データを取得する
-            $this->Banner->id = $id;
-            $this->data = $this->Banner->read();
-            if($this->data === false){
-                $this->redirect('/control/banners');
-            }
-            
-            //残った画像は削除
-            $this->deleteTmpImageAllPattern("banner_image_".$id, 2);
             
             //パンくずリストの設定
             $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '登録バナーの一覧',
-                    'link' => array('controller' => 'banners', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => 'バナーの編集',
-                    'link' => false
-                ),
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '登録バナーの一覧','link' => $this->uri_control_index),
+                array('name' => '登録バナーの編集','link' => false),
             );
             $this->set('breadcrumb', $breadcrumb);
-            $this->set('sizeValidateFlag', null);
-            $this->set('alreadyAddedImgName', null);
             
             //トークンの生成
             $this->Session->write('token', String::uuid());
+            
+            //データを取得する
+            $this->data = $this->Banner->findByPrimaryKey($id);
+            if($this->data === false){
+                $this->redirect($this->uri_control_index);
+            }
+            
+            //一時画像ファイルの削除
+            $this->Banner->deleteTmpImageById($this->data);
             
         } catch (Exception $e) {
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/control/banners/');
+            $this->redirect($this->uri_control_edit.DS.$id);
         }
     }
 
-    //登録バナー編集完了（管理画面）
+    //登録バナー編集確認（管理画面）
+    public function control_edit_confirm($id = null){
+        
+        try{
+
+            //idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id) && $data['Banner']['id']){
+                 $this->redirect($this->uri_control_index);
+            }
+            
+            //既に登録されている元画像名を抽出
+            $alreadyAddedImgName = $this->Banner->getAlreadyImageName($id);
+            $this->set('alreadyAddedImgName', $alreadyAddedImgName);
+            
+            if(!empty($this->data) && $this->Session->check('token')){
+                
+                //一部バリデーションを無効にする
+                $this->Banner->disableImageValidationForEdit($this->data);
+                        
+                //変数に値をセット
+                $this->Banner->set($this->data);
+                
+                //バリデーションチェック
+                if($this->Banner->validates()){
+                    
+                    //画像を一時保存場所へアップロードする
+                    $saveTmpImageResult = $this->Banner->getSaveTmpImageResult();
+                    $this->set('saveTmpImageResult',$saveTmpImageResult); 
+                   
+                    //変数をセット
+                    $this->set('data', $this->data);
+					
+		            //パンくずリストの設定
+		            $breadcrumb = array(
+		                array('name' => '管理画面TOP','link' => false),
+		                array('name' => '登録バナーの一覧','link' => $this->uri_control_index),
+		                array('name' => '登録バナー編集内容の確認','link' => false)
+		            );
+		            $this->set('breadcrumb', $breadcrumb);
+					
+                    //ビューのレンダリング
+                    $this->render('control_edit_confirm');
+                    
+                }else{
+                    
+                    //前のページのタイトルを追加
+                    $breadcrumb = array(
+                        array('name' => '管理画面TOP','link' => false),
+                        array('name' => '登録バナーの一覧','link' => $this->uri_control_index),
+                        array('name' => '登録バナーの編集','link' => false),
+                    );
+                    $this->set('breadcrumb', $breadcrumb);
+                    $this->set('error_announce', ERROR_ANNOUNCE_VALIDATE);
+                    
+                    //ビューのレンダリング
+                    $this->render('control_edit');
+                }
+                
+            }else{
+                
+                //データがないのにアクセスした場合、Exceptionを投げる
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));
+            }
+            
+        } catch (Exception $e){
+            
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect($this->uri_control_edit.DS.$id);
+        }        
+    }
+
+    //登録バナー記事編集確認（管理画面）
     public function control_edit_complete($id = null){
         
         try{
             
             //idがなければ一覧ページへリダイレクト
             if(!isset($id) && is_numeric($id)){
-                 $this->redirect('/control/banners/');
+                 $this->redirect($this->uri_control_index);
             }
             
-            //既に登録されている元画像名を抽出
-            $alreadyAddedImgName = $this->Banner->find('first',
-                array(
-                    'conditions' => array('Banner.id' => $id),
-                    'fields' => array('Banner.banner_image'),
-                )
+            //パンくずリストの設定
+            $breadcrumb = array(
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '登録バナーの一覧','link' => $this->uri_control_index),
+                array('name' => '登録バナー編集完了','link' => false)
             );
-            $this->set('alreadyAddedImgName', $alreadyAddedImgName);
-             
+            $this->set('breadcrumb', $breadcrumb);
+            
+            //フィールドへ格納する為の値を作成
+            $alreadyAddedImgName = $this->Banner->getAlreadyImageName($id);
+            
+            //アクセスのチェック
             if(!empty($this->data) && $this->Session->check('token')){
                 
-                //一部バリデーションを無効にする
-                $this->disableValidateForEditConfirm("Banner", $this->image_array);
+                //画像アップロード前の準備を行う
+                $this->data = $this->Banner->beforeUploadImageEdit($this->data, $id, $alreadyAddedImgName);
                 
-                //変数に値をセット
-                $this->Banner->set($this->data);
+                //取得データをDBへ保存する
+                if($this->Banner->save($this->data['Banner']) !== false){
                     
-                //画像を一時保存場所へアップロードする                    
-                $saveTmpImageResult = $this->loopAndGenerateImages(
-                    "Banner", 
-                    $this->image_array,
-                    $id,
-                    2
-                );
-
-                //画像処理結果を出力する
-                $this->set('saveTmpImageResult', 
-                    $saveTmpImageResult
-                );
-
-                //サイズバリデーションのフラグ（0:NG,1:OK,2:画像なし）
-                $sizeValidateFlag = false;
-
-                //画像のアップロードが正しく成功したら、画像サイズチェックをする
-                if($saveTmpImageResult['banner_image'] === 1){
-
-                    $sizeValidateResult = $this->imagePixelCheck(
-                        "Banner",
-                        $this->image_array,
-                        2,
-                        array(300, 80),
-                        array(true, true)
-                    );
-
-                    if($sizeValidateResult['banner_image'] === 1){
-                        $sizeValidateFlag = 1;
-                    }else{
-                        $sizeValidateFlag = 0;
-                    }
-
-
-                //対象の画像がない場合、正しい画像がtmpフォルダにあるかを確認
-                }else if($saveTmpImageResult['banner_image'] === 2){
-
-                    //現在紐づいている画像ファイル名を取得する
-                    $r = $this->isImageExistSingle("banner_image_".$id, 2);
-
-                    //tmp_bannerに正しい画像がある場合
-                    if($r !== ''){
-                        //すでに正しい画像がtmp_banner内にあるので画像バリデーションをキャンセル
-                        $this->disableValidate('Banner', $this->image_array);
-                        $this->data['Banner']['banner_image']['name'] = $r;
-                        $sizeValidateFlag = 1;
-                    } else {
-                        $sizeValidateFlag = 2;
-                    }
-
-                //アップロードミスの場合は何もしない
-                }else{    
-                    $sizeValidateFlag = 2;
-                }
-                
-                $this->set('sizeValidateFlag', 
-                    $sizeValidateFlag
-                );
-                
-                //バリデーションチェック
-                if($this->Banner->validates() && $sizeValidateFlag === 1){
-                    
-                    //フィールドへ格納する為の値を作成                                        
-                    if(!empty($this->data['Banner']['banner_image']['name'])){
-                        $this->imageFieldChange("Banner", $this->image_array);
-                    }
-                    
-                    //バリデーションを無効にする
-                    $this->disableValidate("Banner", $this->image_array);
-                    
-                    //取得データをDBへ保存する
-                    if($this->Banner->save($this->data['Banner']) !== false){
-                        
-                        //現状でアップロードされている画像を削除
-                        if($saveTmpImageResult['banner_image'] === 1){
-                            $this->deleteImageAllPattern("banner_image_".$id, 2);
-                        }
-                        
-                        //画像の移動と切り取り
-                        $saveImageResult = $this->addImageReplaceOnly(
-                            "Banner", 
-                            array("banner_image"),
-                            2
-                        );
-
-                        //画像処理結果を出力する
-                        $this->set('saveImageResult', 
-                            $saveImageResult
-                        );
-
-                        //残った画像は削除
-                        if($sizeValidateFlag === 1){
-                            $this->deleteTmpImageAllPattern("banner_image_".$id, 2);
-                        }
-                        
-                        //パンくずリストの設定
-                        $breadcrumb = array(
-                            array(
-                                'name' => '管理画面TOP',
-                                'link' => false
-                            ),
-                            array(
-                                'name' => '登録バナーの一覧',
-                                'link' => array('controller' => 'banners', 'action' => 'control_index')
-                            ),
-                            array(
-                                'name' => 'バナーの編集完了',
-                                'link' => false
-                            ),
-                        );
-                        $this->set('breadcrumb', $breadcrumb);
-
-                        //ビューのレンダリング
-                        $this->render('control_edit_complete');
-                        
-                    }
-                    
-                }else{
-                    
-                    //フィールドへ格納する為の値を作成
-                    $this->imageFieldChange("Banner", $this->image_array);
-
-                    //新しくアップロードしたファイルを削除
-                    $this->deleteTmpImage('Banner', $this->image_array, 2);
-                    //tmp_banner内に残っている該当IDの画像を全て削除
-                    $this->deleteTmpImageAllPattern("banner_image_".$id, 2);
-                    //banner_imageフィールドを空にする
-                    $this->data['Banner']['banner_image'] = "";
-                   
-                    //前のページのタイトルを追加
-                    $breadcrumb = array(
-                        array(
-                            'name' => '管理画面TOP',
-                            'link' => false
-                        ),
-                        array(
-                            'name' => '登録バナーの一覧',
-                            'link' => array('controller' => 'banners', 'action' => 'control_index')
-                        ),
-                        array(
-                            'name' => 'バナーの編集',
-                            'link' => false
-                        ),
-                    );
-                    $this->set('breadcrumb', $breadcrumb);
-                    $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
+                    //画像の移動と切り取りを行い画像処理結果を出力する
+                    $saveImageResult = $this->Banner->getSaveImageResult($this->data, false);
+                    $this->set('saveImageResult', $saveImageResult);
                     
                     //ビューのレンダリング
-                    $this->render('control_edit');
-                    
-                }
+                    $this->render('control_edit_complete');
+               }
                 
             }else{
-                
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));                                    
             }
             
-            
-        }catch (Exception $e){
+        } catch (Exception $e){
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect("/control/banners/edit/{$id}");
+            $this->redirect($this->uri_control_edit.DS.$id);
         }
-        
-    }
-
-    //登録バナー削除（管理画面）
-    public function control_delete($id = null){
-        //URLの直アクセスの禁止  
-        if($this->RequestHandler->isGet()){
-            $this->redirect(array('action' => 'control_index'));
-        }
-        
-        //Ajaxリクエスト時のみ削除を行う
-        if($this->RequestHandler->isAjax()){
-            
-            //既に登録されている元画像名を抽出
-            $alreadyAddedImgName = $this->Banner->find('first',
-                array(
-                    'conditions' => array('Banner.id' => $id),
-                    'fields' => array('Banner.banner_image'),
-                )
-            );
-            
-            //削除処理
-            if($this->Banner->delete($id)){
-                $this->autoRender = false;
-                $this->autoLayout = false;
-                
-                //画像ファイルの削除
-                $this->deleteImage("Banner", $alreadyAddedImgName, 2);
-                
-                //全ての件数の取得
-                $allAmount = $this->Banner->find('count');
-                $response = array('id' => $id, 'allAmount' => $allAmount);                
-                $this->header('Content-type: application/json');
-                //debugKitのAjax対策
-                Configure::write('debug', 0);
-                echo json_encode($response);
-                exit();
-            }
-        }
-        $this->redirect(array('action' => 'control_index'));
     }
     
     //CSVファイルのダウンロード（管理画面）
     public function control_csvdownload(){
-        Configure::write('debug', 0);
         
         //レイアウトを使用しない
+        Configure::write('debug', 0);
         $this->layout = false;
         
-        //ファイル名
-        $filename = '登録バナーの一覧'.date('Ymd');
-        
-        //表の1行目の作成
-        $headRow = array(
-            'ID',
-            'タイトル',
-            '本文',
-            'バナー画像',
-            'リンクURL',
-            'リンクの種類',
-            '公開日',
-            '公開フラグ',
-        );
-        
-        //データを取得
+        $filename     = '登録バナーの一覧'.date('Ymd');
+        $headRow      = array('ID','タイトル','本文','バナー画像','リンクURL','リンクの種類','公開日','公開フラグ');        
         $contentsRows = $this->Banner->find('all');
         
         //変数を値へセット
@@ -634,10 +438,11 @@ Class BannersController extends AppController{
 
     //登録バナー（エレメント出力のみ）
     public function index(){
-        $banners = $this->paginate('Banner', array('Banner.flag' => 1));
+    	$condition = array('Banner.flag' => COMMON_PUBLISHED);
+        $banners = $this->paginate('Banner', $condition);
         if(isset($this->params['requested'])){
             return $banners;
         }
     }
+    
 }
-?>

@@ -28,11 +28,11 @@
 <th>特集記事メイン画像</th>
 <td>
 <div class="padt10">
-<img src="/img/special/resized_<?php echo h($this->data['Special']['image_main']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Special']['image_main'], 1, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="/img/special/<?php echo h($this->data['Special']['image_main']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="/img/special/resized_<?php echo h($this->data['Special']['image_main']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_main'], 1, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_main'], 1, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>
@@ -50,11 +50,11 @@
 <th>画像(サブ1)</th>
 <td>
 <div class="padt10">
-<img src="/img/special/resized_<?php echo h($this->data['Special']['image_sub1']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Special']['image_sub1'], 1, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="/img/special/<?php echo h($this->data['Special']['image_sub1']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="/img/special/resized_<?php echo h($this->data['Special']['image_sub1']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_sub1'], 1, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_sub1'], 1, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>
@@ -72,11 +72,11 @@
 <th>画像(サブ2)</th>
 <td>
 <div class="padt10">
-<img src="/img/special/resized_<?php echo h($this->data['Special']['image_sub2']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Special']['image_sub2'], 1, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="/img/special/<?php echo h($this->data['Special']['image_sub2']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="/img/special/resized_<?php echo h($this->data['Special']['image_sub2']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_sub2'], 1, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_sub2'], 1, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>
@@ -94,11 +94,11 @@
 <th>画像(サブ3)</th>
 <td>
 <div class="padt10">
-<img src="/img/special/resized_<?php echo h($this->data['Special']['image_sub3']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayPageThumbnail($this->data['Special']['image_sub3'], 1, 100, 150, true); ?>
 <br>    
 <ul class="magl15">
-<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="/img/special/<?php echo h($this->data['Special']['image_sub3']); ?>">元画像</a></li>
-<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="/img/special/resized_<?php echo h($this->data['Special']['image_sub3']); ?>">リサイズ済み画像</a></li>
+<li><a class="photoView1" title="ID:<?php echo h($data['Special']['id']); ?> 元画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_sub3'], 1, false); ?>">元画像</a></li>
+<li><a class="photoView2" title="ID:<?php echo h($data['Special']['id']); ?> リサイズ済み画像" href="<?php echo $this->DisplayImage->putThumbnailPath($this->data['Special']['image_sub3'], 1, true); ?>">リサイズ済み画像</a></li>
 </ul>
 </div>
 </td>

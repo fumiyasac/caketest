@@ -1,12 +1,20 @@
 <?php
+/**
+ *
+ * Specialsコントローラークラス
+ * Date:    2014/10/16
+ * Created: Fumiya Sakai
+ *
+ */
+
 class SpecialsController extends AppController{
     
     //メンバ変数の設定
     public $name = 'Specials';
-    public $uses = array('Special','Member');
+    public $uses = array('Special');
     public $layout = 'common_format_blog';
     public $components = array('Auth','Session','RequestHandler');
-    public $helpers = array('Formhidden','Csv','Html','Dateform');
+    public $helpers = array('Formhidden','Csv','Html','Dateform','DisplayImage');
     
     public $paginate = array(
         'page' => 1,
@@ -37,8 +45,11 @@ class SpecialsController extends AppController{
         'order' => 'Special.id DESC',
     );
     
-    //画像格納カラム名の配列
-    private $image_array = array("image_main", "image_sub1", "image_sub2", "image_sub3");
+    //URL遷移先のページ
+    private $uri_index         = '/specials/index';
+    private $uri_control_index = '/control/specials/index';
+    private $uri_control_add   = '/control/specials/add';
+    private $uri_control_edit  = '/control/specials/edit';
     
     //認証関連の設定
     public function beforeFilter() {
@@ -55,14 +66,8 @@ class SpecialsController extends AppController{
         
         //パンくずリストの設定
         $breadcrumb = array(
-            array(
-                'name' => '管理画面TOP',
-                'link' => false
-            ),
-            array(
-                'name' => '特集記事の一覧',
-                'link' => false
-            ),
+            array('name' => '管理画面TOP','link' => false),
+            array('name' => '特集記事の一覧','link' => false)
         );
         $this->set('breadcrumb',$breadcrumb);
         
@@ -87,78 +92,86 @@ class SpecialsController extends AppController{
         
         //URLの直アクセスの禁止  
         if($this->RequestHandler->isGet()){
-            $this->redirect(array('action' => 'control_index'));
+            $this->redirect($this->uri_control_index);
         }
         
         //Ajaxリクエスト時のみ公開ステータスの変更を行う
         if($this->RequestHandler->isAjax()){
             
-            $this->Special->id = $id;
+            //レイアウトを使用しない
+            $this->autoRender = false;
+            $this->autoLayout = false;
             
-            //ステータスを変更する
-            if($this->Special->field('flag') == 2){
-                $flag_id = 1;
-            } else if($this->Special->field('flag') == 1) {
-                $flag_id = 2;
-            }
+			//レスポンスを取得する
+			$response = $this->Special->changeFlagStatus($id);
+            $this->header('Content-type: application/json');
             
-            if($this->Special->saveField('flag', $flag_id)){
-                $this->autoRender = false;
-                $this->autoLayout = false;
-                //変更したステータスの取得
-                $response = array('id' => $id, 'flagStatus' => Configure::read("FLAG_CONF.flag.{$flag_id}"));                
-                $this->header('Content-type: application/json');
-                //debugKitのAjax対策
-                Configure::write('debug', 0);
-                echo json_encode($response);
-                exit();
-            }
+            //debugKitのAjax対策
+            Configure::write('debug', 0);
+            echo json_encode($response);
+            exit();
         }
-        $this->redirect(array('action' => 'control_index'));
+        $this->redirect($this->uri_control_index);
+    }
+
+    //特集記事削除（管理画面）
+    public function control_delete($id = null){
+        
+        //URLの直アクセスの禁止  
+        if($this->RequestHandler->isGet()){
+            $this->redirect($this->uri_control_index);
+        }
+        
+        //Ajaxリクエスト時のみ削除を行う
+        if($this->RequestHandler->isAjax()){
+            
+            //レイアウトを使用しない
+            $this->autoRender = false;
+            $this->autoLayout = false;
+
+			//レスポンスを出力する
+			$response = $this->Special->deleteImageAndDataById($id);
+            $this->header('Content-type: application/json');
+            
+            //debugKitのAjax対策
+            Configure::write('debug', 0);
+            echo json_encode($response);
+            exit();
+        }
+        $this->redirect($this->uri_control_index);
     }
 
     //特集閲覧（管理画面）
     public function control_view($id = null){
+    	
         try {
             
             //idがなければ一覧ページへリダイレクト
             if(!isset($id) && is_numeric($id)){
-                 $this->redirect('/control/specials');
+                 $this->redirect($this->uri_control_index);
             }
             
-            //データを取得する
-            $this->Special->id = $id;
-            $this->data = $this->Special->read();
+            $this->data = $this->Special->findByPrimaryKey($id);
             if($this->data === false){
-                $this->redirect('/control/specials');
-            }else{
-                //変数をセット
-                $this->set('data', $this->data);
+                $this->redirect($this->uri_control_index);
             }
             
             //パンくずリストの設定
             $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '特集記事の一覧',
-                    'link' => array('controller' => 'specials', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => '特集記事（'.$this->data['Special']['title'].'）',
-                    'link' => false
-                ),
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+                array('name' => '特集記事（'.$this->data['Special']['title'].'）','link' => false)
             );
             $this->set('breadcrumb', $breadcrumb);
             
+            //表示データを取得
+            $this->set('data', $this->data);
             
         } catch (Exception $e) {
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/control/specials/');
+            $this->redirect($this->uri_control_index);
         }
     }    
     
@@ -169,18 +182,9 @@ class SpecialsController extends AppController{
             
             //パンくずリストの設定
             $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '特集記事の一覧',
-                    'link' => array('controller' => 'specials', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => '特集記事の追加',
-                    'link' => false
-                ),
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+                array('name' => '特集記事の追加','link' => false)
             );
             $this->set('breadcrumb', $breadcrumb);
             
@@ -191,7 +195,7 @@ class SpecialsController extends AppController{
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/control/specials/add');
+            $this->redirect($this->uri_control_add);
         }
     }
     
@@ -199,23 +203,6 @@ class SpecialsController extends AppController{
     public function control_add_confirm(){
         
         try{
-           
-            //パンくずリストの設定
-            $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '特集記事の一覧',
-                    'link' => array('controller' => 'specials', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => '特集記事追加内容の確認',
-                    'link' => false
-                ),
-            );
-            $this->set('breadcrumb', $breadcrumb);
             
             if(!empty($this->data) && $this->Session->check('token')){
                 
@@ -225,25 +212,21 @@ class SpecialsController extends AppController{
                 //バリデーションチェック
                 if($this->Special->validates()){
                     
-                    //次の番号のIDを出力する
-                    $special_picture_id = $this->Special->getNextAutoIncrement();
-                    
-                    //画像を一時保存場所へアップロードする                    
-                    $saveTmpImageResult = $this->loopAndGenerateImages(
-                        "Special", 
-                        $this->image_array,
-                        $special_picture_id,
-                        1
-                    );
-                    
-                    //画像処理結果を出力する
-                    $this->set('saveTmpImageResult', 
-                        $saveTmpImageResult
-                    );
+                    //画像を一時保存場所へアップロードする
+                    $saveTmpImageResult = $this->Special->getSaveTmpImageResult();
+                    $this->set('saveTmpImageResult',$saveTmpImageResult); 
                    
                     //変数をセット
                     $this->set('data', $this->data);
-                                        
+
+		            //パンくずリストの設定
+		            $breadcrumb = array(
+		                array('name' => '管理画面TOP','link' => false),
+		                array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+		                array('name' => '特集記事追加内容の確認','link' => false)
+		            );
+		            $this->set('breadcrumb', $breadcrumb);
+
                     //ビューのレンダリング
                     $this->render('control_add_confirm');
                     
@@ -251,42 +234,29 @@ class SpecialsController extends AppController{
                     
                     //前のページのタイトルを追加
                     $breadcrumb = array(
-                        array(
-                            'name' => '管理画面TOP',
-                            'link' => false
-                        ),
-                        array(
-                            'name' => '特集記事の一覧',
-                            'link' => array('controller' => 'specials', 'action' => 'control_index')
-                        ),
-                        array(
-                            'name' => '特集記事の追加',
-                            'link' => false
-                        ),
+                        array('name' => '管理画面TOP','link' => false),
+                        array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+                        array('name' => '特集記事の追加','link' => false)
                     );
                     $this->set('breadcrumb', $breadcrumb);
-                    $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
+                    $this->set('error_announce', ERROR_ANNOUNCE_VALIDATE);
                     
                     //ビューのレンダリング
                     $this->render('control_add');
-                    
                 }
                 
             }else{
                 
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));
             }
-            
             
         } catch (Exception $e){
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/control/specials/add');
-            
+            $this->redirect($this->uri_control_add);
         }        
-        
     }
 
     //特集記事追加完了（管理画面）
@@ -296,53 +266,24 @@ class SpecialsController extends AppController{
             
             //パンくずリストの設定
             $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '特集記事の一覧',
-                    'link' => array('controller' => 'specials', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => '特集記事追加完了',
-                    'link' => false
-                ),
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+                array('name' => '特集記事追加完了','link' => false)
             );
             $this->set('breadcrumb', $breadcrumb);
             
             //アクセスのチェック
             if(!empty($this->data) && $this->Session->check('token')){
-                  
-                //一部バリデーションを無効にする
-                $this->disableValidate("Special", $this->image_array);
-                
-                //フィールドへ格納する為の値を作成
-                $this->imageFieldChange("Special", $this->image_array);
+
+                //画像アップロード前の準備を行う
+                $this->data = $this->Special->beforeUploadImageAdd($this->data);
                 
                 //取得データをDBへ保存する
                 if($this->Special->save($this->data['Special']) !== false){
                     
-                    //画像の移動と切り取り(メイン画像)
-                    $saveImageResultMain = $this->addImageReplaceAndCrop(
-                        "Special", 
-                        array("image_main"), 
-                        array(600, 400),
-                        1
-                    );
-                    
-                    //画像の移動と切り取り(サブ画像)
-                    $saveImageResultSub = $this->addImageReplaceAndCrop(
-                        "Special", 
-                        array("image_sub1","image_sub2","image_sub3"), 
-                        array(300, 200),
-                        1
-                    );
-                    
-                    //画像処理結果を出力する
-                    $this->set('saveImageResult', 
-                        array_merge($saveImageResultMain + $saveImageResultSub)
-                    );
+                    //画像の移動と切り取りを行い画像処理結果を出力する
+                    $saveImageResult = $this->Special->getSaveImageResult($this->data, false);
+                    $this->set('saveImageResult', $saveImageResult);
                     
                     //ビューのレンダリング
                     $this->render('control_add_complete');
@@ -350,42 +291,32 @@ class SpecialsController extends AppController{
                 
             }else{
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));                                    
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));                                    
             }
-            
             
         } catch (Exception $e){
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/control/specials/add');
+            $this->redirect($this->uri_control_add);
         }
-        
     }
 
     //特集記事編集（管理画面）
     public function control_edit($id = null){
+    	
         try {
             
             //idがなければ一覧ページへリダイレクト
             if(!isset($id) && is_numeric($id)){
-                 $this->redirect('/control/specials');
+                 $this->redirect($this->uri_control_index);
             }
             
             //パンくずリストの設定
             $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '特集記事の一覧',
-                    'link' => array('controller' => 'specials', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => '特集記事の編集',
-                    'link' => false
-                ),
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+                array('name' => '特集記事の編集','link' => false)
             );
             $this->set('breadcrumb', $breadcrumb);
             
@@ -393,20 +324,19 @@ class SpecialsController extends AppController{
             $this->Session->write('token', String::uuid());
             
             //データを取得する
-            $this->Special->id = $id;
-            $this->data = $this->Special->read();
+            $this->data = $this->Special->findByPrimaryKey($id);
             if($this->data === false){
-                $this->redirect('/control/specials');
+                $this->redirect($this->uri_control_index);
             }
             
             //一時画像ファイルの削除
-            $this->deleteTmpImage("Special", $this->image_array, 1);
+            $this->Special->deleteTmpImageById($this->data);
             
         } catch (Exception $e) {
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect("/control/specials/edit/{$id}");
+            $this->redirect($this->uri_control_edit.DS.$id);
         }    
     }
 
@@ -417,39 +347,17 @@ class SpecialsController extends AppController{
 
             //idがなければ一覧ページへリダイレクト
             if(!isset($id) && is_numeric($id) && $data['Special']['id']){
-                 $this->redirect('/control/specials');
+                 $this->redirect($this->uri_control_index);
             }
             
-            //パンくずリストの設定
-            $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '特集記事の一覧',
-                    'link' => array('controller' => 'specials', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => '特集記事編集内容の確認',
-                    'link' => false
-                ),
-            );
-            $this->set('breadcrumb', $breadcrumb);
-            
             //既に登録されている元画像名を抽出
-            $alreadyAddedImgName = $this->Special->find('first',
-                array(
-                    'conditions' => array('Special.id' => $id),
-                    'fields' => array('Special.image_main','Special.image_sub1','Special.image_sub2','Special.image_sub3'),
-                )
-            );
+            $alreadyAddedImgName = $this->Special->getAlreadyImageName($id);
             $this->set('alreadyAddedImgName', $alreadyAddedImgName);
             
             if(!empty($this->data) && $this->Session->check('token')){
                 
                 //一部バリデーションを無効にする
-                $this->disableValidateForEditConfirm("Special", $this->image_array);
+                $this->Special->disableImageValidation();
                 
                 //変数に値をセット
                 $this->Special->set($this->data);
@@ -458,21 +366,20 @@ class SpecialsController extends AppController{
                 if($this->Special->validates()){
                     
                     //画像を一時保存場所へアップロードする                    
-                    $saveTmpImageResult = $this->loopAndGenerateImages(
-                        "Special", 
-                        $this->image_array,
-                        $id,
-                        1
-                    );
-                    
-                    //画像処理結果を出力する
-                    $this->set('saveTmpImageResult', 
-                        $saveTmpImageResult
-                    );
+                    $saveTmpImageResult = $this->Special->getSaveTmpImageResult();
+                    $this->set('saveTmpImageResult',$saveTmpImageResult);
                    
                     //変数をセット
                     $this->set('data', $this->data);
-                                        
+                    
+                    //パンくずリストの設定
+		            $breadcrumb = array(
+		                array('name' => '管理画面TOP','link' => false),
+		                array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+		                array('name' => '特集記事編集内容の確認','link' => false)
+		            );
+		            $this->set('breadcrumb', $breadcrumb);
+                                   
                     //ビューのレンダリング
                     $this->render('control_edit_confirm');
                     
@@ -480,40 +387,28 @@ class SpecialsController extends AppController{
                     
                     //前のページのタイトルを追加
                     $breadcrumb = array(
-                        array(
-                            'name' => '管理画面TOP',
-                            'link' => false
-                        ),
-                        array(
-                            'name' => '特集記事の一覧',
-                            'link' => array('controller' => 'specials', 'action' => 'control_index')
-                        ),
-                        array(
-                            'name' => '特集記事の編集',
-                            'link' => false
-                        ),
+                        array('name' => '管理画面TOP','link' => false),
+                        array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+                        array('name' => '特集記事の編集','link' => false)
                     );
                     $this->set('breadcrumb', $breadcrumb);
-                    $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
+                    $this->set('error_announce', ERROR_ANNOUNCE_VALIDATE);
                     
                     //ビューのレンダリング
                     $this->render('control_edit');
-                    
                 }
                 
             }else{
                 
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));
             }
-            
             
         } catch (Exception $e){
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect("/control/specials/edit/{$id}");
-            
+            $this->redirect($this->uri_control_edit.DS.$id);
         }        
     }
 
@@ -524,65 +419,32 @@ class SpecialsController extends AppController{
             
             //idがなければ一覧ページへリダイレクト
             if(!isset($id) && is_numeric($id)){
-                 $this->redirect('/control/specials');
+                 $this->redirect($this->uri_control_index);
             }
             
             //パンくずリストの設定
             $breadcrumb = array(
-                array(
-                    'name' => '管理画面TOP',
-                    'link' => false
-                ),
-                array(
-                    'name' => '特集記事の一覧',
-                    'link' => array('controller' => 'specials', 'action' => 'control_index')
-                ),
-                array(
-                    'name' => '特集記事編集完了',
-                    'link' => false
-                ),
+                array('name' => '管理画面TOP','link' => false),
+                array('name' => '特集記事の一覧','link' => $this->uri_control_index),
+                array('name' => '特集記事編集完了','link' => false)
             );
             $this->set('breadcrumb', $breadcrumb);
             
             //フィールドへ格納する為の値を作成
-            $alreadyAddedImgName = $this->Special->find('first',
-                array(
-                    'conditions' => array('Special.id' => $id),
-                    'fields' => array('Special.image_main','Special.image_sub1','Special.image_sub2','Special.image_sub3'),
-                )
-            );
+            $alreadyAddedImgName = $this->Special->getAlreadyImageName($id);
             
             //アクセスのチェック
             if(!empty($this->data) && $this->Session->check('token')){
-                  
-                //一部バリデーションを無効にする
-                $this->disableValidate("Special", $this->image_array);
-                
-                $this->imageFieldChangeForEditComplete("Special", $alreadyAddedImgName);
+            	
+                //画像アップロード前の準備を行う
+                $this->data = $this->Special->beforeUploadImageEdit($this->data, $id, $alreadyAddedImgName);
                 
                 //取得データをDBへ保存する
                 if($this->Special->save($this->data['Special']) !== false){
                     
-                    //画像の移動と切り取り(メイン画像)
-                    $saveImageResultMain = $this->addImageReplaceAndCrop(
-                        "Special", 
-                        array("image_main"), 
-                        array(600, 400),
-                        1
-                    );
-                    
-                    //画像の移動と切り取り(サブ画像)
-                    $saveImageResultSub = $this->addImageReplaceAndCrop(
-                        "Special", 
-                        array("image_sub1","image_sub2","image_sub3"), 
-                        array(300, 200),
-                        1
-                    );
-                    
-                    //画像処理結果を出力する
-                    $this->set('saveImageResult', 
-                        array_merge($saveImageResultMain + $saveImageResultSub)
-                    );
+                    //画像の移動と切り取りを行い画像処理結果を出力する
+                    $saveImageResult = $this->Special->getSaveImageResult($this->data, false);
+                    $this->set('saveImageResult', $saveImageResult);
                     
                     //ビューのレンダリング
                     $this->render('control_edit_complete');
@@ -590,71 +452,26 @@ class SpecialsController extends AppController{
                 
             }else{
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));                                    
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));                                    
             }
-            
             
         } catch (Exception $e){
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect("/control/specials/edit/{$id}");
+            $this->redirect($this->uri_control_edit.DS.$id);
         }
     }    
     
-    
-    //特集記事削除（管理画面）
-    public function control_delete($id = null){
-        
-        //URLの直アクセスの禁止  
-        if($this->RequestHandler->isGet()){
-            $this->redirect(array('action' => 'control_index'));
-        }
-        
-        //Ajaxリクエスト時のみ削除を行う
-        if($this->RequestHandler->isAjax()){
-            
-            //既に登録されている元画像名を抽出
-            $alreadyAddedImgName = $this->Special->find('first',
-                array(
-                    'conditions' => array('Special.id' => $id),
-                    'fields' => array('Special.image_main','Special.image_sub1','Special.image_sub2','Special.image_sub3'),
-                )
-            );
-            
-            //削除処理
-            if($this->Special->delete($id)){
-                $this->autoRender = false;
-                $this->autoLayout = false;
-                
-                //画像ファイルの削除
-                $this->deleteImage("Special", $alreadyAddedImgName, 1);
-                
-                //全ての件数の取得
-                $allAmount = $this->Special->find('count');
-                $response = array('id' => $id, 'allAmount' => $allAmount);                
-                $this->header('Content-type: application/json');
-                //debugKitのAjax対策
-                Configure::write('debug', 0);
-                echo json_encode($response);
-                exit();
-            }
-        }
-        $this->redirect(array('action' => 'control_index'));
-    }
-    
     //CSVファイルのダウンロード（管理画面）
     public function control_csvdownload(){
-        Configure::write('debug', 0);
         
         //レイアウトを使用しない
+        Configure::write('debug', 0);
         $this->layout = false;
         
-        //ファイル名
         $filename = '特集記事一覧'.date('Ymd');
-        
-        //表の1行目の作成
-        $headRow = array(
+        $headRow  = array(
             'ID',
             '特集記事タイトル',
             '特集記事キャッチコピー',
@@ -673,8 +490,6 @@ class SpecialsController extends AppController{
             '公開日',
             '公開フラグ',
         );
-        
-        //データを取得
         $contentsRows = $this->Special->find('all');
         
         //変数を値へセット
@@ -692,15 +507,16 @@ class SpecialsController extends AppController{
         );
         $this->set('breadcrumb', $breadcrumb);
         
+        $condition = array('Special.flag' => COMMON_PUBLISHED);
         if(isset($this->params['requested'])){
-            $specials = $this->paginate('Special', array('Special.flag' => 1));
+            $specials = $this->paginate('Special', $condition);
             return $specials;
         }else{
             //ページングのリミットを10にする
             $this->paginate['limit'] = 10;
         
             //specialsテーブルからデータを持ってくる
-            $specials = $this->paginate('Special', array('Special.flag' => 1));
+            $specials = $this->paginate('Special', $condition);
             $this->set('specials', $specials);
         }
         //ビューのレンダリング
@@ -714,21 +530,17 @@ class SpecialsController extends AppController{
             
             //idがなければ一覧ページへリダイレクト
             if(!isset($id) && is_numeric($id)){
-                 $this->redirect('/specials/');
+                 $this->redirect($this->uri_index);
             }
             
             //データを取得する
-            $this->data = $this->Special->find('first',
-                array(
-                    'conditions' => array('Special.id' => $id, 'Special.flag' => 1),
-                )
-            );
+            $this->data = $this->Special->getDetailDataById($id);
             if($this->data === false){
-                $this->redirect('/specials/');
-            }else{
-                //変数をセット
-                $this->set('data', $this->data);
+                $this->redirect($this->uri_index);
             }
+            
+            //変数をセット
+            $this->set('data', $this->data);
             
             //タイトルメッセージのセット
             $this->set('title_for_layout','特集記事（'.$this->data['Special']['title'].'）');
@@ -736,7 +548,7 @@ class SpecialsController extends AppController{
             //パンくずリストの設定 
             $breadcrumb = array(
                 array('name' => 'HOME', 'link' => '/'),
-                array('name' => '特集記事一覧', 'link' => array('controller' => 'specials', 'action' => 'index')),
+                array('name' => '特集記事一覧', 'link' => $this->uri_index),
                 array('name' => '特集記事（'.$this->data['Special']['title'].'）','link' => false),
             );
             $this->set('breadcrumb', $breadcrumb); 
@@ -744,10 +556,8 @@ class SpecialsController extends AppController{
         } catch (Exception $e) {
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect("/specials/");
+            $this->redirect($this->uri_index);
         }
-            
     }
     
 }
-?>

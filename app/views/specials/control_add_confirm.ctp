@@ -37,11 +37,11 @@
 <tr>
 <th>特集記事メイン画像&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['image_main'] == 1): ?>    
-<img src="/img/tmp_special/<?php echo h($data['Special']['image_main']['name']); ?>" height="100" width="150">
+<?php if($saveTmpImageResult['image_main']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['image_main']['tmp_file_name'], 1, 100, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['image_main'] == 0): ?>
+<?php elseif($saveTmpImageResult['image_main']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロードに失敗しました</span>
 <?php endif; ?>
 </td>
@@ -62,11 +62,11 @@
 <tr>
 <th>画像(サブ1)&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['image_sub1'] == 1): ?>    
-<img src="/img/tmp_special/<?php echo h($data['Special']['image_sub1']['name']); ?>" height="100" width="150">
+<?php if($saveTmpImageResult['image_sub1']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['image_sub1']['tmp_file_name'], 1, 100, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['image_sub1'] == 0): ?>
+<?php elseif($saveTmpImageResult['image_sub1']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロード失敗！</span>
 <?php endif; ?>
 </td>
@@ -87,11 +87,11 @@
 <tr>
 <th>画像(サブ2)&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['image_sub2'] == 1): ?>    
-<img src="/img/tmp_special/<?php echo h($data['Special']['image_sub2']['name']); ?>" height="100" width="150">
+<?php if($saveTmpImageResult['image_sub2']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['image_sub2']['tmp_file_name'], 1, 100, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['image_sub2'] == 0): ?>
+<?php elseif($saveTmpImageResult['image_sub2']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロード失敗！</span>
 <?php endif; ?>
 </td>
@@ -112,11 +112,11 @@
 <tr>
 <th>画像(サブ3)&nbsp;<span class="requierd">*</span></th>
 <td>
-<?php if($saveTmpImageResult['image_sub3'] == 1): ?>
-<img src="/img/tmp_special/<?php echo h($data['Special']['image_sub3']['name']); ?>" height="100" width="150">
+<?php if($saveTmpImageResult['image_sub3']['result_code'] == UPLOAD_SUCCESS): ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['image_sub3']['tmp_file_name'], 1, 100, 150, true); ?>
 <br>
 <span>画像アップロード成功！</span>
-<?php elseif($saveTmpImageResult['image_sub3'] == 0): ?>
+<?php elseif($saveTmpImageResult['image_sub3']['result_code'] == UPLOAD_FAILUER): ?>
 <span class="requierd">※画像アップロード失敗！</span>
 <?php endif; ?>
 </td>

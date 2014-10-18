@@ -52,9 +52,9 @@
 <?php echo $this->Form->file('catalog_image', array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/catalog/<?php echo h($alreadyAddedImgName['Catalog']['catalog_image']); ?>" height="45" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Catalog']['catalog_image'], 5, 50, 150, false); ?>
 <?php else: ?>
-<img src="/img/catalog/<?php echo h($this->data['Catalog']['catalog_image']); ?>" height="45" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Catalog']['catalog_image'], 5, 50, 150, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>

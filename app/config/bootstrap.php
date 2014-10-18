@@ -48,6 +48,33 @@
  * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
  *
  */
+ 
+//公開フラグ定数
+define('COMMON_PUBLISHED', 1); 
+define('ADMIN_ONLY',       2); 
+
+//公開フラグ定数
+define('OUTER_SITE', 1);
+define('INNER_SITE', 2); 
+
+//画像ライブラリ用定数
+define('UPLOAD_FAILUER', 0);
+define('UPLOAD_SUCCESS', 1);
+define('UPLOAD_NO_DATA', 2);
+
+//コンフィグ定数
+define('ERROR_ANNOUNCE_VALIDATE',       "入力内容に誤りがあります。もう一度入力内容を確認して下さい");
+define('ERROR_ANNOUNCE_ILLIGAL_ACCESS', "不正アクセスが行われた可能性があります");
+
+//お問い合わせ定数
+define('MAIN_SEND_SUCCESS_TITLE',     "お問い合わせの完了");
+define('MAIN_SEND_SUCCESS_STATEMENT', "お問い合わせが正常に完了しました。弊社より返信メールを送りました。この度はありがとうございました。");
+define('DB_INSERT_ONLY_TITLE',        "お問い合わせが正常に完了できませんでした");
+define('DB_INSERT_ONLY_STATEMENT',    "誠に申し訳ございませんが、再度フォームよりお問い合わせ事項を入力して頂きます様宜しくお願いします。");
+
+//アンケート定数
+define('ENQUETE_SUCCESS', "アンケート内容の送信が正常に完了しました。アンケートの回答履歴に関しましてはマイページからも閲覧ができます。<br>ご協力ありがとうございました。");
+
 Configure::write('MAIL_CONF', array(
     'admin' => array(
         'to' => 'just1factory@gmail.com',
@@ -113,6 +140,7 @@ Configure::write('UPLOAD_TMP_PATH_CONF', array(
         '5' => 'tmp_catalog',
         '6' => 'tmp_post',
         '7' => 'tmp_showcase',
+        '8' => 'tmp_members_topic',
     ),
 ));
 
@@ -125,6 +153,7 @@ Configure::write('UPLOAD_PATH_CONF', array(
         '5' => 'catalog',
         '6' => 'post',
         '7' => 'showcase',
+        '8' => 'members_topic',
    ),
 ));
 

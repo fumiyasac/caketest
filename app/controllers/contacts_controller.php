@@ -1,5 +1,5 @@
 <?php
-Class ContactsController extends AppController{
+class ContactsController extends AppController{
     
     //メンバ変数の設定
     public $name = 'Contacts';
@@ -32,6 +32,10 @@ Class ContactsController extends AppController{
         'limit' => 100,
         'order' => 'Contact.id DESC',
     );
+    
+    //URL遷移先のページ
+    private $uri_index         = '/contacts/index';
+    private $uri_control_index = '/control/contacts/index';
     
     //認証関連の設定
     public function beforeFilter() {
@@ -75,40 +79,37 @@ Class ContactsController extends AppController{
         
         //URLの直アクセスの禁止  
         if($this->RequestHandler->isGet()){
-            $this->redirect(array('action' => 'control_index'));
+            $this->redirect($this->uri_control_index);
         }
         
         //Ajaxリクエスト時のみ削除を行う
         if($this->RequestHandler->isAjax()){
-            if($this->Contact->delete($id)){
-                $this->autoRender = false;
-                $this->autoLayout = false;
-                //全ての件数の取得
-                $allAmount = $this->Contact->find('count');
-                $response = array('id' => $id, 'allAmount' => $allAmount);                
-                $this->header('Content-type: application/json');
-                //debugKitのAjax対策
-                Configure::write('debug', 0);
-                echo json_encode($response);
-                exit();
-            }
+            
+            //レイアウトを使用しない
+            $this->autoRender = false;
+            $this->autoLayout = false;
+
+			//レスポンスを出力する
+			$response = $this->Contact->deleteDataById($id);
+            $this->header('Content-type: application/json');
+            
+            //debugKitのAjax対策
+            Configure::write('debug', 0);
+            echo json_encode($response);
+            exit();
         }
-        $this->redirect(array('action' => 'control_index'));
+        $this->redirect($this->uri_control_index);
     }
     
     //CSVファイルのダウンロード（管理画面）
     public function control_csvdownload(){
         
-        Configure::write('debug', 0);
-        
         //レイアウトを使用しない
+        Configure::write('debug', 0);
         $this->layout = false;
         
-        //ファイル名
         $filename = 'お問い合わせ一覧'.date('Ymd');
-        
-        //表の1行目の作成
-        $headRow = array(
+        $headRow  = array(
             'ID',
             '名前',
             'フリガナ',
@@ -124,8 +125,6 @@ Class ContactsController extends AppController{
             '登録日',
             '更新日',
         );
-        
-        //データを取得
         $contentsRows = $this->Contact->find('all');
         
         //変数を値へセット
@@ -153,23 +152,14 @@ Class ContactsController extends AppController{
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/contacts');
+            $this->redirect($this->uri_index);
         }
-        
     }
     
     //フォーム確認画面
     public function confirm(){
         
         try{
-            
-            //タイトルメッセージのセット
-            $this->set('title_for_layout','お問い合わせ内容の確認');
-            $breadcrumb = array(
-                array('name' => 'HOME', 'link' => '/'),
-                array('name' => 'お問い合わせ内容の確認','link' => false),
-            );
-            $this->set('breadcrumb', $breadcrumb);
             
             if(!empty($this->data) && $this->Session->check('token')){
                 
@@ -180,6 +170,14 @@ Class ContactsController extends AppController{
                 if($this->Contact->validates()){
 
                     $this->set('data', $this->data);
+                    
+                    //タイトルメッセージのセット
+		            $this->set('title_for_layout','お問い合わせ内容の確認');
+		            $breadcrumb = array(
+		                array('name' => 'HOME', 'link' => '/'),
+		                array('name' => 'お問い合わせ内容の確認','link' => false),
+		            );
+		            $this->set('breadcrumb', $breadcrumb);
                     
                     //ビューのレンダリング
                     $this->render('confirm');
@@ -192,7 +190,7 @@ Class ContactsController extends AppController{
                         array('name' => 'お問い合わせ','link' => false),
                     );
                     $this->set('breadcrumb', $breadcrumb);
-                    $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
+                    $this->set('error_announce', ERROR_ANNOUNCE_VALIDATE);
                     
                     //ビューのレンダリング
                     $this->render('index');
@@ -200,16 +198,16 @@ Class ContactsController extends AppController{
                 
             }else{
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));
             }
             
         }catch(Exception $e){
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/contacts');
+            $this->redirect($this->uri_index);
         }
     }
-
+	
     //フォーム送信完了
     public function complete(){
         
@@ -236,8 +234,8 @@ Class ContactsController extends AppController{
                         $options = Set::merge($options, Configure::read('MAIL_CONF.admin'));
                         $this->_sendMail($options);
                         //OK（DB登録・メール処理ともに成功）
-                        $this->set('title_for_layout','お問い合わせの完了');
-                        $this->set('form_description','お問い合わせが正常に完了しました。弊社より返信メールを送りました。この度はありがとうございました。' );
+                        $this->set('title_for_layout', MAIN_SEND_SUCCESS_TITLE);
+                        $this->set('form_description', MAIN_SEND_SUCCESS_STATEMENT);
                         $this->set('complete_link',0);                                
 
                     }else{
@@ -245,8 +243,8 @@ Class ContactsController extends AppController{
                         $this->log('Cannot Send Administrator.');
                         $this->log($this->data);
                         
-                        $this->set('title_for_layout','お問い合わせが正常に完了できませんでした');
-                        $this->set('form_description','誠に申し訳ございませんが、再度フォームよりお問い合わせ事項を入力して頂きます様宜しくお願いします。' );
+                        $this->set('title_for_layout', DB_INSERT_ONLY_TITLE);
+                        $this->set('form_description', DB_INSERT_ONLY_STATEMENT);
                         $this->set('complete_link', 1);  
                     }
 
@@ -262,15 +260,14 @@ Class ContactsController extends AppController{
                 
             }else{
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));                                    
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));                                    
             }
             
         }catch(Exception $e){
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/contacts');
+            $this->redirect($this->uri_index);
         }
-        
     }
+    
 }
-?>

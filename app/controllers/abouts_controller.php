@@ -1,5 +1,13 @@
 <?php
-Class AboutsController extends AppController{
+/**
+ *
+ * Aboutsコントローラークラス
+ * Date:    2014/10/18
+ * Created: Fumiya Sakai
+ *
+ */
+
+class AboutsController extends AppController{
     
     //メンバ変数の設定
     public $name = 'Abouts';
@@ -7,6 +15,9 @@ Class AboutsController extends AppController{
     public $layout = 'common_format_blog';
     public $components = array();
     public $helpers = array();
+    
+    //URL遷移先のページ
+    private $uri_index = '/abouts/index';
     
     //このサイトに関して
     public function index(){
@@ -25,9 +36,8 @@ Class AboutsController extends AppController{
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/abouts');
+            $this->redirect($this->uri_index);
         }
-        
     }
+    
 }
-?>

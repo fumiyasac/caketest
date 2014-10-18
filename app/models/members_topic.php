@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Slideモデルクラス
+ * MembersTopicモデルクラス
  * Date:    2014/10/16
  * Created: Fumiya Sakai
  *
@@ -10,27 +10,29 @@
 //画像アップロードのライブラリインポート
 App::import('Lib','ImageUpload');
 
-class Slide extends AppModel{
+class MembersTopic extends AppModel{
     
     //モデル名
-    public $name = 'Slide';
+    public $name = 'MembersTopic';
     
-    //定数（ディレクトリ番号　デフォルト：3）    
-    const DIRECTORY_NUM = 3;
+    //定数（マイページ用取得件数　デフォルト：5）
+	const COUNT_MEMBER_TOPIC_NUM = 5;
+    
+    //定数（ディレクトリ番号　デフォルト：8）    
+    const DIRECTORY_NUM = 8;
     
     //ライブラリ
     private $ImageUpload;
     
     //画像格納カラム名の配列
-    private $image_array = array('slide_image');
+    private $image_array = array('member_topic_image');
     
-    //private変数（画像サイズ　デフォルト：横360px,縦250px）   
-    private $image_size = array(360,250);
+    //private変数（画像サイズ　デフォルト：横600px,縦300px）   
+    private $image_size = array(600,300);
     
     //バリデーション
     public $validate = array(
-    	
-        //スライドショー画像タイトルのバリデーション
+        //会員専用情報タイトルのバリデーション
         'title' => array(
             'notEmpty' => array(    
                 'rule' => 'notEmpty',
@@ -42,8 +44,39 @@ class Slide extends AppModel{
                 'message' => 'この項目は256文字以下で入力して下さい',
             ),
         ),
-        
-        //スライドショー画像本文のバリデーション
+
+        //会員専用情報キャッチコピーのバリデーション
+        'kcpy' => array(
+            'notEmpty' => array(    
+                'rule' => 'notEmpty',
+                'message' => 'この項目は必須項目になります',
+                'last' => true,
+            ),
+            'maxLength' => array(
+                'rule' => array('maxLength', 256), 
+                'message' => 'この項目は256文字以下で入力して下さい',
+            ),
+        ),
+                
+        //会員専用情報画像のバリデーション
+        'member_topic_image' => array(
+            'imageExistCheck' => array(    
+                'rule' => array('imageExistCheck', 'member_topic_image'),
+                'message' => 'この項目は必須項目になります',
+                'last' => true,
+            ),
+            'imageMimeCheck' => array(
+                'rule' => array('imageMimeCheck', 'member_topic_image', array('image/jpeg','image/gif','image/png')),
+                'message' => 'ファイルはJPG,PNG,GIFのいずれかにして下さい',
+                'last' => true,
+            ),
+            'imageVolumeCheck' => array(
+                'rule' => array('imageVolumeCheck', 'member_topic_image', 2000000), 
+                'message' => 'ファイルの容量は2M以下にして下さい',
+            ),
+        ),
+                
+        //会員専用情報本文のバリデーション
         'description' => array(
             'notEmpty' => array(    
                 'rule' => 'notEmpty',
@@ -54,74 +87,40 @@ class Slide extends AppModel{
                 'rule' => array('maxLength', 1000), 
                 'message' => 'この項目は1000文字以下で入力して下さい',
             ),
-        ),
-        
-        //スライドショー画像のバリデーション
-        //バリデーションルールの策定　※画像の振り分けと処理共通ロジックの実装
-        'slide_image' => array(
-            'imageExistCheck' => array(    
-                'rule' => array('imageExistCheck', 'slide_image'),
-                'message' => 'この項目は必須項目になります',
-                'last' => true,
-            ),
-            'imageMimeCheck' => array(
-                'rule' => array('imageMimeCheck', 'slide_image', array('image/jpeg','image/gif','image/png')),
-                'message' => 'ファイルはJPG,PNG,GIFのいずれかにして下さい',
-                'last' => true,
-            ),
-            'imageVolumeCheck' => array(
-                'rule' => array('imageVolumeCheck', 'slide_image', 2000000), 
-                'message' => 'ファイルの容量は2M以下にして下さい',
-                'last' => true,
-            ),
-            'imagePixelMatchCheck' => array(
-                'rule' => array('imagePixelMatchCheck', 'slide_image', array(360,250)), 
-                'message' => '画像サイズは横:360px, 縦:250pxにして下さい',
-            ),
-        ),
-        
-        //スライドショー画像本文のバリデーション
-        'link_url' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
-                'message' => 'この項目は必須項目になります',
-                'last' => true,
-            ),
-            'url' => array(
-                'rule' => array('url', true),
-                'message' => 'この項目はURL形式で入力して下さい',
-                'last' => true,
-            ),
-            'maxLength' => array(
-                'rule' => array('maxLength', 1000), 
-                'message' => 'この項目は1000文字以下で入力して下さい',
-            ),
-        ),
-        
-        //公開日
-        'published' => array(
-            'notEmpty' => array(    
-                'rule' => 'notEmpty',
-                'message' => 'この項目は必須項目になります',
-                'last' => true,
-            ),
-        ),        
+        )
     );
-
+    
     //コンストラクタ
     public function __construct(){
     	parent::__construct();
     	//ライブラリを読み込む場合はインスタンスを作成
     	$this->ImageUpload = new ImageUpload();
 	}
-	
-	//$id(各テーブルのプライマリキー)を元にデータを取得する
+    
+    //$id(各テーブルのプライマリキー)を元にデータを取得する
     public function findByPrimaryKey($id){
         $this->id   = $id;
         $this->data = $this->read();
         return $this->data;
     }
+    
+    //会員専用情報を最新を取得する
+    public function getNewestMemberTopic(){
         
+        $conditions = array(
+        	//取得条件
+        	'conditions' => array(
+        		'MemberTopic.flag' => COMMON_PUBLISHED
+			),
+			//ソート順
+			'order' => 'MemberTopic.id DESC',
+			//件数
+			'limit' => self::COUNT_MEMBER_TOPIC_NUM			
+        );
+        $newestMemberTopics = $this->find('all', $conditions);
+        return $newestMemberTopics;
+    }
+    
     //公開フラグの設定を行う
     public function changeFlagStatus($id){
             
@@ -134,12 +133,12 @@ class Slide extends AppModel{
         $response = array('id' => $id, 'flagStatus' => Configure::read("FLAG_CONF.flag.{$flag}"));
 		return $response;
     }
-
+        
     //一時保存ディレクトリ内に画像データをアップロードする
     public function getSaveTmpImageResult(){
 				
 		$tmpImageResult = $this->ImageUpload->loopAndGenerateImages(
-			$this->data,
+			$this->data, 
 			$this->name, 
 			$this->image_array, 
 			self::DIRECTORY_NUM
@@ -154,14 +153,14 @@ class Slide extends AppModel{
     	$this->disableImageValidation();
         
         //次のIDを取得する
-		$banner_picture_id = $this->getNextAutoIncrement();
+		$memberstopic_picture_id = $this->getNextAutoIncrement();
         
         //配列の詰め替えを行う
         $data = $this->ImageUpload->imageFieldChange(
         	$data, 
         	$this->name, 
         	$this->image_array, 
-        	$banner_picture_id
+        	$memberstopic_picture_id
         );
         return $data;
     }
@@ -193,8 +192,7 @@ class Slide extends AppModel{
 			$this->image_array, 
 			$this->image_size, 
 			$ratio_flag, 
-			self::DIRECTORY_NUM,
-			true
+			self::DIRECTORY_NUM
 		);
 		return $imageResult;
     }
@@ -241,7 +239,7 @@ class Slide extends AppModel{
 	    $alreadyAddedImgName = $this->find('first',
             array(
             	'conditions' => array('id' => $id),
-                'fields'     => array('Slide.slide_image')
+                'fields'     => array('MembersTopic.member_topic_image')
             )
         );
         return $alreadyAddedImgName;
@@ -250,16 +248,7 @@ class Slide extends AppModel{
     //画像フィールドのバリデーションを無効にする
     public function disableImageValidation(){
 	    foreach ($this->image_array as $value){
-            unset($this->validate[$value]);           
-        }
-    }
-
-    //画像フィールドのバリデーションを無効にする
-    public function disableImageValidationForEdit($data){
-	    foreach ($this->image_array as $value){
-	    	if(empty($data[$this->name][$value]['name'])){
-            	unset($this->validate[$value]);		    	
-	    	}
+            unset($this->validate[$value]);            
         }
     }
     

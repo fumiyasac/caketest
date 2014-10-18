@@ -38,9 +38,9 @@
 <?php echo $this->Form->file('newstopic_image', array('class' => 'formArea')); ?>
 <div class="padt10">
 <?php if(!empty($error_announce)): ?>
-<img src="/img/newstopic/<?php echo h($alreadyAddedImgName['Newstopic']['newstopic_image']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Newstopic']['newstopic_image'], 4, 50, 150, false); ?>
 <?php else: ?>
-<img src="/img/newstopic/<?php echo h($this->data['Newstopic']['newstopic_image']); ?>" height="100" width="150">
+<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Newstopic']['newstopic_image'], 4, 50, 150, false); ?>
 <?php endif; ?>
 <br>
 <span>現在アップロードされている画像</span>

@@ -636,6 +636,10 @@ color: #ffffff;
 /* ============================================================
 02: etc
 ============================================================ */
+.remark-text{
+	color: red !important;
+}
+
 /* float set */
 .boxL{float:left;}
 .boxR{float:right;}

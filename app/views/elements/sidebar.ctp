@@ -10,12 +10,12 @@
 <!-- 会員ページサイドバー（はじめ） -->
 <section class="membersNav">
 <ul>
-<li><a href="#">会員専用お知らせ一覧</a></li>
-<li><a href="#">マイプロフィール</a></li>
-<li><a href="#">マイクーポン情報</a></li>
-<li><a href="#">ユーザー詳細設定</a></li>
-<li><a href="#">マイブログ一覧</a></li>
-<li><a href="#">会員の心得</a></li>
+<li><a href="/members_topics/index">会員専用お知らせ一覧</a></li>
+<li><a href="/members_profiles/index">マイプロフィール</a></li>
+<!--<li><a href="#">マイクーポン情報</a></li>-->
+<!--<li><a href="/members/edit">ユーザー情報設定</a></li>-->
+<!--<li><a href="#">マイブログ一覧</a></li>-->
+<!--<li><a href="#">会員の心得</a></li>-->
 </ul>
 </section>
 <!-- 会員ページサイドバー（おわり） -->
@@ -57,6 +57,11 @@
 <!-- ## Cake Element Content End ## -->
 <!-- ## Cake Element Content Start ## -->
 <aside class="searchArea">
+
+<aside class="adsense">
+<img src="/images/sample/sample_adsense.png" width="300" height="255" alt="">
+</aside>
+
 <header class="searchHeader">
 <h4><img src="/images/common/h4_search.png" width="300" height="40" alt=""></h4>
 </header>
@@ -83,6 +88,7 @@
 </ul>
 </div>
 </section>
+<!--
 <section class="tagclouds">
 <header>
 <h5><img src="/images/common/h5_tagcloud.png" width="300" height="20" alt=""></h5>
@@ -92,7 +98,8 @@
 <a href="#">お店のご紹介（22）</a>　<a href="#">大塚ものがたり（17）</a>　<a href="#">つけめん（5）</a>　<a href="#">Shisui deux（3）</a> 
 </div>
 </div>
-</section>	
+</section>
+-->
 </aside>
 <!-- ## Cake Element Content End ## -->
 <aside class="siteBanner">
@@ -109,9 +116,6 @@
 <p><?php echo $banner['Banner']['description']; ?></p>
 </div>
 <?php endforeach; ?>
-</aside>
-<aside class="adsense">
-<img src="/images/sample/sample_adsense.png" width="300" height="255" alt="">
 </aside>
 <!-- ## Cake Element Content Start ## -->
 <aside class="anotherInfo">

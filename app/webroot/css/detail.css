@@ -1007,6 +1007,7 @@ a.blue:visited{
     border-bottom: dotted 1px #ebebeb;
     margin-left: 10px;
     margin-right: 10px;
+    font-size: 93%;
 }
 
 .memberArticle .sentenseList div.mypageListArea section.mypageList{
@@ -1020,6 +1021,33 @@ a.blue:visited{
     margin-top: 8px;
     margin-bottom: 0;
 
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageTable #formInquiry{
+	width: 578px;
+	border-right: solid 1px #e2e2e2!important; 
+	border-bottom: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageTable #formInquiry th{
+	text-align: left;
+	width: 178px;
+	background: #ebebeb;
+	color: #683800;
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageTable #formInquiry td{
+	border-left: solid 1px #e2e2e2!important; 
+	border-top: solid 1px #e2e2e2!important;
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageTable p.remarkText{
+}
+
+.memberArticle .sentenseList div.mypageListArea section.mypageTable p.operationLinkText{
+	text-align: right;
 }
 
 .memberArticle .sentenseList div.mypageListArea section.mypageList .published{
@@ -1245,6 +1273,16 @@ a.blue:visited{
     cursor: pointer;
     font-weight: bold;
 }
+
+/* メンバーマイページ関連 */
+p.mypageLabel{
+	color: #683800;
+    line-height: 1.8;
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+
+
 
 /* ============================================================
 08: catalogs

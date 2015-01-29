@@ -20,7 +20,7 @@
 </ol>
     
 <div class="forms">
-<?php echo $this->Form->create('Banner'); ?>
+<?php echo $this->Form->create('Slide'); ?>
 <table cellspacing="0" cellpadding="0" id="formAdmin">
 <tr>
 <th>タイトル&nbsp;<span class="requierd">*</span></th>
@@ -32,7 +32,7 @@
 <th>スライドショー画像&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php if($saveTmpImageResult['slide_image']['result_code'] == UPLOAD_SUCCESS): ?>
-<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['slide_image']['tmp_file_name'], 2, 250, 360, true); ?>
+<?php echo $this->DisplayImage->displayControlThumbnail($saveTmpImageResult['slide_image']['tmp_file_name'], 3, 250, 360, true); ?>
 <br>
 <span>画像アップロード成功！</span>
 <?php elseif($saveTmpImageResult['slide_image']['result_code'] == UPLOAD_FAILUER): ?>

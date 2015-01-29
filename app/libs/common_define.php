@@ -12,6 +12,7 @@
 class CommonDefine extends Object{
 	
 	//会員用ページ判別用配列を返す関数
+	//※管理ツール系はまだ設計中...
     /**
      * @return mixed $array 'controller' => 'action'
      *  
@@ -20,7 +21,15 @@ class CommonDefine extends Object{
 		return array(
 			//members_controller
 			'members' => array(
-				'mypage'
+				'mypage','profile'
+			),
+			//members_topics_controller
+			'members_topics' => array(
+				'index','view'
+			),
+			//members_profiles_controller
+			'members_profiles' => array(
+				'index'
 			)
 		);
 	}

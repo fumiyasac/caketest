@@ -35,15 +35,6 @@
 <th>スライドショー画像&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php echo $this->Form->file('slide_image', array('class' => 'formArea')); ?>
-<div class="padt10">
-<?php if(!empty($error_announce)): ?>
-<?php echo $this->DisplayImage->displayControlThumbnail($alreadyAddedImgName['Slide']['slide_image'], 3, 250, 360, false); ?>
-<?php else: ?>
-<?php echo $this->DisplayImage->displayControlThumbnail($this->data['Slide']['slide_image'], 3, 250, 360, false); ?>
-<?php endif; ?>
-<br>
-<span>現在アップロードされている画像</span>
-</div>
 <?php echo $this->Form->error('slide_image'); ?>
 </td>
 </tr>

@@ -52,7 +52,14 @@
 <?php echo h($this->Form->value('description')); ?>
 </td>
 </tr>
-
+<tr>
+<th>さらに詳しい情報や補足など</th>
+<td>
+<div class="CKEditorContents">
+<?php echo $this->Form->value('other_description'); ?>
+</div>
+</td>
+</tr>
 <tr>
 <th>公開日</th>
 <td>

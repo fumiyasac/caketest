@@ -1,4 +1,12 @@
 <?php
+/**
+ *
+ * Contactsコントローラークラス
+ * Date:    2014/10/16
+ * Created: Fumiya Sakai
+ *
+ */
+
 class ContactsController extends AppController{
     
     //メンバ変数の設定

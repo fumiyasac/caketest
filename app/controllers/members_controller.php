@@ -1,6 +1,13 @@
 <?php
-App::import('Lib','CommonDefine');
-Class MembersController extends AppController{
+/**
+ *
+ * Membersコントローラークラス
+ * Date:    2014/10/16
+ * Created: Fumiya Sakai
+ *
+ */
+
+class MembersController extends AppController{
     
     //メンバ変数の設定
     public $name = 'Members';
@@ -31,16 +38,19 @@ Class MembersController extends AppController{
         'order' => 'Member.id DESC',
     );
 
+    //URL遷移先のページ
+    private $uri_index = '/members/index';
+    private $uri_add   = '/members/add';
+    private $uri_login = '/members/login';
+
     //認証関連の設定
     public function beforeFilter() {
         parent::beforeFilter();
         
-        //ログインが必要なアクションを設定（管理画面系は除く）
-		$member_action_list = CommonDefine::member_page_settings();
-		$target_controller  = $this->params['controller'];        
-        $this->Auth->deny(
-			implode(",", $member_action_list[$target_controller])
-        );
+      //ログインが必要なアクションを設定（管理画面系は除く）
+	    $this->Auth->deny(
+	    	'mypage'
+	    );
     }
 
     //管理画面時のレイアウトの切り替え
@@ -58,13 +68,12 @@ Class MembersController extends AppController{
             array('name' => 'ログイン','link' => false),
         );
         $this->set('breadcrumb', $breadcrumb);
-        		
     }
 
     //ログアウト処理
     public function logout(){
         $this->Auth->logout();
-        $this->redirect('/members/login');
+        $this->redirect($this->uri_login);
     }
 	
 	//マイページ（会員画面）
@@ -78,9 +87,10 @@ Class MembersController extends AppController{
         );
         $this->set('breadcrumb', $breadcrumb);
         
-        //@test:セッションの値を取得する
-        //pr($this->Session->read('Auth'));
-    }	
+        //会員専用情報をマイページに掲載する
+        $members_topics = $this->Member->getMembersTopicRecords();
+        $this->set('members_topics', $members_topics);
+    }
 
     //会員とは（ユーザー画面）
     public function index(){
@@ -99,7 +109,7 @@ Class MembersController extends AppController{
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/members');
+            $this->redirect($this->uri_index);
         }
     }
     
@@ -123,7 +133,7 @@ Class MembersController extends AppController{
             
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/members');
+            $this->redirect($this->uri_index);
         }
     }
     
@@ -161,7 +171,7 @@ Class MembersController extends AppController{
                         array('name' => '会員情報登録','link' => false)
                     );
                     $this->set('breadcrumb', $breadcrumb);
-                    $this->set('error_announce','入力内容に誤りがあります。もう一度入力内容を確認して下さい');
+                    $this->set('error_announce', ERROR_ANNOUNCE_VALIDATE);
                     
                     //ビューのレンダリング
                     $this->render('add');
@@ -170,14 +180,14 @@ Class MembersController extends AppController{
             }else{
                 
                 //データがないのにアクセスした場合、Exceptionを投げる
-                throw new Exception(__('不正アクセスが行われた可能性があります', true));
-                
+                throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));
             }
             
         }catch(Exception $e){
+        	
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/members');
+            $this->redirect($this->uri_add);
         }
     }
    
@@ -199,13 +209,17 @@ Class MembersController extends AppController{
                 
                 //生成したトークン/権限:2を追加する
                 $this->data['Member']['token'] = $this->Member->createTokenForSite();
-                $this->data['Member']['role'] = $this->Member->default_role;
+                $this->data['Member']['role']  = $this->Member->default_role;
                 
                 //取得データをDBへ保存する。
                 if($this->Member->saveMemberInfo($this->data['Member']) !== false){
                     
+                    //プロフィールのデフォルト値を設定しておく
+                    $new_member_id = $this->Member->getLastInsertId();
+                    $this->Member->saveProfileFormat($new_member_id);
+                    
                     $options = Configure::read('MAIL_CONF.custmor');
-                    $options['to'] =  $this->data['Member']['mail'];
+                    $options['to']   = $this->data['Member']['mail'];
                     $options['data'] = $this->data;
 
                     if ($this->_sendMail($options)) {
@@ -230,7 +244,7 @@ Class MembersController extends AppController{
                     $this->render('complete');
                     
                 }else{
-                    $this->flash("エラーが発生しました。\nお手数ではありますが再度入力をお願いします。",array('controller' => 'entries', 'aciton' => 'index')); 
+                    $this->flash("エラーが発生しました。\nお手数ではありますが再度入力をお願いします。",array('controller' => 'members', 'aciton' => 'add')); 
                 }
                 
             }else{
@@ -243,7 +257,7 @@ Class MembersController extends AppController{
         }catch(ErrorException $e){
             //エラー処理
             $this->log($e->getMessage());
-            $this->redirect('/members');
+            $this->redirect($this->uri_add);
         }
     }
     
@@ -264,11 +278,6 @@ Class MembersController extends AppController{
         
         //ビューのレンダリング
         $this->render('register');
-    }
-    
-    //パスワードリマインド（ユーザー画面）
-    public function password_remind(){
-        
     }
     
 }

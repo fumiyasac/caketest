@@ -1,10 +1,9 @@
 <?php
+/**
+ * 第1回：大塚グルメマップ用変数
+ * API表示用ヘルパー 
+ */
 class GourmetMapHelper extends AppHelper{
-     
-    /**
-     * 第1回：大塚グルメマップ用変数
-     * API表示用ヘルパー 
-     */
     
     //API取得情報のページングを行う
     function apiPagenate($page, $maxDataCount , $conditions = array(), $itemsPerPage = 10){

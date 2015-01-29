@@ -45,12 +45,12 @@
 <p>大塚で見つける出会いのもの</p>
 <ul>
 <?php if( empty($is_login) ): ?>
-<li><span>・</span><a href="/members/">メンバー募集に関して</a></li>
-<li><span>・</span><a href="/members/add">メンバー登録</a></li>
-<li><span>・</span><a href="/members/login">ログイン</a></li>
+<li><span>・</span><a href="/smartphones/appli">iOS版アプリについて</a></li>
+<li><span>・</span><a href="/catalogs/index">カタログ情報</a></li>
+<li><span>・</span><a href="/newstopics/index">ニュース&amp;トピック</a></li>
 <?php else: ?>
 <li><span>・</span><a href="/members/mypage">マイページ</a></li>
-<li><span>・</span><a href="#">クーポン情報一覧</a></li>
+<!--<li><span>・</span><a href="#">クーポン情報一覧</a></li>-->
 <li><span>・</span><a href="/members/logout">ログアウト</a></li>
 <?php endif; ?>
 </ul>
@@ -160,7 +160,7 @@ echo $this->Html->getCrumbs(' > ');
 <div id="footerSub2">
 <section id="sponsors">
 <header>
-<h3>お世話になっている方々</h3>
+<h3>このサイトについて</h3>
 </header>
 <div>
 
@@ -168,14 +168,14 @@ echo $this->Html->getCrumbs(' > ');
 </section>
 <section id="perdate">
 <header>
-<h3>Archives</h3>
+<h3>アーカイブ</h3>
 </header>
 <div>
 
 </div>
 </section>
 <section id="copyright">
-<p class="copyrightText">Copyright &copy; 2013 大塚「珍しいもん」Store All Rights Reserved.</p>
+<p class="copyrightText">Copyright &copy; 2015 大塚「珍しいもん」Store All Rights Reserved.</p>
 <p class="toTop"><a href="#wrapper">▲&nbsp;Back To Top</a></p>
 </section>
 </div>

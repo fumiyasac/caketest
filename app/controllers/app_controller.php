@@ -8,6 +8,10 @@ class AppController extends Controller {
         'Auth'
     );
     
+    const AGREE_FLAG                = 1;
+    const MAIL_YET_AUTHENTICATE     = 0;
+    const MAIL_ALREADY_AUTHENTICATE = 1;
+    
     public function beforeFilter() {
         //自前でやるからCSRF対策とパラメータ改ざん対策を停止する
         $this->Security->validatePost = false;
@@ -24,17 +28,20 @@ class AppController extends Controller {
         //認証の実装
         $this->Auth->loginAction = array(
         	'controller' => 'members',
-			'action'     => 'login',
-			'admin'      => false
-		);
+			    'action'     => 'login',
+			    'admin'      => false
+		    );
+		    
         $this->Auth->fields = array(
         	'username' => 'username',
-			'password' => 'password'
-		);
-		$this->Auth->userScope = array(
-			'Member.agree'  => 1,
-			'Member.status' => 0
-		);
+			    'password' => 'password'
+		    );
+		    
+		    $this->Auth->userScope = array(
+			    'Member.agree'  => self::AGREE_FLAG,
+			    'Member.status' => self::MAIL_YET_AUTHENTICATE
+		    );
+		    
         $this->Auth->loginRedirect = '/members/mypage';
         
         //ログイン状態のユーザーを取得

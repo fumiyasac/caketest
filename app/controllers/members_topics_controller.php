@@ -6,14 +6,14 @@
  * Created: Fumiya Sakai
  *
  */
- 
+
 class MembersTopicsController extends AppController{
     
     //メンバ変数の設定
     public $name = 'MembersTopics';
     public $uses = array('MembersTopic');
     public $layout = 'common_format_blog';
-    public $components = array('Session','Email','RequestHandler');
+    public $components = array('Session','Email','RequestHandler','Auth');
     public $helpers = array('Formhidden','Csv','Html','Dateform','DisplayImage');
     
     //デフォルト設定
@@ -26,6 +26,7 @@ class MembersTopicsController extends AppController{
             'kcpy',
             'description',
             'member_topic_image',
+            'other_description',
             'published',
             'flag',
             'created',
@@ -39,11 +40,21 @@ class MembersTopicsController extends AppController{
     private $uri_control_index = '/control/members_topics/index';
     private $uri_control_add   = '/control/members_topics/add';
     private $uri_control_edit  = '/control/members_topics/edit';
+    private $uri_index         = '/members_topics/index';
+	
+	//認証用アクション格納文字列
+	private $auth_params = "";
 	
     //認証関連の設定
     public function beforeFilter() {
-        parent::beforeFilter();       
-    }
+        parent::beforeFilter();
+        
+        //ログインが必要なアクションを設定（管理画面系は除く）
+	      $this->Auth->deny(
+	    	  'index',
+	    	  'view'
+	      );
+	  }
 
     //管理画面時のレイアウトの切り替え
     public function beforeRender() {
@@ -446,7 +457,6 @@ class MembersTopicsController extends AppController{
                 throw new Exception(__(ERROR_ANNOUNCE_ILLIGAL_ACCESS, true));                                    
             }
             
-            
         } catch (Exception $e){
             
             //エラー処理
@@ -454,7 +464,7 @@ class MembersTopicsController extends AppController{
             $this->redirect($this->uri_control_edit.DS.$id);
         }
     }
-
+	
     //CSVファイルのダウンロード（管理画面）
     public function control_csvdownload(){
     	
@@ -468,6 +478,73 @@ class MembersTopicsController extends AppController{
         
         //変数を値へセット
         $this->set(compact('filename', 'headRow', 'contentsRows'));        
-    }    
+    }
+    
+    //会員専用情報表示
+    public function index(){
+        
+        //タイトルメッセージのセット
+        $this->set('title_for_layout','会員専用情報一覧');
+        $breadcrumb = array(
+            array('name' => 'HOME', 'link' => '/'),
+            array('name' => '会員専用情報一覧','link' => false),
+        );
+        $this->set('breadcrumb', $breadcrumb);
+        
+        $condition = array('MembersTopic.flag' => COMMON_PUBLISHED);
+        if(isset($this->params['requested'])){
+            $members_topics = $this->paginate('MembersTopic', $condition);
+            return $members_topics;
+        }else{
+            //ページングのリミットを10にする
+            $this->paginate['limit'] = 10;
+        
+            //members_topicsテーブルからデータを持ってくる
+            $members_topics = $this->paginate('MembersTopic', $condition);
+            $this->set('members_topics', $members_topics);
+        }
+        //ビューのレンダリング
+        $this->render('index');
+    }
+
+    //会員専用情報閲覧
+    public function view($id = null){
+        
+        try {
+            
+            //idがなければ一覧ページへリダイレクト
+            if(!isset($id) && is_numeric($id)){
+                 $this->redirect($this->uri_index);
+            }
+            
+            //データを取得する
+            $this->data = $this->MembersTopic->getDetailDataById($id);
+            if($this->data === false){
+                $this->redirect($this->uri_index);
+            }
+            
+            //変数をセット
+            $this->set('data', $this->data);
+            
+            //タイトルメッセージのセット
+            $this->set('title_for_layout','会員専用情報（'.$this->data['MembersTopic']['title'].'）');
+        
+            //パンくずリストの設定 
+            $breadcrumb = array(
+                array('name' => 'HOME', 'link' => '/'),
+                array('name' => '会員専用情報一覧', 'link' => $this->uri_index),
+                array('name' => '会員専用情報（'.$this->data['MembersTopic']['title'].'）','link' => false),
+            );
+            $this->set('breadcrumb', $breadcrumb);
+            
+            //ビューのレンダリング
+            $this->render('view');
+            
+        } catch (Exception $e) {
+            //エラー処理
+            $this->log($e->getMessage());
+            $this->redirect($this->uri_index);
+        }
+    }
     
 }

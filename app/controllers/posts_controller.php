@@ -35,7 +35,7 @@ class PostsController extends AppController{
         'order' => 'Post.id DESC',
     );
 	
-	//URL遷移先のページ
+		//URL遷移先のページ
     private $uri_index         = '/posts/index';
     private $uri_control_index = '/control/posts/index';
     private $uri_control_add   = '/control/posts/add';

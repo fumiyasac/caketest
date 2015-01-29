@@ -69,6 +69,21 @@ echo $this->Form->textarea('description',array(
 </tr>
 
 <tr>
+<th>さらに詳しい情報や補足など</th>
+<td>
+<?php
+echo $this->Form->textarea('other_description',array(
+    'id' => 'ckEditor',
+    'class'=>'formAreaText',
+    'rows' => 5,
+    'cols' => 40
+));
+?>
+<?php echo $this->Form->error('other_description'); ?>
+</td>
+</tr>
+
+<tr>
 <th>公開日&nbsp;<span class="requierd">*</span></th>
 <td>
 <?php
@@ -103,5 +118,9 @@ echo $this->Dateform->dateYMD('published', null,
 </div>
 </section>
 </article>
+<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+var editor = CKEDITOR.replace('ckEditor');
+</script>
 </article>
 <!-- ## Cake View Content End ## -->

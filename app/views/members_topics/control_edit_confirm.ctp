@@ -58,6 +58,15 @@
 </tr>
 
 <tr>
+<th>さらに詳しい情報や補足など</th>
+<td>
+<div class="CKEditorContents">
+<?php echo $this->Form->value('other_description'); ?>
+</div>
+</td>
+</tr>
+
+<tr>
 <th>公開日</th>
 <td>
 <?php echo h($this->Html->dateFormat($data['MembersTopic']['published']['year'].'-'.$data['MembersTopic']['published']['month'].'-'.$data['MembersTopic']['published']['day']." 00:00:00")); ?>

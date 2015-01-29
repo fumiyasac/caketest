@@ -1,8 +1,9 @@
 <?php
 /**
  *
- * MembersTopicモデルクラス
- * Date:    2014/10/16
+ * MembersProfileモデルクラス
+ * ※後々の機能拡張でさらに変更の可能性あり
+ * Date:    2014/10/25
  * Created: Fumiya Sakai
  *
  */
@@ -10,73 +11,66 @@
 //画像アップロードのライブラリインポート
 App::import('Lib','ImageUpload');
 
-class MembersTopic extends AppModel{
+class MembersProfile extends AppModel{
     
     //モデル名
-    public $name = 'MembersTopic';
+    public $name = 'MembersProfile';
     
-    //定数（マイページ用取得件数　デフォルト：5）
-	const COUNT_MEMBER_TOPIC_NUM = 5;
+    //定数（ディレクトリ番号　デフォルト：9）    
+    const DIRECTORY_NUM = 9;
     
-    //定数（ディレクトリ番号　デフォルト：8）    
-    const DIRECTORY_NUM = 8;
+    //定数（デフォルトの画像名）    
+    const DEFAULT_FILENAME = "noimage.gif";
     
     //ライブラリ
     private $ImageUpload;
     
     //画像格納カラム名の配列
-    private $image_array = array('member_topic_image');
+    private $image_array = array('filename');
     
-    //private変数（画像サイズ　デフォルト：横600px,縦300px）   
-    private $image_size = array(600,300);
+    //private変数（画像サイズ　デフォルト：横150px,縦150px）   
+    private $image_size = array(150,150);
     
     //バリデーション
     public $validate = array(
-        //会員専用情報タイトルのバリデーション
-        'title' => array(
-            'notEmpty' => array(    
-                'rule' => 'notEmpty',
-                'message' => 'この項目は必須項目になります',
-                'last' => true,
-            ),
-            'maxLength' => array(
-                'rule' => array('maxLength', 256), 
-                'message' => 'この項目は256文字以下で入力して下さい',
-            ),
-        ),
-
-        //会員専用情報キャッチコピーのバリデーション
-        'kcpy' => array(
-            'notEmpty' => array(    
-                'rule' => 'notEmpty',
-                'message' => 'この項目は必須項目になります',
-                'last' => true,
-            ),
-            'maxLength' => array(
-                'rule' => array('maxLength', 256), 
-                'message' => 'この項目は256文字以下で入力して下さい',
-            ),
-        ),
-                
-        //会員専用情報画像のバリデーション
-        'member_topic_image' => array(
+        
+        //会員プロフィール画像のバリデーション
+        'filename' => array(
             'imageExistCheck' => array(    
-                'rule' => array('imageExistCheck', 'member_topic_image'),
+                'rule' => array('imageExistCheck', 'filename'),
                 'message' => 'この項目は必須項目になります',
                 'last' => true,
             ),
             'imageMimeCheck' => array(
-                'rule' => array('imageMimeCheck', 'member_topic_image', array('image/jpeg','image/gif','image/png')),
+                'rule' => array('imageMimeCheck', 'filename', array('image/jpeg','image/gif','image/png')),
                 'message' => 'ファイルはJPG,PNG,GIFのいずれかにして下さい',
                 'last' => true,
             ),
             'imageVolumeCheck' => array(
-                'rule' => array('imageVolumeCheck', 'member_topic_image', 2000000), 
+                'rule' => array('imageVolumeCheck', 'filename', 2000000), 
                 'message' => 'ファイルの容量は2M以下にして下さい',
             ),
         ),
-                
-        //会員専用情報本文のバリデーション
+        
+        //会員プロフィールURLのバリデーション
+        'link_url' => array(
+	        'notEmpty' => array(    
+                'rule' => 'notEmpty',
+                'message' => 'この項目は必須項目になります',
+                'last' => true,
+            ),
+            'url' => array(
+                'rule' => array('url', true),
+                'message' => 'この項目はURL形式で入力して下さい',
+                'last' => true,
+            ),
+            'maxLength' => array(
+                'rule' => array('maxLength', 1000), 
+                'message' => 'この項目は1000文字以下で入力して下さい',
+            ),
+        ),
+        
+        //会員プロフィール本文のバリデーション
         'description' => array(
             'notEmpty' => array(    
                 'rule' => 'notEmpty',
@@ -95,57 +89,36 @@ class MembersTopic extends AppModel{
     	parent::__construct();
     	//ライブラリを読み込む場合はインスタンスを作成
     	$this->ImageUpload = new ImageUpload();
-	}
+	  }
     
-    //$id(各テーブルのプライマリキー)を元にデータを取得する
-    public function findByPrimaryKey($id){
-        $this->id   = $id;
-        $this->data = $this->read();
-        return $this->data;
-    }
-    
-    //コンテンツ部分のデータ取得を行う
-	public function getDetailDataById($id){
-		
-		$conditions = array(
-			'MembersTopic.id'   => $id,
-			'MembersTopic.flag' => COMMON_PUBLISHED
-		);
-		
-		$detail = $this->find('first',
-            array('conditions' => $conditions)
-        );
-        return $detail;
-	}
+    //プロフィール部分のデータ取得を行う
+	  public function getProfileByMemberId($member_id){
 
-    //会員専用情報を最新を取得する
-    public function getNewestMemberTopic(){
-        
         $conditions = array(
         	//取得条件
         	'conditions' => array(
-        		'MembersTopic.flag' => COMMON_PUBLISHED
-			),
-			//ソート順
-			'order' => 'MembersTopic.id DESC',
-			//件数
-			'limit' => self::COUNT_MEMBER_TOPIC_NUM			
-        );
-        $newestMemberTopics = $this->find('all', $conditions);
-        return $newestMemberTopics;
-    }
-    
-    //公開フラグの設定を行う
-    public function changeFlagStatus($id){
-            
-        //ステータスを変更する
-        $this->id = $id;
-        $flag = $this->field('flag') == COMMON_PUBLISHED ? ADMIN_ONLY : COMMON_PUBLISHED;
-        $this->saveField('flag', $flag);
-        
-        //変更したステータスの取得
-        $response = array('id' => $id, 'flagStatus' => Configure::read("FLAG_CONF.flag.{$flag}"));
-		return $response;
+        		'MembersProfile.member_id' => $member_id
+			    )
+		    );
+        $member_profile = $this->find('first', $conditions);
+        return $member_profile;
+	  }
+	
+    //新規会員仮登録時に、デフォルトのプロフィールデータを登録する
+    public function saveInitialProfileByMemberId($member_id){
+    	
+    	//デフォルトのプロフィール値の配列を作成
+    	$data_initial_array = array();
+    	$data_initial_array[$this->name] = array(
+    		'id'          => $this->getNextAutoIncrement(),
+    		'member_id'   => $member_id,
+    		'filename'    => 'no_image.gif',
+    		'link_url'    => '',
+    		'description' => '',
+    		'flag'        => COMMON_PUBLISHED
+    	);
+		//データをinsertする
+		$this->save($data_initial_array);
     }
         
     //一時保存ディレクトリ内に画像データをアップロードする
@@ -167,14 +140,14 @@ class MembersTopic extends AppModel{
     	$this->disableImageValidation();
         
         //次のIDを取得する
-		$memberstopic_picture_id = $this->getNextAutoIncrement();
+		$membersprofile_picture_id = $this->getNextAutoIncrement();
         
         //配列の詰め替えを行う
         $data = $this->ImageUpload->imageFieldChange(
         	$data, 
         	$this->name, 
         	$this->image_array, 
-        	$memberstopic_picture_id
+        	$membersprofile_picture_id
         );
         return $data;
     }
@@ -253,7 +226,7 @@ class MembersTopic extends AppModel{
 	    $alreadyAddedImgName = $this->find('first',
             array(
             	'conditions' => array('id' => $id),
-                'fields'     => array('MembersTopic.member_topic_image')
+                'fields'     => array('MembersProfile.filename')
             )
         );
         return $alreadyAddedImgName;

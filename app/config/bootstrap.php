@@ -141,6 +141,7 @@ Configure::write('UPLOAD_TMP_PATH_CONF', array(
         '6' => 'tmp_post',
         '7' => 'tmp_showcase',
         '8' => 'tmp_members_topic',
+        '9' => 'tmp_members_profile',
     ),
 ));
 
@@ -154,6 +155,7 @@ Configure::write('UPLOAD_PATH_CONF', array(
         '6' => 'post',
         '7' => 'showcase',
         '8' => 'members_topic',
+        '9' => 'members_profile',
    ),
 ));
 

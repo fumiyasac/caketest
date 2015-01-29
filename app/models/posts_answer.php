@@ -16,7 +16,7 @@ class PostsAnswer extends AppModel{
     public function updateStatusByPostId($id, $flag){
         
 		//Postに紐づくモデルのステータスも変更する
-	    $conditions = array('post_id' => $id);
+	  $conditions = array('post_id' => $id);
 		$fields     = array('flag'    => $flag);
 		
 		$this->updateAll($fields, $conditions);

@@ -1,8 +1,23 @@
 <?php
+/**
+ *
+ * Memberモデルクラス
+ * Date:    2014/10/20
+ * Created: Fumiya Sakai
+ *
+ */
+
+//モデルクラスのインポート
+App::Import('Model','MembersTopic');
+App::Import('Model','MembersProfile');
+
 class Member extends AppModel{
     
     //モデル名
     public $name = 'Member';
+
+	//インポートしたモデル
+    private $MembersTopic;
     
     //private変数（会員規約同意フラグ　1:同意済）
 	private $is_agree_flag     = 1;
@@ -11,7 +26,7 @@ class Member extends AppModel{
 	private $auth_token_length = 16;
 	
     //public変数（仮会員権限フラグ　2:一般ユーザー）
-    public $default_role 	   = 2;
+    public $default_role 	     = 2;
     
     //public変数（ステータスフラグ 0:メール認証未対応,1:メール認証対応済）
     public $mail_auth_yet      = 0;
@@ -98,6 +113,14 @@ class Member extends AppModel{
             'message' => '会員規約に同意されない場合は会員登録ができません',
         ),
     );
+
+    //コンストラクタ
+	public function __construct(){
+		parent::__construct();
+		//インポートモデルを読み込む場合はインスタンスを作成
+		$this->MembersTopic   = new MembersTopic();
+		$this->MembersProfile = new MembersProfile();
+	}
     
     //メールアドレスの照合（確認で入力したものと同じか否か）
     public function mailAddressMatch($data){        
@@ -141,21 +164,20 @@ class Member extends AppModel{
     
     //32バイトのトークン値を作成する
     public function createTokenForSite(){
+    	
         $token_length = $this->auth_token_length;
         $bytes = openssl_random_pseudo_bytes($token_length);
         $token = bin2hex($bytes);
         
         //重複したトークンがある場合は再帰的にトークン値を作成する
         $sameTokenCount = $this->find('count', 
-            array(
-                'conditions' => array('Member.token' => $token ),
-            )
+            array('conditions' => array('Member.token' => $token))
         );
         
         if($sameTokenCount != 0){
             $this->createTokenForSite();
         }else{
-            return $token;   
+            return $token;
         }
     }
     
@@ -163,20 +185,16 @@ class Member extends AppModel{
     public function checkTokenForParam($token){
         
         $memberRecord = $this->find('first',
-            array(
-                'conditions' => array('Member.token' => $token ),
-            )
+            array('conditions' => array('Member.token' => $token))
         );
-        
-        $this->log($memberRecord);
-        
+                
         //トークン値に合致するレコードがあった場合は、statusを0から1へ変更
         if( !empty($memberRecord) ){
             $memberId = $memberRecord['Member']['id'];
             $now = date("Y-m-d H:i:s");
             $this->updateAll(
                 $fields = array(
-                    'Member.status' => $this->mail_auth_already,
+                    'Member.status'   => $this->mail_auth_already,
                     'Member.modified' => "'".$now."'"
                 ),
                 $conditions = array(
@@ -188,5 +206,15 @@ class Member extends AppModel{
             return $this->mail_auth_yet;
         }
     }
+    
+    //プロフィールのデフォルト値を新規追加する
+    public function saveProfileFormat($id){
+	    return $this->MembersProfile->saveInitialProfileByMemberId($id);    	
+    }
+    
+    //会員専用情報を最新5件を取得する
+    public function getMembersTopicRecords(){
+	    return $this->MembersTopic->getNewestMemberTopic();
+    }
+    
 }
-?>

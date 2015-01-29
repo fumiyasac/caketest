@@ -88,7 +88,7 @@ echo $this->Html->getCrumbs(' > ');
 <div id="footerSub2">
 <section id="sponsors">
 <header>
-<h3>お世話になっている方々</h3>
+<h3>管理画面の説明</h3>
 </header>
 <div>
 
@@ -96,7 +96,7 @@ echo $this->Html->getCrumbs(' > ');
 </section>
 <section id="perdate">
 <header>
-<h3>Archives</h3>
+<h3>使用の際の諸注意</h3>
 </header>
 <div>
 

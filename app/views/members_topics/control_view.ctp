@@ -43,6 +43,19 @@
 </tr>
 
 <tr>
+<th>さらに詳しい情報や補足など</th>
+<td>
+<?php if($data['MembersTopic']['other_description'] !== null): ?>
+<div class="CKEditorContents">
+<?php echo $data['MembersTopic']['other_description']; ?>
+</div>
+<?php else: ?>
+-
+<?php endif; ?>
+</td>
+</tr>
+
+<tr>
 <th>作成日</th>
 <td>
 <?php 

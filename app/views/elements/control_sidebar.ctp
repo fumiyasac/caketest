@@ -3,6 +3,7 @@
 <header class="adminSideHeader">
 <h4>ブログの管理</h4>
 </header>
+<!--
 <section class="adminSidePanel">
 <header>
 <h5>ユーザーの管理</h5>
@@ -14,6 +15,8 @@
 </ul>
 </div>
 </section>
+-->
+<!--
 <section class="adminSidePanel">
 <header>
 <h5>会員専用情報の管理</h5>
@@ -25,15 +28,16 @@
 </ul>
 </div>
 </section>
+-->
 <section class="adminSidePanel">
 <header>
 <h5>記事の管理</h5>
 </header>
 <div>
 <ul>
-<li><a href="#">記事（archives）の管理</a></li>
-<li><a href="#">カテゴリー（categories）の管理</a></li>
-<li><a href="#">タグ（tags）の管理</a></li>
+<li><a href="#">記事の管理</a></li>
+<li><a href="#">記事カテゴリーの管理</a></li>
+<li><a href="#">記事ピクチャーの管理</a></li>
 </ul>
 </div>	
 </section>
@@ -43,6 +47,7 @@
 </header>
 <div>
 <ul>
+<li><a href="#">コメントカテゴリーの管理</a></li>
 <li><a href="#">コメント（ブログ部分）の管理</a></li>
 <li><a href="/control/catalogs_comments">コメント（大塚Catalogs）の管理</a></li>
 </ul>
@@ -97,6 +102,7 @@
 </section>
 </aside>
 
+<!--
 <aside class="adminSide">
 <header class="adminSideHeader">
 <h4>ショップの管理 ※現在開発中</h4>
@@ -177,4 +183,5 @@
 </div>
 </section>
 </aside>
+-->
 <!-- ## Cake Element Content End ## -->
